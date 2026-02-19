@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  compatibilityDate: '2026-02-19',
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['~~/assets/css/tailwind.css'], // ← ここだけ変更
+  css: ['~~/assets/css/tailwind.css'],
 })
