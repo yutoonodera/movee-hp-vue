@@ -10,13 +10,13 @@ const achievements: Achievement[] = [
     title: "地図アプリケーション開発",
     description:
       "パッケージとして活用できる地図アプリケーション開発を支援しました。",
-    tags: ["TypeScript", "GIS", "Next.js", "React"],
+    tags: ["TypeScript", "GIS", "Nest.js", "Vue.js"],
   },
   {
     title: "JamStack情報発信基盤構築",
     description:
       "継続的に拡張可能なWeb基盤を構築し、コンテンツ更新の効率化とSEO強化を実現しました。",
-    tags: ["自社サービス", "CMS", "SEO", "Cloudflare", "Docker"],
+    tags: ["自社サービス", "CMS", "SEO", "Next.js", "React", "Cloudflare", "Docker"],
   },
   {
     title: "コースセンターシステムのAPI開発",
@@ -28,13 +28,13 @@ const achievements: Achievement[] = [
     title: "顧客データMAP可視化ソフトウェア",
     description:
       "CSVでアップロードした顧客データを地図にマッピングして、顧客属性の可視化を実現しました。",
-    tags: ["自社サービス", "leaflet", "Nuxt.js", "GIS"],
+    tags: ["自社サービス", "leaflet", "Nuxt.js", "Vue.js", "GIS"],
   },
   {
     title: "ブログソフトウェア開発",
     description:
       "NotionをAPIとしたブログソフトウェア開発を実施しました。",
-    tags: ["自社サービス", "NotionAPI", "Next.js"],
+    tags: ["自社サービス", "NotionAPI", "Next.js", "React",],
   },
     {
     title: "営業マッチングソフトウェア開発",
