@@ -9,9 +9,7 @@ import MapHeat from '~/components/MapHeat.vue'
         <!-- Concept -->
         <div class="space-y-4 text-gray-700 leading-relaxed">
           <p>
-            弊社は、
-            <span class="font-semibold text-gray-900">ソフトウェアと意思決定を育てる</span>
-            ソフトウェア開発会社です。
+            福岡市のソフトウェア開発会社です。
           </p>
         </div>
 
