@@ -11,7 +11,7 @@ import MapHeat from '~/components/MapHeat.vue'
           <p>
             弊社は、
             <span class="font-semibold text-gray-900">ソフトウェアと意思決定を育てる</span>
-            というコンセプトのソフトウェア開発会社です。
+            ソフトウェア開発会社です。
           </p>
         </div>
 
