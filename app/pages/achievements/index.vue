@@ -39,7 +39,7 @@ const achievements: Achievement[] = [
     {
     title: "営業マッチングソフトウェア開発",
     description:
-      "商品の作り手と売り手をつなぐソフトウェア開発を支援しました",
+      "商品の作り手と売り手をつなぐソフトウェア開発を支援しました。",
     tags: ["OctoberCMS", "PHP", "kintone"],
   },
 ]
