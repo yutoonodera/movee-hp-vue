@@ -3,7 +3,7 @@ const steps = [
   {
     number: '01',
     title: 'お問い合わせ',
-    body: 'まずはDMまたはメールでご相談ください。作りたいサイトやシステムの方向性を簡単にお聞きします。',
+    body: 'まずはDMまたはメールでご相談ください。作りたいサイトやシステムの方向性を簡単にお聞きします。将来的な拡張性も含めて技術選定を行います。',
   },
   {
     number: '02',
@@ -62,30 +62,6 @@ const paymentOptions = [
             私たちは、Webサイト・システムの最初の一歩を無料でつくります。
             まずは「サイトの土台」をフルスクラッチで、スピーディーに構築し、
             サーバに公開します。そこから先は、御社の業務に合わせて機能も価値も育てていきます。
-          </p>
-
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a
-              href="mailto:info@movee.jp"
-              class="inline-flex items-center rounded-md bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800 transition"
-            >
-              info@movee.jp に問い合わせる
-            </a>
-
-            <NuxtLink
-              to="/achievements"
-              class="inline-flex items-center rounded-md border border-gray-300 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 transition"
-            >
-              実績を見る
-            </NuxtLink>
-          </div>
-
-          <p class="text-sm text-gray-500 leading-7">
-            新規でWebサイトやシステムを作りたい方は、お気軽にDMまたは
-            <a href="mailto:info@movee.jp" class="underline hover:text-gray-700">
-              info@movee.jp
-            </a>
-            までご連絡ください。
           </p>
         </div>
       </section>
@@ -272,12 +248,11 @@ const paymentOptions = [
             >
               info@movee.jp に相談する
             </a>
-
             <NuxtLink
-              to="/"
+              to="/achievements"
               class="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
             >
-              トップへ戻る
+              実績を見る
             </NuxtLink>
           </div>
         </div>
