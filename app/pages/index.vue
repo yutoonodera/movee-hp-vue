@@ -17,13 +17,22 @@ import MapHeat from '~/components/MapHeat.vue'
           株式会社movee
         </div>
         <!-- CTA -->
-        <div class="pt-4 space-y-3">
-          <NuxtLink
-            to="/achievements"
-            class="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
-          >
-            実績はこちら
-          </NuxtLink>
+        <div class="pt-6 space-y-4">
+          <div class="flex gap-6">
+            <NuxtLink
+              to="/achievements"
+              class="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+            >
+              実績はこちら
+            </NuxtLink>
+
+            <NuxtLink
+              to="/service"
+              class="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+            >
+              サービス
+            </NuxtLink>
+          </div>
 
           <p class="text-sm text-gray-600">
             ご相談・お問い合わせ：
