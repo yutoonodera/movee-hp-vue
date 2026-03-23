@@ -25,13 +25,6 @@ import MapHeat from '~/components/MapHeat.vue'
             >
               実績はこちら
             </NuxtLink>
-
-            <NuxtLink
-              to="/service"
-              class="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
-            >
-              サービス
-            </NuxtLink>
           </div>
 
           <p class="text-sm text-gray-600">
