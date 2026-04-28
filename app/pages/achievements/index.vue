@@ -1,11 +1,20 @@
 <script setup lang="ts">
+import { NuxtLink } from "#components";
+
 type Achievement = {
-  title: string
-  description: string
-  tags: string[]
-}
+  title: string;
+  description: string;
+  tags: string[];
+  url?: string;
+};
 
 const achievements: Achievement[] = [
+  {
+    title: "Webサイト開発",
+    description: "スポーツ用品コンサルティング会社のWebサイトを再構築しました",
+    tags: ["TypeScript", "Next.js", "Vercel", "React", "ReSend"],
+    url: "/achievements/web-dev-for-sports-consultant",
+  },
   {
     title: "地図アプリケーション開発",
     description:
@@ -16,12 +25,19 @@ const achievements: Achievement[] = [
     title: "JamStack情報発信基盤構築",
     description:
       "継続的に拡張可能なWeb基盤を構築し、コンテンツ更新の効率化とSEO強化を実現しました。",
-    tags: ["自社サービス", "CMS", "SEO", "Next.js", "React", "Cloudflare", "Docker"],
+    tags: [
+      "自社サービス",
+      "CMS",
+      "SEO",
+      "Next.js",
+      "React",
+      "Cloudflare",
+      "Docker",
+    ],
   },
   {
     title: "コースセンターシステムのAPI開発",
-    description:
-      "SalesForceとホストを繋ぐAPIソフトウェアを支援しました。",
+    description: "SalesForceとホストを繋ぐAPIソフトウェアを支援しました。",
     tags: ["Java", "Spring Boot"],
   },
   {
@@ -32,63 +48,64 @@ const achievements: Achievement[] = [
   },
   {
     title: "ブログソフトウェア開発",
-    description:
-      "NotionをAPIとしたブログソフトウェア開発を実施しました。",
-    tags: ["自社サービス", "NotionAPI", "Next.js", "React",],
+    description: "NotionをAPIとしたブログソフトウェア開発を実施しました。",
+    tags: ["自社サービス", "NotionAPI", "Next.js", "React"],
   },
-    {
+  {
     title: "営業マッチングソフトウェア開発",
-    description:
-      "商品の作り手と売り手をつなぐソフトウェア開発を支援しました。",
+    description: "商品の作り手と売り手をつなぐソフトウェア開発を支援しました。",
     tags: ["OctoberCMS", "PHP", "kintone"],
   },
-]
+];
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <div class="max-w-5xl mx-auto px-4 py-12 space-y-10">
-      <!-- ヘッダー -->
-      <div class="text-center space-y-3">
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
-          実績一覧
-        </h1>
-        <p class="text-gray-600">
-          取り組みを一部ご紹介します。
-        </p>
-      </div>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <component
+      v-for="(item, index) in achievements"
+      :key="index"
+      :is="item.url ? NuxtLink : 'div'"
+      :to="item.url"
+      class="group rounded-xl border bg-white p-6 space-y-4 transition-all duration-200"
+      :class="
+        item.url
+          ? 'cursor-pointer border-blue-200 shadow-md hover:-translate-y-1 hover:shadow-xl'
+          : 'border-gray-200 shadow-sm'
+      "
+    >
+      <div class="flex items-start justify-between gap-3">
+        <h2 class="text-lg font-semibold leading-snug text-gray-900">
+          {{ item.title }}
+        </h2>
 
-      <!-- カード一覧 -->
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div
-          v-for="(item, index) in achievements"
-          :key="index"
-          class="bg-white rounded-xl shadow-sm border p-6 space-y-4"
+        <span
+          v-if="item.url"
+          class="shrink-0 rounded-full bg-blue-50 px-2 py-1 text-[11px] font-medium text-blue-600"
         >
-          <h2 class="font-semibold text-lg text-gray-900">
-            {{ item.title }}
-          </h2>
-
-          <p class="text-gray-700 text-sm leading-relaxed">
-            {{ item.description }}
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="tag in item.tags"
-              :key="tag"
-              class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-600"
-            >
-              {{ tag }}
-            </span>
-          </div>
-        </div>
+          詳細あり
+        </span>
       </div>
-      <div class="pt-6">
-        <NuxtLink to="/" class="text-sm text-gray-600 underline hover:text-gray-900">
-          株式会社movee
-        </NuxtLink>
+
+      <p class="text-sm leading-relaxed text-gray-700">
+        {{ item.description }}
+      </p>
+
+      <div class="flex flex-wrap gap-2">
+        <span
+          v-for="tag in item.tags"
+          :key="tag"
+          class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-600"
+        >
+          {{ tag }}
+        </span>
       </div>
-    </div>
+
+      <div
+        v-if="item.url"
+        class="pt-2 text-sm font-medium text-blue-600 opacity-80 transition group-hover:opacity-100"
+      >
+        詳細を見る →
+      </div>
+    </component>
   </div>
 </template>
