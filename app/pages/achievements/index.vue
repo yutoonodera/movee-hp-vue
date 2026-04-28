@@ -136,8 +136,6 @@ const achievements: Achievement[] = [
         >
           <a
             href="https://movee.jp"
-            target="_blank"
-            rel="noopener noreferrer"
             class="text-gray-600 underline hover:text-gray-900"
           >
             movee.jp
