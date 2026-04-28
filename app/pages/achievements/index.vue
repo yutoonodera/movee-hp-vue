@@ -12,7 +12,7 @@ const achievements: Achievement[] = [
   {
     title: "Webサイト開発",
     description: "スポーツ用品コンサルティング会社のWebサイトを再構築しました",
-    tags: ["TypeScript", "Next.js", "Vercel", "React", "ReSend"],
+    tags: ["TypeScript", "Next.js", "Vercel", "React", "Resend"],
     url: "/achievements/web-dev-for-sports-consultant",
   },
   {
@@ -34,6 +34,7 @@ const achievements: Achievement[] = [
       "Cloudflare",
       "Docker",
     ],
+    url: "/achievements/jamastack-information-infrastructure",
   },
   {
     title: "コースセンターシステムのAPI開発",
@@ -55,6 +56,7 @@ const achievements: Achievement[] = [
     title: "営業マッチングソフトウェア開発",
     description: "商品の作り手と売り手をつなぐソフトウェア開発を支援しました。",
     tags: ["OctoberCMS", "PHP", "kintone"],
+    url: "/achievements/sales-manegement-software",
   },
 ];
 </script>
