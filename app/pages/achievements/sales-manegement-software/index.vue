@@ -52,8 +52,8 @@ const results = [
 
         <div class="grid gap-4 sm:grid-cols-3 pt-2">
           <div class="rounded-xl bg-gray-50 p-4">
-            <p class="text-xs text-gray-500">区分</p>
-            <p class="mt-1 font-semibold text-gray-900">受託開発</p>
+            <p class="text-xs text-gray-500">期間</p>
+            <p class="mt-1 font-semibold text-gray-900">約12ヶ月</p>
           </div>
 
           <div class="rounded-xl bg-gray-50 p-4">
