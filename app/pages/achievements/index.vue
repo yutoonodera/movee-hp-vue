@@ -19,7 +19,7 @@ const achievements: Achievement[] = [
     title: "地図アプリケーション開発",
     description:
       "パッケージとして活用できる地図アプリケーション開発を支援しました。",
-    tags: ["TypeScript", "GIS", "Nest.js", "Vue.js", "PostgresSQL"],
+    tags: ["TypeScript", "GIS", "Nest.js", "Vue.js", "PostgreSQL"],
   },
   {
     title: "JamStack情報発信基盤構築",
