@@ -11,7 +11,7 @@ type Achievement = {
 const achievements: Achievement[] = [
   {
     title: "Webサイト開発",
-    description: "スポーツ用品コンサルティング会社のWebサイトを再構築しました",
+    description: "スポーツ用品コンサルタント様のWebサイトを再構築しました",
     tags: ["TypeScript", "Next.js", "Vercel", "React", "Resend"],
     // url: "/achievements/web-dev-for-sports-consultant",
   },

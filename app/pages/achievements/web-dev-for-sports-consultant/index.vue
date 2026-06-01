@@ -42,7 +42,7 @@ const results = [
         </p>
 
         <h1 class="text-3xl font-bold text-gray-900 leading-tight">
-          スポーツコンサルティング会社様の<br />
+          スポーツコンサルタント様の<br />
           Webサイト刷新支援
         </h1>
 
