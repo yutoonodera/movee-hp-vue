@@ -42,7 +42,7 @@ const results = [
         </p>
 
         <h1 class="text-3xl font-bold text-gray-900 leading-tight">
-          スポーツコンサルタント様の<br />
+          スポーツ用品コンサルタント様の<br />
           Webサイト刷新支援
         </h1>
 
@@ -52,17 +52,19 @@ const results = [
           運用負荷の少ない構成へ再設計しました。
         </p>
 
-        <div class="grid gap-4 sm:grid-cols-3 pt-2">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 pt-2">
+          <div class="rounded-xl bg-gray-50 p-4">
+            <p class="text-xs text-gray-500">お客様所在地</p>
+            <p class="mt-1 font-semibold text-gray-900">愛知県東浦町</p>
+          </div>
           <div class="rounded-xl bg-gray-50 p-4">
             <p class="text-xs text-gray-500">期間</p>
             <p class="mt-1 font-semibold text-gray-900">約2ヶ月</p>
           </div>
-
           <div class="rounded-xl bg-gray-50 p-4">
             <p class="text-xs text-gray-500">開発構成</p>
             <p class="mt-1 font-semibold text-gray-900">Next.js + Vercel</p>
           </div>
-
           <div class="rounded-xl bg-gray-50 p-4">
             <p class="text-xs text-gray-500">目的</p>
             <p class="mt-1 font-semibold text-gray-900">安全・軽量・低保守</p>

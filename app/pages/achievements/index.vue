@@ -13,7 +13,7 @@ const achievements: Achievement[] = [
     title: "Webサイト開発",
     description: "スポーツ用品コンサルタント様のWebサイトを再構築しました",
     tags: ["TypeScript", "Next.js", "Vercel", "React", "Resend"],
-    // url: "/achievements/web-dev-for-sports-consultant",
+    url: "/achievements/web-dev-for-sports-consultant",
   },
   {
     title: "地図アプリケーション開発",
