@@ -9,7 +9,7 @@ const issues = [
 const proposals = [
   "WordPressを廃止し、軽量な構成へ移行",
   "HTTPS化を含む最低限のセキュリティ強化",
-  "更新不要な構成のため、静的寄りかつフォーム付きのNext.js構成を採用",
+  "更新不要な構成のため、静的寄りかつ、ResendAPIを活用したフォーム付きのNext.js構成を採用",
   "Vercel運用を基本とし、必要に応じてVPS移行可能な構成にした",
 ];
 
