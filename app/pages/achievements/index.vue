@@ -4,7 +4,8 @@ import { NuxtLink } from "#components";
 type Achievement = {
   title: string;
   description: string;
-  tags: string[];
+  customer: string;
+  location: string;
   url?: string;
 };
 
@@ -12,51 +13,49 @@ const achievements: Achievement[] = [
   {
     title: "Webサイト開発",
     description: "スポーツ用品コンサルタント様のWebサイトを再構築しました",
-    tags: ["TypeScript", "Next.js", "Vercel", "React", "Resend"],
+    customer: "スポーツ用品コンサルタント様",
+    location: "愛知県東浦町",
     url: "/achievements/web-dev-for-sports-consultant",
   },
   {
     title: "地図アプリケーション開発",
     description:
       "パッケージとして活用できる地図アプリケーション開発を支援しました。",
-    tags: ["TypeScript", "GIS", "Nest.js", "Vue.js", "PostgreSQL"],
+    customer: "地図会社様",
+    location: "福岡県福岡市",
   },
   {
     title: "JamStack情報発信基盤構築",
     description:
       "継続的に拡張可能なWeb基盤を構築し、コンテンツ更新の効率化とSEO強化を実現しました。",
-    tags: [
-      "自社サービス",
-      "CMS",
-      "SEO",
-      "Next.js",
-      "React",
-      "Cloudflare",
-      "Docker",
-      "MySQL",
-    ],
+    customer: "自社サービス",
+    location: "福岡県福岡市",
     url: "/achievements/jamastack-information-infrastructure",
   },
   {
     title: "コースセンターシステムのAPI開発",
     description: "SalesForceとホストを繋ぐAPIソフトウェアを支援しました。",
-    tags: ["Java", "Spring Boot"],
+    customer: "エネルギー会社様",
+    location: "福岡県福岡市",
   },
   {
     title: "顧客データMAP可視化ソフトウェア",
     description:
       "CSVでアップロードした顧客データを地図にマッピングして、顧客属性の可視化を実現しました。",
-    tags: ["自社サービス", "leaflet", "Nuxt.js", "Vue.js", "GIS"],
+    customer: "自社サービス",
+    location: "福岡県福岡市",
   },
   {
     title: "ブログソフトウェア開発",
     description: "NotionをAPIとしたブログソフトウェア開発を実施しました。",
-    tags: ["自社サービス", "NotionAPI", "Next.js", "React"],
+    customer: "自社サービス",
+    location: "福岡県福岡市",
   },
   {
     title: "営業マッチングソフトウェア開発",
     description: "商品の作り手と売り手をつなぐソフトウェア開発を支援しました。",
-    tags: ["OctoberCMS", "PHP", "kintone", "MySQL"],
+    customer: "マーケティング会社様",
+    location: "東京都渋谷区",
     url: "/achievements/sales-manegement-software",
   },
 ];
@@ -111,14 +110,20 @@ const achievements: Achievement[] = [
             {{ item.description }}
           </p>
 
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="tag in item.tags"
-              :key="tag"
-              class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-600"
-            >
-              {{ tag }}
-            </span>
+          <div class="grid gap-3 rounded-lg bg-gray-50 p-4 text-sm">
+            <div>
+              <p class="text-xs font-medium text-gray-500">お客様</p>
+              <p class="mt-1 font-semibold text-gray-900">
+                {{ item.customer }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-xs font-medium text-gray-500">お客様所在地</p>
+              <p class="mt-1 font-semibold text-gray-900">
+                {{ item.location }}
+              </p>
+            </div>
           </div>
 
           <div
