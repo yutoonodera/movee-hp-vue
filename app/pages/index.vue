@@ -23,7 +23,7 @@ import MapHeat from "~/components/MapHeat.vue";
             <div class="flex gap-6">
               <NuxtLink
                 to="/achievements"
-                class="inline-block text-sm px-5 py-2.5 rounded-md bg-gray-900 text-white font-medium shadow-sm hover:bg-gray-800 hover:shadow transition"
+                class="inline-block text-sm px-5 py-2.5 rounded-md bg-blue-600 text-white font-medium shadow-sm hover:bg-blue-700 hover:shadow transition"
               >
                 実績はこちら
               </NuxtLink>
@@ -37,7 +37,7 @@ import MapHeat from "~/components/MapHeat.vue";
           <!-- Intro -->
           <div class="space-y-5 text-base sm:text-lg leading-relaxed">
             <p>
-              株式会社moveeは、福岡市を拠点に、業務システム・Webアプリケーションの開発、
+              株式会社moveeは、福岡市を拠点に、Webサービスの開発、
               地図やデータを活用した分析・可視化の支援を行っています。
             </p>
 
@@ -49,12 +49,14 @@ import MapHeat from "~/components/MapHeat.vue";
           </div>
 
           <!-- Message -->
-          <div class="rounded-2xl bg-gray-900 text-white p-6 sm:p-8 space-y-4">
-            <p class="text-xl sm:text-2xl font-semibold">
+          <div
+            class="rounded-2xl border border-blue-200 bg-blue-50/70 p-6 sm:p-8 space-y-4 shadow-sm"
+          >
+            <p class="text-xl sm:text-2xl font-semibold text-blue-900">
               発注者だけに、リスクを負わせない。
             </p>
 
-            <p class="text-sm sm:text-base leading-relaxed text-gray-200">
+            <p class="text-sm sm:text-base leading-relaxed text-gray-700">
               私たちは、そのリスクを発注者だけに負わせるのではなく、
               できる限り一緒に引き受けながら開発を進めたいと考えています。
               だからこそ、プロジェクトの性質や事業フェーズに応じて、
@@ -79,16 +81,29 @@ import MapHeat from "~/components/MapHeat.vue";
                 <p class="text-sm text-gray-600 leading-relaxed">
                   成果が出た場合にお支払いいただく形です。
                   初期投資の負担を抑えて始めたい場合に適しています。
+                  成果につながるまで、改善を繰り返しながら伴走します。
                 </p>
               </div>
 
               <div
-                class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
+                class="relative rounded-xl border-2 border-blue-300 bg-blue-50/60 p-5 space-y-2 shadow-sm"
               >
-                <p class="font-semibold text-gray-900">一部費用＋成果報酬型</p>
-                <p class="text-sm text-gray-600 leading-relaxed">
+                <div class="flex items-center justify-between gap-3">
+                  <p class="font-semibold text-blue-900">
+                    一部費用＋成果報酬型
+                  </p>
+
+                  <span
+                    class="shrink-0 rounded-full bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white"
+                  >
+                    おすすめ
+                  </span>
+                </div>
+
+                <p class="text-sm text-gray-700 leading-relaxed">
                   初期費用を抑えつつ、成果に応じた報酬を組み合わせる形です。
-                  双方でリスクと成果を分け合います。
+                  双方でリスクと成果を分け合いながら、成果を上げるために改善を繰り返します。
+                  継続的に事業を伸ばしたい場合におすすめです。
                 </p>
               </div>
 

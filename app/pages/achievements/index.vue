@@ -11,6 +11,13 @@ type Achievement = {
 
 const achievements: Achievement[] = [
   {
+    title: "X（旧Twitter）投稿管理サービス開発",
+    description: "X（旧Twitter）の投稿管理サービスを開発ました",
+    customer: "ブランディング会社様",
+    location: "福岡県福岡市",
+    url: "/achievements/branding-x-management",
+  },
+  {
     title: "Webサイト開発",
     description: "スポーツ用品コンサルタント様のWebサイトを再構築しました",
     customer: "スポーツ用品コンサルタント様",
