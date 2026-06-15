@@ -63,69 +63,70 @@ import MapHeat from "~/components/MapHeat.vue";
               柔軟な料金体系をご用意しています。
             </p>
           </div>
-
           <!-- Pricing -->
-          <div class="space-y-4">
-            <div>
-              <h2 class="text-lg font-semibold text-gray-900">料金体系の例</h2>
-              <p class="mt-1 text-sm text-gray-500">
-                事業の状況や検証段階に合わせて、無理のない進め方を設計します。
+          <div class="space-y-2">
+            <h2 class="text-lg font-semibold text-gray-900">
+              ご相談内容に合わせた進め方
+            </h2>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              事業の状況や検証段階に合わせて、無理のない料金体系をご提案します。
+            </p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div
+              class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
+            >
+              <p class="font-semibold text-gray-900">完全成果報酬プラン</p>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                成果が出た場合にお支払いいただく形です。
+                初期投資の負担を抑えて始めたい場合に適しています。
+                成果につながるまで、改善を繰り返しながら伴走します。
               </p>
             </div>
 
-            <div class="grid gap-4 sm:grid-cols-2">
-              <div
-                class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
-              >
-                <p class="font-semibold text-gray-900">完全成果報酬型</p>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                  成果が出た場合にお支払いいただく形です。
-                  初期投資の負担を抑えて始めたい場合に適しています。
-                  成果につながるまで、改善を繰り返しながら伴走します。
+            <div
+              class="relative rounded-xl border-2 border-blue-300 bg-blue-50/60 p-5 space-y-2 shadow-sm"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <p class="font-semibold text-blue-900">
+                  初期費用＋成果報酬プラン
                 </p>
+
+                <span
+                  class="shrink-0 rounded-full bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white"
+                >
+                  おすすめ
+                </span>
               </div>
 
-              <div
-                class="relative rounded-xl border-2 border-blue-300 bg-blue-50/60 p-5 space-y-2 shadow-sm"
-              >
-                <div class="flex items-center justify-between gap-3">
-                  <p class="font-semibold text-blue-900">
-                    一部費用＋成果報酬型
-                  </p>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                初期費用を抑えつつ、成果に応じた報酬を組み合わせる形です。
+                双方でリスクと成果を分け合いながら、成果を上げるために改善を繰り返します。
+                継続的に事業を伸ばしたい場合におすすめです。
+              </p>
+            </div>
 
-                  <span
-                    class="shrink-0 rounded-full bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white"
-                  >
-                    おすすめ
-                  </span>
-                </div>
+            <div
+              class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
+            >
+              <p class="font-semibold text-gray-900">一括開発プラン</p>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                要件を定めて、開発範囲と費用を明確にしたうえで進める形です。
+                納期や予算を決めて進めたい場合に適しています。
+              </p>
+            </div>
 
-                <p class="text-sm text-gray-700 leading-relaxed">
-                  初期費用を抑えつつ、成果に応じた報酬を組み合わせる形です。
-                  双方でリスクと成果を分け合いながら、成果を上げるために改善を繰り返します。
-                  継続的に事業を伸ばしたい場合におすすめです。
-                </p>
-              </div>
-
-              <div
-                class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
-              >
-                <p class="font-semibold text-gray-900">一括受託型</p>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                  要件を定めて、開発範囲と費用を明確にしたうえで進める形です。
-                </p>
-              </div>
-
-              <div
-                class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
-              >
-                <p class="font-semibold text-gray-900">
-                  段階的な開発・改善支援
-                </p>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                  小さく検証しながら、必要な機能や改善を段階的に進めていきます。
-                </p>
-              </div>
+            <div
+              class="rounded-xl border border-gray-200 bg-white p-5 space-y-2"
+            >
+              <p class="font-semibold text-gray-900">
+                時間単価プラン（準委任）
+              </p>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                時間単価、作業時間を決めて進める形です。
+                必要な作業量に応じて柔軟に対応します。
+                小さな改善、調査、既存システムの修正などに適しています。
+              </p>
             </div>
           </div>
 
