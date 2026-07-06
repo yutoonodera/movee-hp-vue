@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({ title: "AI開発の非機能診断くん — Next.js / Nuxt.jsのセキュリティを診断する" });
+useSeoMeta({ description: "Next.js・Nuxt.jsで開発されたサイトのenv漏洩・セキュリティヘッダー・LCP・SQLインジェクションリスクを無料診断。URLを入力するだけで30秒〜1分で結果を確認できます。" });
 </script>
 
 <template>

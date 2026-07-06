@@ -1,5 +1,6 @@
 <script setup lang="ts">
-useHead({ title: "Wordpressの非機能診断くん — WordPressサイトの問題を確認する" })
+useHead({ title: "Wordpressの非機能診断くん — WordPressサイトの問題を確認する" });
+useSeoMeta({ description: "WordPressサイトのURLを入力するだけで、表示速度・セキュリティ・使いやすさをA/B/Cで診断。プラグインの影響・セキュリティヘッダー未設定・管理画面の露出などを無料で確認できます。" });
 </script>
 
 <template>
