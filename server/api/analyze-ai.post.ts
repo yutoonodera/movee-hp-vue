@@ -395,7 +395,7 @@ export default defineEventHandler(async (event) => {
   const performance = perfResult.status === "fulfilled" ? perfResult.value : null;
   const psError = perfResult.status === "rejected" ? String(perfResult.reason) : null;
 
-  sendEmails(email, targetUrl, security, performance).catch(console.error);
+  await sendEmails(email, targetUrl, security, performance);
 
   return { url: targetUrl, security, performance, psError, email } satisfies AiResult;
 });

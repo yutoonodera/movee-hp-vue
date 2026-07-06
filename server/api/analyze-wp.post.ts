@@ -580,8 +580,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // 4. メール送信（非同期・ノンブロッキング）
-  sendEmails(email, rootUrl, pages, security).catch(console.error);
+  await sendEmails(email, rootUrl, pages, security);
 
   return { rootUrl, pages, security, email, crawledCount: urls.length };
 });
