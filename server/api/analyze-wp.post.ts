@@ -478,12 +478,13 @@ async function sendEmails(
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM ?? "onboarding@resend.dev";
   const internalEmail = process.env.INTERNAL_EMAIL;
-  if (!apiKey) return;
+  console.log("[sendEmail] apiKey present:", !!apiKey, "from:", from, "to:", customerEmail);
+  if (!apiKey) { console.error("[sendEmail] RESEND_API_KEY is not set"); return; }
 
   const resend = new Resend(apiKey);
   const subject = `【Wordpressの非機能診断くん】${rootUrl}`;
 
-  await Promise.allSettled([
+  const results = await Promise.allSettled([
     resend.emails.send({
       from,
       to: customerEmail,
@@ -501,6 +502,10 @@ async function sendEmails(
         ]
       : []),
   ]);
+  results.forEach((r, i) => {
+    if (r.status === "rejected") console.error(`[sendEmail] email[${i}] rejected:`, r.reason);
+    else console.log(`[sendEmail] email[${i}] sent:`, r.value);
+  });
 }
 
 // ---- ハンドラー ----------------------------------------------------------
