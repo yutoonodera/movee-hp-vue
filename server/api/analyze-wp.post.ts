@@ -421,7 +421,7 @@ function buildEmailHtml(
         <p style="margin:0 0 2px;font-size:10px;color:#a5b4fc;">by movee</p>
         <p style="margin:0;font-size:14px;font-weight:800;color:#ffffff;line-height:1.3;">WordPressをNext.js化するパッケージ <span style="font-family:monospace;font-weight:900;">flexpress</span></p>
       </div>
-      <a href="mailto:info@movee.jp" style="flex-shrink:0;display:inline-block;background:#d97706;color:#ffffff;text-decoration:none;font-size:11px;font-weight:700;padding:8px 16px;border-radius:4px;white-space:nowrap;">詳しく見る →</a>
+      <a href="https://www.movee.jp/lp/flexpress" style="flex-shrink:0;display:inline-block;background:#d97706;color:#ffffff;text-decoration:none;font-size:11px;font-weight:700;padding:8px 16px;border-radius:4px;white-space:nowrap;">詳しく見る →</a>
     </div>`;
 
   const ctaHtml = !includesFixes
