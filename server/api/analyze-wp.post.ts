@@ -425,12 +425,7 @@ function buildEmailHtml(
     </div>`;
 
   const ctaHtml = !includesFixes
-    ? `
-    <div style="margin:24px 0 0;padding:20px;background:#eff6ff;border-radius:8px;border-left:4px solid #2563eb;">
-      <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#1e3a8a;">詳細な改修案のご提案について</p>
-      <p style="margin:0;font-size:13px;color:#1e40af;line-height:1.6;">５万円（税抜）で具体的な改善策を記載したレポートをご提供可能です。ご興味がありましたら、このメールにご返信ください。</p>
-    </div>
-    ${flexpressBannerHtml}`
+    ? flexpressBannerHtml
     : `<p style="margin:16px 0 0;font-size:11px;color:#9ca3af;">顧客メールアドレス: ${customerEmail}</p>`;
 
   return `<!DOCTYPE html>
