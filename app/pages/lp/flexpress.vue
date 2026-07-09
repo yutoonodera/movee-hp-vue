@@ -152,9 +152,19 @@ useHead({
         <div class="inner">
           <p class="label label-light">PRICING</p>
           <h2 class="heading heading-light">料金</h2>
+
+          <!-- 限定オファー -->
+          <div class="offer-banner">
+            <div class="offer-badge">毎月1社限定</div>
+            <div class="offer-body">
+              <p class="offer-title">今月のスポット枠 <span class="offer-price">¥200,000<span class="offer-tax">税抜</span></span></p>
+              <p class="offer-desc">通常料金50万円のところ、毎月1社様限定で20万円にて実施しています。お早めにご相談ください。</p>
+            </div>
+          </div>
+
           <div class="price-wrap">
             <div class="price-left">
-              <p class="price-tag">パッケージ料金</p>
+              <p class="price-tag">通常料金</p>
               <p class="price-num">¥500,000</p>
               <p class="price-tax">税抜</p>
             </div>
@@ -627,6 +637,64 @@ useHead({
   color: var(--ink-2);
   line-height: 1.75;
   margin: 0;
+}
+
+/* ── 限定オファー ──────────────────────────────────── */
+.offer-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-bottom: 28px;
+}
+
+.offer-badge {
+  flex-shrink: 0;
+  background: #FCD34D;
+  color: #78350F;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+
+.offer-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.offer-price {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #FCD34D;
+  font-variant-numeric: tabular-nums;
+}
+
+.offer-tax {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  margin-left: 3px;
+}
+
+.offer-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  line-height: 1.7;
 }
 
 /* ── 料金 ─────────────────────────────────────────── */
