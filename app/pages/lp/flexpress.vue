@@ -159,7 +159,7 @@ useHead({
               <p class="price-tax">税抜</p>
             </div>
             <div class="price-right">
-              <p>・納期の目安：契約から4週間</p>
+              <p>・納期の目安：契約から2週間</p>
             </div>
           </div>
         </div>

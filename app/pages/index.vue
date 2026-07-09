@@ -1,5 +1,21 @@
 <script setup lang="ts">
 useHead({ title: "株式会社movee — ソフトウェア開発・データ活用" });
+
+interface WpPost {
+  id: number;
+  slug: string;
+  date: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  featuredImage: string | null;
+}
+
+const { data: news } = await useFetch<WpPost[]>("/api/wp/news");
+
+const formatDate = (iso: string) => {
+  const d = new Date(iso);
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+};
 </script>
 
 <template>
@@ -26,6 +42,59 @@ useHead({ title: "株式会社movee — ソフトウェア開発・データ活�
         <div class="hero-actions">
           <NuxtLink to="/achievements" class="btn-primary">実績を見る</NuxtLink>
           <a href="mailto:info@movee.jp" class="btn-ghost">お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ニュース -->
+    <section v-if="news?.length" class="band">
+      <div class="inner">
+        <p class="label">NEWS</p>
+        <h2 class="heading">ニュース</h2>
+        <div class="news-list">
+          <NuxtLink
+            v-for="item in news"
+            :key="item.id"
+            :to="`/blog/${item.slug}`"
+            class="news-row"
+          >
+            <p class="news-date">{{ formatDate(item.date) }}</p>
+            <p class="news-title" v-html="item.title.rendered"></p>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- パッケージ -->
+    <section class="band band-alt">
+      <div class="inner">
+        <p class="label">PACKAGES</p>
+        <h2 class="heading">パッケージサービス</h2>
+        <div class="pkg-grid">
+          <NuxtLink to="/lp/flexpress" class="pkg-card">
+            <div class="pkg-accent" style="background:#4338CA"></div>
+            <div class="pkg-body">
+              <p class="pkg-name">FlexPress</p>
+              <p class="pkg-desc">WordPressはそのままで、フロントエンドをNext.jsに刷新。表示速度・セキュリティ・デザイン自由度をまとめて改善します。</p>
+              <span class="pkg-arrow">詳しく見る →</span>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/lp/flutterflow" class="pkg-card">
+            <div class="pkg-accent" style="background:#EA580C"></div>
+            <div class="pkg-body">
+              <p class="pkg-name">FlutterFlowで爆速スマホアプリ</p>
+              <p class="pkg-desc">iOS・Android両対応のスマホアプリを、FlutterFlowを使って短期間・低コストで開発します。</p>
+              <span class="pkg-arrow">詳しく見る →</span>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/lp/saas-starter" class="pkg-card">
+            <div class="pkg-accent" style="background:#059669"></div>
+            <div class="pkg-body">
+              <p class="pkg-name">サブスクスタータープラン</p>
+              <p class="pkg-desc">決まった仕様でSaaSを2週間で立ち上げる定額パッケージ。Stripe・Googleログイン・WordPress連携を含みます。</p>
+              <span class="pkg-arrow">詳しく見る →</span>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -99,19 +168,21 @@ useHead({ title: "株式会社movee — ソフトウェア開発・データ活�
             <p class="tool-desc">Next.js / Nuxt.jsのenv漏洩・セキュリティヘッダー・LCPを診断</p>
           </NuxtLink>
 
-          <div class="tool-card tool-inactive">
+          <a href="https://lp.fumi.lol" target="_blank" rel="noopener noreferrer" class="tool-card">
             <div class="tool-top">
               <p class="tool-tag" style="color:#D97706">β版公開中 · 今なら2ヶ月無料</p>
+              <span class="tool-arrow">→</span>
             </div>
-            <p class="tool-name">TETSU-ATSU</p>
-            <p class="tool-desc">詳細は近日公開予定</p>
-          </div>
+            <p class="tool-name">Fumi</p>
+            <p class="tool-desc">挨拶文を3分で作る</p>
+          </a>
         </div>
       </div>
     </section>
 
+
     <!-- 会社概要 -->
-    <section class="band" id="contact">
+    <section class="band band-alt" id="contact">
       <div class="inner">
         <p class="label">COMPANY</p>
         <h2 class="heading">会社概要</h2>
@@ -457,6 +528,171 @@ dd { color: var(--ink); margin: 0; }
 
 .link { color: var(--accent); text-decoration: none; }
 .link:hover { text-decoration: underline; }
+
+/* ── パッケージ ──────────────────────────────── */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 760px) { .pkg-grid { grid-template-columns: 1fr; } }
+
+.pkg-card {
+  display: flex;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.pkg-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.08);
+}
+
+.pkg-accent {
+  width: 5px;
+  flex-shrink: 0;
+}
+
+.pkg-body {
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pkg-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pkg-desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 0;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.pkg-arrow {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* ── ニュース ────────────────────────────────── */
+.news-list {
+  border-top: 1px solid var(--line);
+}
+
+.news-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.news-row:hover .news-title { color: var(--accent); }
+
+.news-date {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: ui-monospace, monospace;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.news-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.5;
+  transition: color 0.15s;
+}
+
+.section-lead {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.85;
+  margin: -24px 0 32px;
+  max-width: 640px;
+}
+
+/* ── ブログ記事 ──────────────────────────────── */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .posts-grid { grid-template-columns: 1fr; }
+}
+
+.post-card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-alt);
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.post-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.08);
+}
+
+.post-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--line);
+}
+.post-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.post-card:hover .post-thumb img { transform: scale(1.03); }
+
+.post-body { padding: 20px; }
+
+.post-date {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-family: ui-monospace, monospace;
+  margin: 0 0 8px;
+}
+
+.post-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.post-excerpt {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 /* ── ツールストリップ（リスト型） ─────────────── */
 .tool-strip { padding-top: 40px; padding-bottom: 40px; }
