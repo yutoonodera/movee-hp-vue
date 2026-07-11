@@ -95,6 +95,14 @@ const formatDate = (iso: string) => {
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
+          <NuxtLink to="/lp/content-site" class="pkg-card">
+            <div class="pkg-accent" style="background:#166534"></div>
+            <div class="pkg-body">
+              <p class="pkg-name">育つWebサイト</p>
+              <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。書けば書くほど育ちます。</p>
+              <span class="pkg-arrow">詳しく見る →</span>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -532,10 +540,10 @@ dd { color: var(--ink); margin: 0; }
 /* ── パッケージ ──────────────────────────────── */
 .pkg-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
-@media (max-width: 760px) { .pkg-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .pkg-grid { grid-template-columns: 1fr; } }
 
 .pkg-card {
   display: flex;
