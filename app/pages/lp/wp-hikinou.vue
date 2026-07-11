@@ -180,40 +180,6 @@ useSeoMeta({ description: "WordPressサイトのURLを入力するだけで、�
   -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --bg:     #141410;
-    --bg-alt: #1C1C18;
-    --ink:    #E8E5DF;
-    --ink-2:  #8A877F;
-    --ink-3:  #4A4844;
-    --accent: #5BA3CC;
-    --line:   #2C2C28;
-    --step-bg:#1E1E1A;
-  }
-}
-
-:root[data-theme="dark"] .page {
-  --bg:     #141410;
-  --bg-alt: #1C1C18;
-  --ink:    #E8E5DF;
-  --ink-2:  #8A877F;
-  --ink-3:  #4A4844;
-  --accent: #5BA3CC;
-  --line:   #2C2C28;
-  --step-bg:#1E1E1A;
-}
-
-:root[data-theme="light"] .page {
-  --bg:        #ECEAE5;
-  --bg-alt:    #F7F6F3;
-  --ink:       #18180E;
-  --ink-2:     #6B6860;
-  --ink-3:     #B2AFA9;
-  --accent:    #1B4F72;
-  --line:      #D4D1CA;
-  --step-bg:   #F0EDE8;
-}
 
 /* ── レイアウト ────────────────────────────────── */
 .nav {

@@ -64,15 +64,6 @@ const formatDate = (iso: string) => {
   min-height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --bg:    #0F172A;
-    --ink:   #F1F5F9;
-    --ink-2: #94A3B8;
-    --ink-3: #475569;
-    --line:  #1E293B;
-  }
-}
 
 .nav {
   padding: 18px 48px;

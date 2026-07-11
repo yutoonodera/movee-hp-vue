@@ -243,38 +243,6 @@ const formatDate = (iso: string) => {
   -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --bg:     #0F172A;
-    --bg-alt: #1E293B;
-    --ink:    #F1F5F9;
-    --ink-2:  #94A3B8;
-    --ink-3:  #475569;
-    --accent: #60A5FA;
-    --accent-h:#93C5FD;
-    --line:   #1E293B;
-  }
-}
-:root[data-theme="dark"] .page {
-  --bg:     #0F172A;
-  --bg-alt: #1E293B;
-  --ink:    #F1F5F9;
-  --ink-2:  #94A3B8;
-  --ink-3:  #475569;
-  --accent: #60A5FA;
-  --accent-h:#93C5FD;
-  --line:   #1E293B;
-}
-:root[data-theme="light"] .page {
-  --bg:      #FFFFFF;
-  --bg-alt:  #F8FAFC;
-  --ink:     #0F172A;
-  --ink-2:   #475569;
-  --ink-3:   #94A3B8;
-  --accent:  #1D4ED8;
-  --accent-h:#1E40AF;
-  --line:    #E2E8F0;
-}
 
 /* ── ナビ ───────────────────────────────────── */
 .nav {

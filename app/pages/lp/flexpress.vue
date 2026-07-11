@@ -224,36 +224,6 @@ useHead({
 }
 
 /* dark mode */
-@media (prefers-color-scheme: dark) {
-  .page {
-    --indigo: #6366f1;
-    --indigo-d: #4f46e5;
-    --white: #111827;
-    --gray: #1f2937;
-    --ink: #f9fafb;
-    --ink-2: #9ca3af;
-    --ink-3: #6b7280;
-    --line: #374151;
-    --ok: #10b981;
-    --ok-bg: #064e3b;
-    --ng: #f87171;
-    --ng-bg: #7f1d1d;
-  }
-}
-:root[data-theme="dark"] .page {
-  --indigo: #6366f1;
-  --indigo-d: #4f46e5;
-  --white: #111827;
-  --gray: #1f2937;
-  --ink: #f9fafb;
-  --ink-2: #9ca3af;
-  --ink-3: #6b7280;
-  --line: #374151;
-  --ok: #10b981;
-  --ok-bg: #064e3b;
-  --ng: #f87171;
-  --ng-bg: #7f1d1d;
-}
 :root[data-theme="light"] .page {
   --indigo: #4338ca;
   --indigo-d: #3730a3;
