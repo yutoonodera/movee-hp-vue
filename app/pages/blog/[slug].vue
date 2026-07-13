@@ -18,16 +18,20 @@ useHead(() => ({
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "").trim();
 
-useSeoMeta(() => ({
-  ogTitle:          post.value?.title.rendered ?? "movee",
-  ogDescription:    post.value ? stripHtml(post.value.excerpt.rendered).slice(0, 120) : "",
-  ogImage:          post.value?.featuredImage ?? undefined,
-  ogType:           "article",
-  twitterCard:      post.value?.featuredImage ? "summary_large_image" : "summary",
-  twitterTitle:     post.value?.title.rendered ?? "movee",
-  twitterDescription: post.value ? stripHtml(post.value.excerpt.rendered).slice(0, 120) : "",
-  twitterImage:     post.value?.featuredImage ?? undefined,
-}));
+if (post.value) {
+  const desc  = stripHtml(post.value.excerpt.rendered).slice(0, 120);
+  const image = post.value.featuredImage ?? "https://www.movee.jp/og-default.png";
+  useSeoMeta({
+    ogTitle:            post.value.title.rendered,
+    ogDescription:      desc,
+    ogType:             "article",
+    ogImage:            image,
+    twitterCard:        "summary_large_image",
+    twitterTitle:       post.value.title.rendered,
+    twitterDescription: desc,
+    twitterImage:       image,
+  });
+}
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
