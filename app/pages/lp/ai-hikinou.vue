@@ -72,6 +72,9 @@ useSeoMeta({ description: "Next.js・Nuxt.jsで開発されたサイトのenv漏
               <li><span class="check-dot warning"></span>セキュリティヘッダー6項目の確認</li>
               <li><span class="check-dot warning"></span>PHP / SQLインジェクションリスクの検出</li>
               <li><span class="check-dot info"></span>HTTPS通信の確認</li>
+              <li><span class="check-dot critical"></span>API露出チェック（/api/users・/api/admin 等）</li>
+              <li><span class="check-dot critical"></span>GraphQLイントロスペクション有効化の検出</li>
+              <li><span class="check-dot warning"></span>Swagger/OpenAPI仕様書の外部公開チェック</li>
             </ul>
           </div>
           <div class="check-col">

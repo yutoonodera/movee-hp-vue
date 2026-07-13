@@ -162,6 +162,18 @@ const formatDate = (iso: string) => {
             <span class="strip-desc">Next.js / Nuxt.jsのenv漏洩・セキュリティヘッダー・LCPを診断</span>
             <span class="strip-arrow">→</span>
           </NuxtLink>
+          <NuxtLink to="/lp/ogp-preview" class="strip-row">
+            <span class="strip-accent" style="background:#7C3AED"></span>
+            <span class="strip-name">OGP・SNSカードプレビュー</span>
+            <span class="strip-desc">TwitterやLINEでシェアしたときの見え方をURLで確認</span>
+            <span class="strip-arrow">→</span>
+          </NuxtLink>
+          <NuxtLink to="/lp/api-security" class="strip-row">
+            <span class="strip-accent" style="background:#DC2626"></span>
+            <span class="strip-name">APIセキュリティ診断くん</span>
+            <span class="strip-desc">APIエンドポイントが認証なしで公開されていないか診断</span>
+            <span class="strip-arrow">→</span>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -212,6 +224,24 @@ const formatDate = (iso: string) => {
             </div>
             <p class="tool-name">AI開発の非機能診断くん</p>
             <p class="tool-desc">Next.js / Nuxt.jsのenv漏洩・セキュリティヘッダー・LCPを診断</p>
+          </NuxtLink>
+
+          <NuxtLink to="/lp/ogp-preview" class="tool-card">
+            <div class="tool-top">
+              <p class="tool-tag" style="color:#7C3AED">無料ツール</p>
+              <span class="tool-arrow">→</span>
+            </div>
+            <p class="tool-name">OGP・SNSカードプレビュー</p>
+            <p class="tool-desc">TwitterやLINEでシェアしたときの見え方をURLで確認</p>
+          </NuxtLink>
+
+          <NuxtLink to="/lp/api-security" class="tool-card">
+            <div class="tool-top">
+              <p class="tool-tag" style="color:#DC2626">無料ツール</p>
+              <span class="tool-arrow">→</span>
+            </div>
+            <p class="tool-name">APIセキュリティ診断くん</p>
+            <p class="tool-desc">APIエンドポイントが認証なしで公開されていないか診断</p>
           </NuxtLink>
 
           <a href="https://lp.fumi.lol" target="_blank" rel="noopener noreferrer" class="tool-card">

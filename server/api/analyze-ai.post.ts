@@ -61,10 +61,26 @@ interface PerformanceResult {
   lcp: string | null;
 }
 
+interface ApiEndpointCheck {
+  path: string;
+  label: string;
+  status: number | null;
+  exposed: boolean;
+  critical: boolean;
+}
+
+interface ApiExposureResult {
+  endpoints: ApiEndpointCheck[];
+  graphqlIntrospection: boolean;
+  exposedCount: number;
+  grade: Grade;
+}
+
 interface AiResult {
   url: string;
   security: SecurityResult;
   performance: PerformanceResult | null;
+  apiExposure: ApiExposureResult;
   psError: string | null;
   email: string;
 }
@@ -189,6 +205,62 @@ async function checkSecurity(url: string): Promise<SecurityResult> {
     })),
     findings,
   };
+}
+
+// ---- API露出チェック -----------------------------------------------------
+
+const SENSITIVE_PATHS: { path: string; label: string; critical: boolean }[] = [
+  { path: "/api/users",    label: "/api/users（ユーザー一覧）",     critical: true  },
+  { path: "/api/admin",    label: "/api/admin（管理者API）",        critical: true  },
+  { path: "/api/config",   label: "/api/config（設定情報）",        critical: true  },
+  { path: "/api/env",      label: "/api/env（環境変数）",           critical: true  },
+  { path: "/api/debug",    label: "/api/debug（デバッグ）",         critical: false },
+  { path: "/api-docs",     label: "/api-docs（Swagger UI）",       critical: false },
+  { path: "/openapi.json", label: "/openapi.json（API仕様書）",     critical: false },
+  { path: "/api/v1/users", label: "/api/v1/users（ユーザー一覧v1）", critical: true  },
+];
+
+async function checkApiExposure(origin: string): Promise<ApiExposureResult> {
+  const results = await Promise.allSettled(
+    SENSITIVE_PATHS.map(async ({ path, label, critical }) => {
+      try {
+        const res = await fetch(`${origin}${path}`, {
+          method: "GET",
+          headers: { "User-Agent": "Mozilla/5.0 (compatible; SecurityScanner/1.0)" },
+          signal: AbortSignal.timeout(5000),
+          redirect: "follow",
+        });
+        return { path, label, critical, status: res.status, exposed: res.status >= 200 && res.status < 300 };
+      } catch {
+        return { path, label, critical, status: null, exposed: false };
+      }
+    })
+  );
+
+  const endpoints: ApiEndpointCheck[] = results.map((r, i) =>
+    r.status === "fulfilled" ? r.value : { ...SENSITIVE_PATHS[i], status: null, exposed: false }
+  );
+
+  let graphqlIntrospection = false;
+  try {
+    const gqlRes = await fetch(`${origin}/graphql`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: "{ __schema { types { name } } }" }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (gqlRes.ok) {
+      const data = await gqlRes.json().catch(() => null);
+      if (data?.data?.__schema) graphqlIntrospection = true;
+    }
+  } catch {}
+
+  const exposed = endpoints.filter((e) => e.exposed);
+  const exposedCount = exposed.length + (graphqlIntrospection ? 1 : 0);
+  const hasCritical = exposed.some((e) => e.critical) || graphqlIntrospection;
+  const grade: Grade = exposedCount === 0 ? "A" : hasCritical ? "C" : "B";
+
+  return { endpoints, graphqlIntrospection, exposedCount, grade };
 }
 
 // ---- LCP / パフォーマンス ------------------------------------------------
@@ -380,9 +452,10 @@ export default defineEventHandler(async (event) => {
 
   const targetUrl = parsed.origin + parsed.pathname;
 
-  const [secResult, perfResult] = await Promise.allSettled([
+  const [secResult, perfResult, apiResult] = await Promise.allSettled([
     checkSecurity(targetUrl),
     fetchPerformance(targetUrl),
+    checkApiExposure(parsed.origin),
   ]);
 
   const security = secResult.status === "fulfilled"
@@ -392,7 +465,11 @@ export default defineEventHandler(async (event) => {
   const performance = perfResult.status === "fulfilled" ? perfResult.value : null;
   const psError = perfResult.status === "rejected" ? String(perfResult.reason) : null;
 
+  const apiExposure: ApiExposureResult = apiResult.status === "fulfilled"
+    ? apiResult.value
+    : { endpoints: [], graphqlIntrospection: false, exposedCount: 0, grade: "A" };
+
   await sendEmails(email, targetUrl, security, performance);
 
-  return { url: targetUrl, security, performance, psError, email } satisfies AiResult;
+  return { url: targetUrl, security, performance, apiExposure, psError, email } satisfies AiResult;
 });
