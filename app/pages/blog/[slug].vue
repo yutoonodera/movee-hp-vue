@@ -18,9 +18,15 @@ useHead(() => ({
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "").trim();
 
+const encodeImageUrl = (url: string) => {
+  try { return encodeURI(decodeURIComponent(url)); } catch { return encodeURI(url); }
+};
+
 if (post.value) {
   const desc  = stripHtml(post.value.excerpt.rendered).slice(0, 120);
-  const image = post.value.featuredImage ?? "https://www.movee.jp/og-default.png";
+  const image = post.value.featuredImage
+    ? encodeImageUrl(post.value.featuredImage)
+    : "https://www.movee.jp/og-default.png";
   useSeoMeta({
     ogTitle:            post.value.title.rendered,
     ogDescription:      desc,
