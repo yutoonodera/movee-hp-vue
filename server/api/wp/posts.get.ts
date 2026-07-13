@@ -25,7 +25,7 @@ function featuredImageUrl(post: WpRawPost): string | null {
 }
 
 export default defineEventHandler(async (event) => {
-  const { include, categories } = getQuery(event);
+  const { include, categories, categories_exclude } = getQuery(event);
   const user = process.env.WP_BASIC_USER;
   const pass = process.env.WP_BASIC_PASS;
 
@@ -42,6 +42,7 @@ export default defineEventHandler(async (event) => {
       _fields: "id,title,excerpt,date,slug,_links,_embedded",
       ...(include ? { include } : {}),
       ...(categories ? { categories } : {}),
+      ...(categories_exclude ? { categories_exclude } : {}),
     },
   });
 

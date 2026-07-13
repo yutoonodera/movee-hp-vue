@@ -21,6 +21,9 @@ interface WpPost {
 }
 
 const { data: news } = await useFetch<WpPost[]>("/api/wp/news");
+const { data: posts } = await useFetch<WpPost[]>("/api/wp/posts", {
+  query: { categories_exclude: 3 },
+});
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
@@ -75,6 +78,31 @@ const formatDate = (iso: string) => {
       </div>
     </section>
 
+    <!-- ブログ -->
+    <section v-if="posts?.length" class="band band-alt">
+      <div class="inner">
+        <p class="label">BLOG</p>
+        <h2 class="heading">ブログ</h2>
+        <div class="posts-grid">
+          <NuxtLink
+            v-for="post in posts"
+            :key="post.id"
+            :to="`/blog/${post.slug}`"
+            class="post-card"
+          >
+            <div v-if="post.featuredImage" class="post-thumb">
+              <img :src="post.featuredImage" :alt="post.title.rendered" loading="lazy" />
+            </div>
+            <div class="post-body">
+              <p class="post-date">{{ formatDate(post.date) }}</p>
+              <p class="post-title" v-html="post.title.rendered"></p>
+              <p class="post-excerpt" v-html="post.excerpt.rendered"></p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- パッケージ -->
     <section class="band band-alt">
       <div class="inner">
@@ -108,7 +136,7 @@ const formatDate = (iso: string) => {
           <NuxtLink to="/lp/content-site" class="pkg-card">
             <div class="pkg-accent" style="background:#166534"></div>
             <div class="pkg-body">
-              <p class="pkg-name">育つWebサイト</p>
+              <p class="pkg-name">育てるホームページ</p>
               <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。書けば書くほど育ちます。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
