@@ -1,5 +1,15 @@
 <script setup lang="ts">
 useHead({ title: "株式会社movee — ソフトウェア開発・データ活用" });
+useSeoMeta({
+  ogTitle:            "株式会社movee",
+  ogDescription:      "ソフトウェア開発とデータ活用で事業の成長を支える会社です。福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。",
+  ogType:             "website",
+  ogImage:            "https://www.movee.jp/og-default.png",
+  twitterCard:        "summary_large_image",
+  twitterTitle:       "株式会社movee",
+  twitterDescription: "ソフトウェア開発とデータ活用で事業の成長を支える会社です。福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。",
+  twitterImage:       "https://www.movee.jp/og-default.png",
+});
 
 interface WpPost {
   id: number;
