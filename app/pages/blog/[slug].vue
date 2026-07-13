@@ -16,6 +16,19 @@ useHead(() => ({
   title: post.value ? `${post.value.title.rendered} — movee` : "記事 — movee",
 }));
 
+const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "").trim();
+
+useSeoMeta(() => ({
+  ogTitle:          post.value?.title.rendered ?? "movee",
+  ogDescription:    post.value ? stripHtml(post.value.excerpt.rendered).slice(0, 120) : "",
+  ogImage:          post.value?.featuredImage ?? undefined,
+  ogType:           "article",
+  twitterCard:      post.value?.featuredImage ? "summary_large_image" : "summary",
+  twitterTitle:     post.value?.title.rendered ?? "movee",
+  twitterDescription: post.value ? stripHtml(post.value.excerpt.rendered).slice(0, 120) : "",
+  twitterImage:     post.value?.featuredImage ?? undefined,
+}));
+
 const formatDate = (iso: string) => {
   const d = new Date(iso);
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
