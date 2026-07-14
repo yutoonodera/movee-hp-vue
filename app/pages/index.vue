@@ -130,32 +130,37 @@ function startScan() {
 
             <!-- 入力フォーム -->
             <div class="scan-fields">
-              <input
-                v-model="scanUrl"
-                :type="currentTool.id === 'email' ? 'text' : 'url'"
-                :placeholder="currentTool.id === 'email' ? 'example.com またはメールアドレス' : 'https://example.com'"
-                class="scan-input"
-                @keydown.enter="startScan"
-              />
-              <input
-                v-if="currentTool.needsBase"
-                v-model="scanBase"
-                type="text"
-                placeholder="APIベースパス（例: /api）"
-                class="scan-input"
-              />
-              <input
-                v-if="currentTool.needsEmail"
-                v-model="scanEmail"
-                type="email"
-                placeholder="結果をメールで受け取る"
-                class="scan-input"
-              />
+              <div class="scan-field-wrap">
+                <input
+                  v-model="scanUrl"
+                  :type="currentTool.id === 'email' ? 'text' : 'url'"
+                  :placeholder="currentTool.id === 'email' ? 'example.com またはメールアドレス' : 'https://example.com'"
+                  class="scan-input"
+                  @keydown.enter="startScan"
+                />
+                <span v-if="scanUrl" class="scan-check">✓</span>
+              </div>
+              <div v-if="currentTool.needsBase" class="scan-field-wrap">
+                <input
+                  v-model="scanBase"
+                  type="text"
+                  placeholder="APIベースパス（例: /api）"
+                  class="scan-input"
+                />
+                <span v-if="scanBase" class="scan-check">✓</span>
+              </div>
+              <div v-if="currentTool.needsEmail" class="scan-field-wrap">
+                <input
+                  v-model="scanEmail"
+                  type="email"
+                  placeholder="結果をメールで受け取る"
+                  class="scan-input"
+                />
+                <span v-if="scanEmail" class="scan-check">✓</span>
+              </div>
             </div>
 
-            <button class="scan-btn" @click="startScan">
-              {{ currentTool.id === 'ogp' ? 'プレビュースタート' : '診断スタート' }}
-            </button>
+            <button class="scan-btn" @click="startScan">診断スタート</button>
           </div>
         </div>
       </section>
@@ -264,7 +269,7 @@ function startScan() {
               <span class="tcard-badge" style="color:#8B5CF6; border-color:rgba(139,92,246,0.35)">OGP / SNS</span>
               <p class="tcard-title">SNSカードプレビュー</p>
               <p class="tcard-desc">URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。</p>
-              <p class="tcard-cta">プレビューする <span class="arrow">→</span></p>
+              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
@@ -567,12 +572,15 @@ function startScan() {
   margin-bottom: 10px;
 }
 
+.scan-field-wrap {
+  position: relative;
+}
 .scan-input {
   width: 100%;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 10px 36px 10px 14px;
   font-size: 14px;
   color: #F1F5F9;
   outline: none;
@@ -581,6 +589,16 @@ function startScan() {
 }
 .scan-input::placeholder { color: #475569; }
 .scan-input:focus { border-color: rgba(255,255,255,0.3); }
+.scan-check {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 700;
+  pointer-events: none;
+}
 
 .scan-btn {
   width: 100%;
