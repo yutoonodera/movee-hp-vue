@@ -51,6 +51,26 @@ const TOOLS = [
     desc: "Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証を確認。",
     needsEmail: true,  needsBase: true,
   },
+  {
+    id: "site", label: "まるごとチェック", toolPath: "/site-check", color: "#F59E0B",
+    desc: "速度・セキュリティ・OGP・Cookieバナーを1つのURLで全部まとめて診断します。",
+    needsEmail: true, needsBase: false,
+  },
+  {
+    id: "email", label: "メール到達性", toolPath: "/email-check", color: "#10B981",
+    desc: "ドメインのSPF・DMARC・DKIMを確認。お問い合わせメールがスパム判定されていないかチェック。",
+    needsEmail: true, needsBase: false,
+  },
+  {
+    id: "cookie", label: "Cookieバナー", toolPath: "/cookie-check", color: "#A855F7",
+    desc: "GA・GTM・広告タグが入っているのに同意バナーがないサイトを検出。個人情報保護法対応の確認に。",
+    needsEmail: true, needsBase: false,
+  },
+  {
+    id: "aicheck", label: "AI安全診断", toolPath: "/ai-check", color: "#7C3AED",
+    desc: "コンテンツがAIに無断学習されていないかrobots.txt設定を確認。HTMLやJSへのAPIキー漏洩も検出します。",
+    needsEmail: true, needsBase: false,
+  },
 ] as const;
 
 type ToolId = typeof TOOLS[number]["id"];
@@ -65,7 +85,8 @@ const currentTool = computed(() => TOOLS.find(t => t.id === selectedTool.value)!
 function startScan() {
   const tool = currentTool.value;
   const query: Record<string, string> = {};
-  if (scanUrl.value) query.url = scanUrl.value;
+  const urlKey = tool.id === "email" ? "domain" : "url";
+  if (scanUrl.value) query[urlKey] = scanUrl.value;
   if (tool.needsEmail && scanEmail.value) query.email = scanEmail.value;
   if (tool.needsBase && scanBase.value) query.basePath = scanBase.value;
   navigateTo({ path: tool.toolPath, query });
@@ -111,8 +132,8 @@ function startScan() {
             <div class="scan-fields">
               <input
                 v-model="scanUrl"
-                type="url"
-                placeholder="https://example.com"
+                :type="currentTool.id === 'email' ? 'text' : 'url'"
+                :placeholder="currentTool.id === 'email' ? 'example.com またはメールアドレス' : 'https://example.com'"
                 class="scan-input"
                 @keydown.enter="startScan"
               />
@@ -227,6 +248,16 @@ function startScan() {
         </div>
         <div class="tgrid">
 
+          <NuxtLink to="/site-check" class="tcard" style="--tc:#F59E0B; grid-column: span 2">
+            <div class="tcard-stripe" style="background:#F59E0B"></div>
+            <div class="tcard-body tcard-featured">
+              <span class="tcard-badge" style="color:#F59E0B; border-color:rgba(245,158,11,0.35)">おすすめ · 4項目一括診断</span>
+              <p class="tcard-title">サイトまるごとチェッカー</p>
+              <p class="tcard-desc">URLを1つ入れるだけで、表示速度・セキュリティヘッダー・OGP/SNSタグ・Cookieバナーを全部まとめて診断します。各カテゴリに個別グレードと総合評価が出ます。</p>
+              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
           <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc:#8B5CF6">
             <div class="tcard-stripe" style="background:#8B5CF6"></div>
             <div class="tcard-body">
@@ -264,6 +295,36 @@ function startScan() {
               <p class="tcard-title">APIセキュリティ診断くん</p>
               <p class="tcard-desc">Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。</p>
               <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/email-check" class="tcard" style="--tc:#10B981">
+            <div class="tcard-stripe" style="background:#10B981"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#10B981; border-color:rgba(16,185,129,0.35)">Email / SPF · DMARC</span>
+              <p class="tcard-title">メール到達性チェッカー</p>
+              <p class="tcard-desc">ドメインのSPF・DMARC・DKIMを確認。お問い合わせフォームからのメールがスパム判定されていないかすぐわかります。</p>
+              <p class="tcard-cta">チェックする <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/cookie-check" class="tcard" style="--tc:#A855F7">
+            <div class="tcard-stripe" style="background:#A855F7"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#A855F7; border-color:rgba(168,85,247,0.35)">Cookie / Privacy</span>
+              <p class="tcard-title">Cookieバナー診断</p>
+              <p class="tcard-desc">GA・GTM・広告タグが入っているのに同意バナーがないサイトを検出。個人情報保護法対応の確認に使えます。</p>
+              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/ai-check" class="tcard" style="--tc:#7C3AED">
+            <div class="tcard-stripe" style="background:#7C3AED"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#7C3AED; border-color:rgba(124,58,237,0.35)">AI / robots.txt</span>
+              <p class="tcard-title">AI安全診断</p>
+              <p class="tcard-desc">コンテンツがAIに無断学習されていないかrobots.txt設定を確認。HTMLやJSへのAPIキー漏洩も同時にチェックします。</p>
+              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
@@ -620,6 +681,15 @@ function startScan() {
 .tcard:hover .tcard-cta { color: var(--tc); }
 .tcard-cta .arrow { transition: transform 0.15s; }
 .tcard:hover .tcard-cta .arrow { transform: translateX(4px); }
+
+/* featured カード（2列幅） */
+@media (max-width: 640px) {
+  .tcard[style*="grid-column"] { grid-column: span 1; }
+}
+.tcard-featured { display: flex; flex-direction: row; align-items: center; gap: 24px; flex-wrap: wrap; }
+.tcard-featured .tcard-title { margin-bottom: 0; }
+.tcard-featured .tcard-desc  { flex: 1; min-width: 200px; margin-bottom: 0; }
+.tcard-featured .tcard-cta   { flex-shrink: 0; margin: 0; }
 
 /* ── ツールセクション（ライト） ──────────────── */
 .band-tools { background: var(--bg-alt); }
