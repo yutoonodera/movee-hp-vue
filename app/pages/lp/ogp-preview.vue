@@ -17,10 +17,13 @@ interface OgpResult {
 useHead({ title: "OGP・SNSカードプレビュー — movee" });
 useSeoMeta({ description: "URLを入力するとTwitter・Facebook・LINEでシェアしたときの見え方を確認できる無料ツールです。" });
 
-const inputUrl = ref("");
+const route    = useRoute();
+const inputUrl = ref((route.query.url as string) ?? "");
 const result   = ref<OgpResult | null>(null);
 const loading  = ref(false);
 const errorMsg = ref<string | null>(null);
+
+onMounted(() => { if (inputUrl.value) check(); });
 
 async function check() {
   const u = inputUrl.value.trim();

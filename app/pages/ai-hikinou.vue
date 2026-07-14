@@ -39,14 +39,17 @@ interface AiResult {
   email: string;
 }
 
-const url = ref("");
-const email = ref("");
+const route = useRoute();
+const url = ref((route.query.url as string) ?? "");
+const email = ref((route.query.email as string) ?? "");
 const loading = ref(false);
 const result = ref<AiResult | null>(null);
 const apiError = ref<string | null>(null);
 const elapsedSec = ref(0);
 const totalSec = ref(0);
 let _timer: ReturnType<typeof setInterval> | null = null;
+
+onMounted(() => { if (url.value) analyze(); });
 
 const elapsedLabel = (sec: number) => {
   const m = Math.floor(sec / 60);

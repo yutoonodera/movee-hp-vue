@@ -29,10 +29,13 @@ interface ApiSecurityResult {
   email: string;
 }
 
-const url      = ref("");
-const basePath = ref("/api");
-const email    = ref("");
+const route    = useRoute();
+const url      = ref((route.query.url as string) ?? "");
+const basePath = ref((route.query.basePath as string) ?? "/api");
+const email    = ref((route.query.email as string) ?? "");
 const loading  = ref(false);
+
+onMounted(() => { if (url.value && email.value) analyze(); });
 const result   = ref<ApiSecurityResult | null>(null);
 const apiError = ref<string | null>(null);
 const elapsed  = ref(0);
