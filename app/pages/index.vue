@@ -133,7 +133,7 @@ function startScan() {
             </div>
 
             <button class="scan-btn" @click="startScan">
-              {{ currentTool.id === 'ogp' ? 'プレビューする' : '診断する' }} →
+              {{ currentTool.id === 'ogp' ? 'プレビュースタート' : '診断スタート' }}
             </button>
           </div>
         </div>
@@ -148,62 +148,6 @@ function startScan() {
             ソフトウェア開発とデータ活用で、事業の成長を支える会社です。<br class="br-pc" />
             福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。
           </p>
-        </div>
-      </section>
-
-      <!-- ツール -->
-      <section id="tools" class="tools-sec">
-        <div class="inner">
-          <div class="tools-header">
-            <div>
-              <p class="dark-label">FREE TOOLS</p>
-              <h2 class="dark-heading">無料で使える診断ツール</h2>
-            </div>
-            <p class="tools-sub">登録不要・クレジットカード不要</p>
-          </div>
-          <div class="tgrid">
-
-            <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc:#8B5CF6">
-              <div class="tcard-stripe" style="background:#8B5CF6"></div>
-              <div class="tcard-body">
-                <span class="tcard-badge" style="color:#8B5CF6; border-color:rgba(139,92,246,0.35)">OGP / SNS</span>
-                <p class="tcard-title">SNSカードプレビュー</p>
-                <p class="tcard-desc">URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。</p>
-                <p class="tcard-cta">プレビューする <span class="arrow">→</span></p>
-              </div>
-            </NuxtLink>
-
-            <NuxtLink to="/lp/wp-hikinou" class="tcard" style="--tc:#3B82F6">
-              <div class="tcard-stripe" style="background:#3B82F6"></div>
-              <div class="tcard-body">
-                <span class="tcard-badge" style="color:#3B82F6; border-color:rgba(59,130,246,0.35)">WordPress</span>
-                <p class="tcard-title">非機能診断くん</p>
-                <p class="tcard-desc">表示速度・セキュリティ・使いやすさをURLを入れるだけで確認。PageSpeed・ヘッダー設定・SSL状態を一括チェック。</p>
-                <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-              </div>
-            </NuxtLink>
-
-            <NuxtLink to="/lp/ai-hikinou" class="tcard" style="--tc:#06B6D4">
-              <div class="tcard-stripe" style="background:#06B6D4"></div>
-              <div class="tcard-body">
-                <span class="tcard-badge" style="color:#06B6D4; border-color:rgba(6,182,212,0.35)">AI開発 / Next.js · Nuxt</span>
-                <p class="tcard-title">非機能診断くん</p>
-                <p class="tcard-desc">env漏洩・セキュリティヘッダー・LCP・API露出状況をまとめて診断。本番前のチェックリストとして使えます。</p>
-                <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-              </div>
-            </NuxtLink>
-
-            <NuxtLink to="/lp/api-security" class="tcard" style="--tc:#EF4444">
-              <div class="tcard-stripe" style="background:#EF4444"></div>
-              <div class="tcard-body">
-                <span class="tcard-badge" style="color:#EF4444; border-color:rgba(239,68,68,0.35)">API Security</span>
-                <p class="tcard-title">APIセキュリティ診断くん</p>
-                <p class="tcard-desc">Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。</p>
-                <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-              </div>
-            </NuxtLink>
-
-          </div>
         </div>
       </section>
 
@@ -267,6 +211,62 @@ function startScan() {
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- 無料ツール -->
+    <section id="tools" class="band band-tools">
+      <div class="inner">
+        <div class="tools-header">
+          <div>
+            <p class="label">FREE TOOLS</p>
+            <h2 class="heading" style="margin-bottom:0">無料で使える診断ツール</h2>
+          </div>
+          <p class="tools-sub-light">登録不要・クレジットカード不要</p>
+        </div>
+        <div class="tgrid">
+
+          <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc:#8B5CF6">
+            <div class="tcard-stripe" style="background:#8B5CF6"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#8B5CF6; border-color:rgba(139,92,246,0.35)">OGP / SNS</span>
+              <p class="tcard-title">SNSカードプレビュー</p>
+              <p class="tcard-desc">URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。</p>
+              <p class="tcard-cta">プレビューする <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/lp/wp-hikinou" class="tcard" style="--tc:#3B82F6">
+            <div class="tcard-stripe" style="background:#3B82F6"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#3B82F6; border-color:rgba(59,130,246,0.35)">WordPress</span>
+              <p class="tcard-title">非機能診断くん</p>
+              <p class="tcard-desc">表示速度・セキュリティ・使いやすさをURLを入れるだけで確認。PageSpeed・ヘッダー設定・SSL状態を一括チェック。</p>
+              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/lp/ai-hikinou" class="tcard" style="--tc:#06B6D4">
+            <div class="tcard-stripe" style="background:#06B6D4"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#06B6D4; border-color:rgba(6,182,212,0.35)">AI開発 / Next.js · Nuxt</span>
+              <p class="tcard-title">非機能診断くん</p>
+              <p class="tcard-desc">env漏洩・セキュリティヘッダー・LCP・API露出状況をまとめて診断。本番前のチェックリストとして使えます。</p>
+              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/lp/api-security" class="tcard" style="--tc:#EF4444">
+            <div class="tcard-stripe" style="background:#EF4444"></div>
+            <div class="tcard-body">
+              <span class="tcard-badge" style="color:#EF4444; border-color:rgba(239,68,68,0.35)">API Security</span>
+              <p class="tcard-title">APIセキュリティ診断くん</p>
+              <p class="tcard-desc">Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。</p>
+              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
+            </div>
+          </NuxtLink>
+
         </div>
       </div>
     </section>
@@ -536,59 +536,41 @@ function startScan() {
 }
 .scan-btn:hover { background: #0891B2; }
 
-/* ── ツールセクション ──────────────────────────── */
-.tools-sec {
-  padding: 0 48px 80px;
-}
-.tools-sec .inner { max-width: 900px; margin: 0 auto; }
-
-.tools-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-.tools-sub { font-size: 12px; color: #475569; font-family: ui-monospace, monospace; }
-
-.dark-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: #475569;
-  font-family: ui-monospace, monospace;
-  margin: 0 0 8px;
-}
-
-.dark-heading {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #F1F5F9;
-  margin: 0;
-}
 
 /* ── ツールカードグリッド ──────────────────────── */
 .tgrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  margin-top: 28px;
 }
 @media (max-width: 640px) { .tgrid { grid-template-columns: 1fr; } }
 
+/* ダークゾーン内のカード（現在は未使用、念のため残す） */
+.dark-zone .tcard {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+.dark-zone .tcard-title { color: #F1F5F9; }
+.dark-zone .tcard-desc  { color: #64748B; }
+.dark-zone .tcard-cta   { color: #94A3B8; }
+.dark-zone .tcard:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--tc);
+}
+
+/* ライトゾーン内のカード（tools section） */
 .tcard {
   display: block;
   text-decoration: none;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .tcard:hover {
   border-color: var(--tc);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--tc);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 0 0 1px var(--tc);
   transform: translateY(-2px);
 }
 
@@ -612,7 +594,7 @@ function startScan() {
 .tcard-title {
   font-size: 20px;
   font-weight: 800;
-  color: #F1F5F9;
+  color: var(--ink);
   letter-spacing: -0.03em;
   margin: 0 0 10px;
   line-height: 1.25;
@@ -620,7 +602,7 @@ function startScan() {
 
 .tcard-desc {
   font-size: 13px;
-  color: #64748B;
+  color: var(--ink-2);
   line-height: 1.75;
   margin: 0 0 20px;
 }
@@ -631,13 +613,28 @@ function startScan() {
   gap: 6px;
   font-size: 13px;
   font-weight: 700;
-  color: #94A3B8;
+  color: var(--ink-3);
   margin: 0;
   transition: color 0.15s;
 }
 .tcard:hover .tcard-cta { color: var(--tc); }
 .tcard-cta .arrow { transition: transform 0.15s; }
 .tcard:hover .tcard-cta .arrow { transform: translateX(4px); }
+
+/* ── ツールセクション（ライト） ──────────────── */
+.band-tools { background: var(--bg-alt); }
+
+.tools-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.tools-sub-light {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: ui-monospace, monospace;
+  margin: 0;
+}
 
 /* ── 共通バンド ────────────────────────────────── */
 .band { padding: 72px 48px; background: var(--bg); }
@@ -861,7 +858,7 @@ dd { color: var(--ink); margin: 0; }
   .nav          { padding: 16px 20px; }
   .scan-hero    { padding: 56px 20px 40px; }
   .company-intro{ padding: 36px 20px 44px; }
-  .tools-sec    { padding: 0 20px 64px; }
+  .tools-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .band        { padding: 56px 20px; }
   .footer      { padding: 20px; }
   .profile-row { grid-template-columns: 80px 1fr; font-size: 14px; }
