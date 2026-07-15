@@ -8,6 +8,7 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
 
     <!-- ナビ -->
     <header class="nav">
+      <NuxtLink to="/" class="nav-back">movee</NuxtLink>
       <span class="nav-logo">育てるホームページ</span>
       <a href="mailto:info@movee.jp" class="nav-cta">相談する →</a>
     </header>
@@ -209,10 +210,35 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
         </div>
       </section>
 
+      <!-- フェーズ2: 月次コンテンツ支援 -->
+      <section class="section-phase2">
+        <div class="inner">
+          <p class="eyebrow">PHASE 02 · 育てる</p>
+          <h2 class="phase2-heading">公開後も、月次で育てる。</h2>
+          <p class="phase2-lead">サイトを作ったあと、「何を発信するか」を考え続けるのは大変です。月次のコンテンツ支援で、発信の継続をサポートします。moveeが自社開発したAI投稿スケジュールツールを活用し、貴社向けにチューニングして提供します。</p>
+
+          <div class="phase2-items">
+            <div class="phase2-item">
+              <p class="phase2-item-title">📱 SNS投稿スケジュール生成</p>
+              <p class="phase2-item-body">moveeが自社開発したAIツール（Gemini API搭載）を使い、貴社のビジネスに合わせて設定をチューニングしたうえで投稿案を生成します。1回の実行で5日分を生成。設定項目が細かいため、チューニングはmoveeが担当します。実際の投稿は貴社にて実施いただきます。</p>
+            </div>
+            <div class="phase2-item">
+              <p class="phase2-item-title">📝 ブログ記事タイトル＋概要案</p>
+              <p class="phase2-item-body">週1本・月4本を基本として、記事タイトルと構成概要（見出し＋各パートの要点）を毎月提案します。WordPressへの執筆・投稿は貴社にて実施いただきます。</p>
+            </div>
+          </div>
+
+          <div class="phase2-price">
+            <p class="phase2-price-num">¥50,000<span class="phase2-price-sub"> 税抜 / 月</span></p>
+            <p class="phase2-price-note">最低契約期間6ヶ月 · 以降は月単位で継続 · PHASE 01と独立して契約可</p>
+          </div>
+        </div>
+      </section>
+
       <!-- 料金: ダーク・大きな数字のみ -->
       <section class="section-price">
         <div class="price-inner">
-          <p class="price-eyebrow">PRICE</p>
+          <p class="price-eyebrow">PHASE 01 · PRICE</p>
           <p class="price-amount">¥400,000</p>
           <p class="price-tax">税抜 · 納期の目安3週間</p>
           <p class="price-note">ドメイン・サーバー費用は別途 / 追加機能は別途見積もり</p>
@@ -229,6 +255,8 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
       </section>
 
     </main>
+
+    <LpPackageNav current="content-site" />
 
     <footer class="footer">
       <span>育てるホームページ by movee</span>
@@ -746,6 +774,85 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
   margin: 14px 0 0;
   font-family: ui-monospace, monospace;
 }
+
+/* ── フェーズ2 ──────────────────────────── */
+.section-phase2 {
+  padding: 80px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.phase2-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: -16px 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.phase2-lead {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.85;
+  margin: 0 0 32px;
+  max-width: 560px;
+}
+
+.phase2-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+@media (max-width: 560px) { .phase2-items { grid-template-columns: 1fr; } }
+
+.phase2-item {
+  padding: 24px 24px 24px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.phase2-item + .phase2-item {
+  padding-left: 32px;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 560px) {
+  .phase2-item + .phase2-item { padding-left: 0; border-left: none; }
+}
+
+.phase2-item-title { font-size: 15px; font-weight: 700; color: var(--ink); margin: 0 0 8px; }
+.phase2-item-body  { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.75; }
+
+.phase2-price {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.phase2-price-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--forest);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.phase2-price-sub  { font-size: 14px; font-weight: 400; color: var(--ink-3); }
+.phase2-price-note { font-size: 11px; color: var(--ink-3); margin: 0; font-family: ui-monospace, monospace; }
+
+/* ── ナビ（戻る）────────────────────────── */
+.nav-back {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-decoration: none;
+  font-family: ui-monospace, monospace;
+  margin-right: auto;
+  padding-right: 16px;
+}
+.nav-back:hover { color: var(--forest); }
 
 /* ── フッター ───────────────────────────── */
 .footer {

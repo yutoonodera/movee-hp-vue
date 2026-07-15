@@ -191,7 +191,10 @@ useHead({
       </section>
     </main>
 
+    <LpPackageNav current="flexpress" />
+
     <footer class="footer">
+      <NuxtLink to="/" class="footer-back">← movee トップへ</NuxtLink>
       <p>flexpress by movee</p>
     </footer>
   </div>
@@ -774,7 +777,12 @@ useHead({
   font-size: 12px;
   color: var(--ink-3);
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.footer-back { color: var(--ink-3); text-decoration: none; }
+.footer-back:hover { color: var(--ink); }
 
 /* ── レスポンシブ ──────────────────────────────────── */
 @media (max-width: 600px) {

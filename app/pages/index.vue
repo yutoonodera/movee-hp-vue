@@ -90,35 +90,27 @@ const formatDate = (iso: string) => {
         <p class="label">PACKAGES</p>
         <h2 class="heading">パッケージサービス</h2>
         <div class="pkg-grid">
-          <NuxtLink to="/lp/flexpress" class="pkg-card">
-            <div class="pkg-accent" style="background:#4338CA"></div>
+          <NuxtLink to="/lp/content-site" class="pkg-card">
+            <div class="pkg-accent" style="background:#166534"></div>
             <div class="pkg-body">
-              <p class="pkg-name">FlexPress</p>
-              <p class="pkg-desc">WordPressはそのままで、フロントエンドをNext.jsに刷新。表示速度・セキュリティ・デザイン自由度をまとめて改善します。</p>
-              <span class="pkg-arrow">詳しく見る →</span>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/lp/flutterflow" class="pkg-card">
-            <div class="pkg-accent" style="background:#EA580C"></div>
-            <div class="pkg-body">
-              <p class="pkg-name">FlutterFlowで爆速スマホアプリ</p>
-              <p class="pkg-desc">iOS・Android両対応のスマホアプリを、FlutterFlowを使って短期間・低コストで開発します。</p>
+              <p class="pkg-name">育てるホームページ</p>
+              <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。月次のSNS・ブログ支援つき。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
           <NuxtLink to="/lp/saas-starter" class="pkg-card">
             <div class="pkg-accent" style="background:#059669"></div>
             <div class="pkg-body">
-              <p class="pkg-name">サブスクスタータープラン</p>
-              <p class="pkg-desc">決まった仕様でSaaSを2週間で立ち上げる定額パッケージ。Stripe・Googleログイン・WordPress連携を含みます。</p>
+              <p class="pkg-name">育てるサブスク</p>
+              <p class="pkg-desc">SaaSを2週間で立ち上げ、その後は月次でSNS投稿案・ブログ概要案を提供。プロダクトとコンテンツをまとめて育てます。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
-          <NuxtLink to="/lp/content-site" class="pkg-card">
-            <div class="pkg-accent" style="background:#166534"></div>
+          <NuxtLink to="/lp/flexpress" class="pkg-card">
+            <div class="pkg-accent" style="background:#4338CA"></div>
             <div class="pkg-body">
-              <p class="pkg-name">育てるホームページ</p>
-              <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。書けば書くほど育ちます。</p>
+              <p class="pkg-name">FlexPress</p>
+              <p class="pkg-desc">WordPressはそのままで、フロントエンドをNext.jsに刷新。表示速度・セキュリティ・デザイン自由度をまとめて改善します。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
