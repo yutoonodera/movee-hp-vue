@@ -66,6 +66,11 @@ const formatDate = (iso: string) => {
       </div>
       <div class="article-body" v-html="post.content.rendered"></div>
     </article>
+
+    <QuickScanWidget
+      title="あなたのサイト、無料で診断してみませんか？"
+      :compact="true"
+    />
   </div>
 </template>
 
