@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const ALL = [
-  { slug: 'content-site', path: '/lp/content-site', name: '育てるホームページ', desc: '書くたびに資産になるWebサイト。月次コンテンツ支援つき。' },
-  { slug: 'saas-starter', path: '/lp/saas-starter', name: '育てるサブスク',     desc: 'SaaSを2週間で構築して、月次コンテンツ支援で育てる。' },
-  { slug: 'flexpress',    path: '/lp/flexpress',    name: 'FlexPress',          desc: 'WordPressをAPIにして、Next.jsで高速・安全に。' },
+  { slug: 'content-site',   path: '/lp/content-site',   name: 'ホームページサブスク', desc: '書くたびに資産になるWebサイト。月次コンテンツ支援つき。' },
+  { slug: 'saas-starter',   path: '/lp/saas-starter',   name: 'プロダクトサブスク',   desc: 'SaaSを2週間で構築して、月次コンテンツ支援で伸ばす。' },
+  { slug: 'data-analytics', path: '/lp/data-analytics', name: 'データ分析サブスク',   desc: '毎月の定点分析とレポートで、意思決定を支える。' },
+  { slug: 'flexpress',      path: '/lp/flexpress',      name: 'FlexPress',            desc: 'WordPressをAPIにして、Next.jsで高速・安全に。' },
 ]
 
 const props = defineProps<{ current: string }>()
@@ -61,10 +62,11 @@ const others = computed(() => ALL.filter(p => p.slug !== props.current))
 
 .lpnav-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-@media (max-width: 540px) { .lpnav-cards { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .lpnav-cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .lpnav-cards { grid-template-columns: 1fr; } }
 
 .lpnav-card {
   display: block;

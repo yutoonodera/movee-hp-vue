@@ -12,6 +12,7 @@ interface WpRawPost {
   title: { rendered: string };
   content: { rendered: string };
   excerpt: { rendered: string };
+  acf?: { event_date?: string; event_end?: string; thumbnail_url?: string };
   _embedded?: { "wp:featuredmedia"?: WpEmbeddedMedia[] };
 }
 
@@ -38,7 +39,7 @@ export default defineEventHandler(async (event) => {
 
   const posts = await $fetch<WpRawPost[]>("https://wp.movee.jp/wp-json/wp/v2/posts", {
     headers,
-    query: { slug, _embed: "wp:featuredmedia", _fields: "id,title,content,excerpt,date,slug,_links,_embedded" },
+    query: { slug, _embed: "wp:featuredmedia", _fields: "id,title,content,excerpt,date,slug,acf,_links,_embedded" },
   });
 
   if (!posts.length) throw createError({ statusCode: 404, message: "記事が見つかりません" });
@@ -51,6 +52,8 @@ export default defineEventHandler(async (event) => {
     title: p.title,
     content: p.content,
     excerpt: p.excerpt,
-    featuredImage: featuredImageUrl(p),
+    featuredImage: p.acf?.thumbnail_url ?? featuredImageUrl(p),
+    eventDate: p.acf?.event_date ?? null,
+    eventEnd: p.acf?.event_end ?? null,
   };
 });

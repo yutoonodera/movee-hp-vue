@@ -34,6 +34,12 @@ export default defineEventHandler(async (event) => {
     headers["Authorization"] = `Basic ${Buffer.from(`${user}:${pass}`).toString("base64")}`;
   }
 
+  const workshopCategory = process.env.WORKSHOP_CATEGORY;
+  const excludeIds = [
+    ...(categories_exclude ? String(categories_exclude).split(",") : []),
+    ...(workshopCategory ? [workshopCategory] : []),
+  ].filter(Boolean).join(",");
+
   const posts = await $fetch<WpRawPost[]>("https://wp.movee.jp/wp-json/wp/v2/posts", {
     headers,
     query: {
@@ -42,7 +48,7 @@ export default defineEventHandler(async (event) => {
       _fields: "id,title,excerpt,date,slug,_links,_embedded",
       ...(include ? { include } : {}),
       ...(categories ? { categories } : {}),
-      ...(categories_exclude ? { categories_exclude } : {}),
+      ...(excludeIds ? { categories_exclude: excludeIds } : {}),
     },
   });
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: "育てるサブスク — 立ち上げて、育てる。by movee" });
+useHead({ title: "プロダクトサブスク — 立ち上げて、育てる。by movee" });
 useSeoMeta({ description: "SaaSを2週間で立ち上げ、その後は月次のSNS投稿案・ブログ概要案でコンテンツを育てる。構築と運用をまとめて任せられるパッケージです。" });
 </script>
 
@@ -13,9 +13,9 @@ useSeoMeta({ description: "SaaSを2週間で立ち上げ、その後は月次の
     <!-- ヒーロー -->
     <section class="hero">
       <div class="hero-inner">
-        <p class="hero-kicker">by movee · 育てるサブスク</p>
+        <p class="hero-kicker">by movee · プロダクトサブスク</p>
         <h1 class="hero-title">
-          立ち上げて、<br />育てる。
+          立ち上げて、<br />伸ばす。
         </h1>
         <p class="hero-body">
           SaaSの基盤を2週間で構築し、その後は月次のコンテンツ支援で集客を育てます。
@@ -191,7 +191,7 @@ useSeoMeta({ description: "SaaSを2週間で立ち上げ、その後は月次の
 
     <footer class="footer">
       <NuxtLink to="/" class="footer-back">← movee トップへ</NuxtLink>
-      <p>育てるサブスク by movee</p>
+      <p>プロダクトサブスク by movee</p>
     </footer>
   </div>
 </template>

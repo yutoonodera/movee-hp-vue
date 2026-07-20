@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: "育てるホームページ — コンテンツを積み上げる仕組みが最初から入ったWebサイト" });
+useHead({ title: "ホームページサブスク — コンテンツを積み上げる仕組みが最初から入ったWebサイト" });
 useSeoMeta({ description: "公開して終わりではなく、記事を書くたびに育っていく仕組みを最初から備えたWebサイト構築パッケージ。CMS・コンテンツ管理・お知らせ投稿をセットで提供します。" });
 </script>
 
@@ -9,7 +9,7 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
     <!-- ナビ -->
     <header class="nav">
       <NuxtLink to="/" class="nav-back">movee</NuxtLink>
-      <span class="nav-logo">育てるホームページ</span>
+      <span class="nav-logo">ホームページサブスク</span>
       <a href="mailto:info@movee.jp" class="nav-cta">相談する →</a>
     </header>
 
@@ -110,7 +110,7 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
                   <th class="col-label"></th>
                   <th class="col-other">Wix / Squarespace</th>
                   <th class="col-other">WordPressテーマ型</th>
-                  <th class="col-this">育てるホームページ</th>
+                  <th class="col-this">ホームページサブスク</th>
                 </tr>
               </thead>
               <tbody>
@@ -259,7 +259,7 @@ useSeoMeta({ description: "公開して終わりではなく、記事を書く�
     <LpPackageNav current="content-site" />
 
     <footer class="footer">
-      <span>育てるホームページ by movee</span>
+      <span>ホームページサブスク by movee</span>
     </footer>
 
   </div>

@@ -18,16 +18,43 @@ interface WpPost {
   title: { rendered: string };
   excerpt: { rendered: string };
   featuredImage: string | null;
+  eventDate?: string | null;
+  eventEnd?: string | null;
 }
 
-const { data: news }  = await useFetch<WpPost[]>("/api/wp/news");
-const { data: posts } = await useFetch<WpPost[]>("/api/wp/posts", {
+const { data: news }      = await useFetch<WpPost[]>("/api/wp/news");
+const { data: workshops } = await useFetch<WpPost[]>("/api/wp/workshop");
+const { data: posts }     = await useFetch<WpPost[]>("/api/wp/posts", {
   query: { categories_exclude: 3 },
 });
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+};
+
+const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
+const formatEventDate = (dt: string) => {
+  const [datePart, timePart] = dt.replace("T", " ").split(" ");
+  const [y, m, d] = datePart.split("-").map(Number);
+  const day = WEEKDAYS[new Date(y, m - 1, d).getDay()];
+  const base = `${y}年${m}月${d}日（${day}）`;
+  if (!timePart || timePart === "00:00") return base;
+  const [h, min] = timePart.split(":");
+  return `${base} ${parseInt(h)}:${min}`;
+};
+const formatEventDateOnly = (dt: string) => {
+  const [datePart] = dt.replace("T", " ").split(" ");
+  const [y, m, d] = datePart.split("-").map(Number);
+  const day = WEEKDAYS[new Date(y, m - 1, d).getDay()];
+  return `${y}年${m}月${d}日（${day}）`;
+};
+const formatEventTimeRange = (dt: string, end?: string | null) => {
+  const timePart = dt.replace("T", " ").split(" ")[1];
+  if (!timePart || timePart === "00:00") return "";
+  const [h, min] = timePart.split(":");
+  const start = `${parseInt(h)}:${min}`;
+  return end ? `${start}〜${end.slice(0, 5)}` : start;
 };
 
 </script>
@@ -40,6 +67,7 @@ const formatDate = (iso: string) => {
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
+        <NuxtLink to="/workshop">勉強会</NuxtLink>
         <a href="#contact">お問い合わせ</a>
       </nav>
     </header>
@@ -93,7 +121,7 @@ const formatDate = (iso: string) => {
           <NuxtLink to="/lp/content-site" class="pkg-card">
             <div class="pkg-accent" style="background:#166534"></div>
             <div class="pkg-body">
-              <p class="pkg-name">育てるホームページ</p>
+              <p class="pkg-name">ホームページサブスク</p>
               <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。月次のSNS・ブログ支援つき。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
@@ -101,8 +129,16 @@ const formatDate = (iso: string) => {
           <NuxtLink to="/lp/saas-starter" class="pkg-card">
             <div class="pkg-accent" style="background:#059669"></div>
             <div class="pkg-body">
-              <p class="pkg-name">育てるサブスク</p>
-              <p class="pkg-desc">SaaSを2週間で立ち上げ、その後は月次でSNS投稿案・ブログ概要案を提供。プロダクトとコンテンツをまとめて育てます。</p>
+              <p class="pkg-name">プロダクトサブスク</p>
+              <p class="pkg-desc">SaaSを2週間で立ち上げ、その後は月次でSNS投稿案・ブログ概要案を提供。プロダクトとコンテンツをまとめて任せられます。</p>
+              <span class="pkg-arrow">詳しく見る →</span>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/lp/data-analytics" class="pkg-card">
+            <div class="pkg-accent" style="background:#0891B2"></div>
+            <div class="pkg-body">
+              <p class="pkg-name">データ分析サブスク</p>
+              <p class="pkg-desc">毎月同じ切り口でデータを分析し、意思決定に使えるレポートを届けます。初期設定後は自動で回り続ける仕組みを構築します。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
@@ -130,7 +166,7 @@ const formatDate = (iso: string) => {
         </div>
         <div class="tgrid">
 
-          <NuxtLink to="/site-check" class="tcard" style="--tc:#F59E0B; grid-column: span 2">
+          <NuxtLink to="/site-check" class="tcard tcard-wide" style="--tc:#F59E0B">
             <div class="tcard-stripe" style="background:#F59E0B"></div>
             <div class="tcard-body tcard-featured">
               <span class="tcard-badge" style="color:#F59E0B; border-color:rgba(245,158,11,0.35)">おすすめ · 4項目一括診断</span>
@@ -223,6 +259,44 @@ const formatDate = (iso: string) => {
           <NuxtLink v-for="item in news" :key="item.id" :to="`/blog/${item.slug}`" class="news-row">
             <p class="news-date">{{ formatDate(item.date) }}</p>
             <p class="news-title" v-html="item.title.rendered"></p>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- 勉強会 -->
+    <section v-if="workshops?.length" class="band">
+      <div class="inner">
+        <div class="section-header">
+          <div>
+            <p class="label">WORKSHOP</p>
+            <h2 class="heading" style="margin-bottom:0">勉強会</h2>
+          </div>
+          <NuxtLink to="/workshop" class="section-more">すべて見る →</NuxtLink>
+        </div>
+        <div class="posts-grid" style="margin-top:40px">
+          <NuxtLink
+            v-for="ws in workshops"
+            :key="ws.id"
+            :to="`/workshop/${ws.slug}`"
+            class="post-card workshop-card"
+          >
+            <div v-if="ws.featuredImage" class="post-thumb">
+              <img :src="ws.featuredImage" :alt="ws.title.rendered" loading="lazy" />
+            </div>
+            <div class="ws-no-thumb" v-else></div>
+            <div class="post-body">
+              <div class="post-date ws-date">
+                <template v-if="ws.eventDate">
+                  <span>{{ formatEventDateOnly(ws.eventDate) }}</span>
+                  <span v-if="formatEventTimeRange(ws.eventDate, ws.eventEnd)" class="ws-time">{{ formatEventTimeRange(ws.eventDate, ws.eventEnd) }}</span>
+                </template>
+                <span v-else>{{ formatDate(ws.date) }}</span>
+              </div>
+              <p class="post-title" v-html="ws.title.rendered"></p>
+              <p class="post-excerpt" v-html="ws.excerpt.rendered"></p>
+              <span class="ws-cta">詳細・申し込み →</span>
+            </div>
           </NuxtLink>
         </div>
       </div>
@@ -493,13 +567,18 @@ const formatDate = (iso: string) => {
 .tcard:hover .tcard-cta .arrow { transform: translateX(4px); }
 
 /* featured カード（2列幅） */
-@media (max-width: 640px) {
-  .tcard[style*="grid-column"] { grid-column: span 1; }
-}
+.tcard-wide { grid-column: span 2; }
 .tcard-featured { display: flex; flex-direction: row; align-items: center; gap: 24px; flex-wrap: wrap; }
 .tcard-featured .tcard-title { margin-bottom: 0; }
 .tcard-featured .tcard-desc  { flex: 1; min-width: 200px; margin-bottom: 0; }
 .tcard-featured .tcard-cta   { flex-shrink: 0; margin: 0; }
+@media (max-width: 640px) {
+  .tcard-wide                  { grid-column: span 1; }
+  .tcard-featured              { flex-direction: column; align-items: flex-start; }
+  .tcard-featured .tcard-title { margin-bottom: 10px; }
+  .tcard-featured .tcard-desc  { min-width: unset; flex: none; margin-bottom: 0; }
+  .tcard-featured .tcard-cta   { margin-top: 16px; }
+}
 
 /* ── ツールセクション（ライト） ──────────────── */
 .band-tools { background: var(--bg-alt); }
@@ -621,6 +700,51 @@ const formatDate = (iso: string) => {
   font-weight: 600;
   margin-top: 4px;
 }
+
+/* ── セクションヘッダー ────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+.section-more {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+.section-more:hover { text-decoration: underline; }
+
+/* ── 勉強会 ────────────────────────────────────── */
+.workshop-card { border-color: rgba(29,78,216,0.15); }
+.workshop-card:hover { border-color: var(--accent); }
+
+.workshop-card .ws-date {
+  font-size: 13px; font-weight: 700;
+  color: var(--accent); background: #DBEAFE;
+  border-radius: 6px; padding: 8px 12px;
+  display: flex; flex-direction: column; gap: 2px;
+  font-family: inherit;
+}
+.ws-time { font-size: 15px; }
+
+.ws-no-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #DBEAFE 0%, #EDE9FE 100%);
+}
+
+.ws-cta {
+  display: block;
+  font-size: 13px; font-weight: 700;
+  color: #fff; background: var(--accent);
+  border-radius: 8px; padding: 10px 16px;
+  margin-top: 12px; text-align: center;
+  transition: background .15s;
+}
+.workshop-card:hover .ws-cta { background: #1e40af; }
 
 /* ── ニュース ──────────────────────────────────── */
 .news-list { border-top: 1px solid var(--line); }
