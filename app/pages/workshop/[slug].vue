@@ -23,8 +23,10 @@ const encodeImageUrl = (url: string) => {
 
 if (post.value) {
   const desc  = stripHtml(post.value.excerpt.rendered).slice(0, 120);
+  const toAbsolute = (url: string) =>
+    url.startsWith("/") ? `https://www.movee.jp${url}` : url;
   const image = post.value.featuredImage
-    ? encodeImageUrl(post.value.featuredImage)
+    ? encodeImageUrl(toAbsolute(post.value.featuredImage))
     : "https://www.movee.jp/og-default.png";
   useSeoMeta({
     ogTitle: post.value.title.rendered,
