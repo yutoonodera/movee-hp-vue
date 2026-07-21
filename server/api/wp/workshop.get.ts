@@ -24,7 +24,7 @@ export default defineEventHandler(async () => {
   return posts.map(p => ({
     id: p.id, slug: p.slug, date: p.date,
     title: p.title, excerpt: p.excerpt,
-    featuredImage: p.acf?.thumbnail_url ?? null,
+    featuredImage: p.acf?.thumbnail_url?.replace("https://wp.movee.jp/wp-content/", "/api/wp-media/") ?? null,
     eventDate: p.acf?.event_date ?? null,
     eventEnd: p.acf?.event_end ?? null,
   }));

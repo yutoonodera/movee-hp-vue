@@ -44,15 +44,20 @@ export default defineEventHandler(async (event) => {
 
   if (!posts.length) throw createError({ statusCode: 404, message: "記事が見つかりません" });
 
+  const proxyWp = (url: string | null) =>
+    url ? url.replace("https://wp.movee.jp/wp-content/", "/api/wp-media/") : null;
+
   const p = posts[0];
   return {
     id: p.id,
     slug: p.slug,
     date: p.date,
     title: p.title,
-    content: p.content,
+    content: {
+      rendered: p.content.rendered.replace(/https:\/\/wp\.movee\.jp\/wp-content\//g, "/api/wp-media/"),
+    },
     excerpt: p.excerpt,
-    featuredImage: p.acf?.thumbnail_url ?? featuredImageUrl(p),
+    featuredImage: proxyWp(p.acf?.thumbnail_url ?? featuredImageUrl(p)),
     eventDate: p.acf?.event_date ?? null,
     eventEnd: p.acf?.event_end ?? null,
   };
