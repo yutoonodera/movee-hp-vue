@@ -85,41 +85,53 @@ useSeoMeta({ description: "分析している時間はない。でも接点は�
       <section class="band band-alt">
         <div class="inner">
           <p class="eyebrow">HOW IT WORKS</p>
-          <h2 class="heading">やることは月に1回、<br />CSVを送るだけ。</h2>
-          <p class="section-lead">Sansan・Excel・Googleスプレッドシート・kintone、何でも構いません。「名前と最後に連絡した日」があれば分析できます。</p>
+          <h2 class="heading">日々書いて、月1回送る。<br />分析とアプローチ案はこちらがやる。</h2>
+          <p class="section-lead">テンプレートに沿って営業活動を記録するだけ。月に1回CSVで送ってもらえれば、AIと人の目でアプローチ案まで仕上げてお届けします。</p>
 
           <div class="works-steps">
             <div class="works-step">
               <div class="works-step-num">01</div>
               <div class="works-step-body">
-                <p class="works-step-title">CSVをエクスポートして送る<span class="step-time">（約5分）</span></p>
-                <p class="works-step-desc">今使っているツールからエクスポートするだけ。フォーマットの指定はありません。やり方がわからなければ一緒に確認します。</p>
+                <p class="works-step-title">テンプレートに日々の接点を記録する</p>
+                <p class="works-step-desc">最初にスプレッドシートのテンプレートをお渡しします。商談・名刺交換・SNSでのやりとりなど、接点が生まれたらその都度書き足していくだけです。</p>
+                <!-- スプレッドシートモック -->
+                <div class="sheet-mock">
+                  <div class="sheet-row sheet-header">
+                    <span>名前</span><span>会社</span><span>チャネル</span><span>最終接触日</span><span>結果</span><span>金額</span><span>メモ</span><span>雑談メモ</span>
+                  </div>
+                  <div class="sheet-row">
+                    <span>山田 太郎</span><span>株式会社○○</span><span>展示会</span><span>2025/11/12</span><span>検討中</span><span>50万</span><span>予算は来期</span><span>ゴルフ好き</span>
+                  </div>
+                  <div class="sheet-row">
+                    <span>鈴木 花子</span><span>△△商事</span><span>X</span><span>2026/02/03</span><span>未連絡</span><span>—</span><span>DM返信あり</span><span>子育て中</span>
+                  </div>
+                  <div class="sheet-row sheet-faded">
+                    <span>・・・</span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="works-step">
               <div class="works-step-num">02</div>
               <div class="works-step-body">
-                <p class="works-step-title">インポート・分析・整理<span class="step-time">（すべてこちら）</span></p>
-                <p class="works-step-desc">受け取ったデータを整形し、未接触期間・チャネル・優先度をもとにスコアリングします。クライアント側の作業は一切ありません。</p>
+                <p class="works-step-title">月1回、CSVで送る<span class="step-time">（約5分）</span></p>
+                <p class="works-step-desc">月末にスプレッドシートをCSVでエクスポートして送るだけ。エクスポートのやり方がわからなければ最初に一緒に確認します。</p>
               </div>
             </div>
             <div class="works-step">
               <div class="works-step-num">03</div>
               <div class="works-step-body">
-                <p class="works-step-title">「今月動くべき人リスト」が届く</p>
-                <p class="works-step-desc">優先度をつけた連絡先リストと、全体のカバレッジレポートをお届けします。届いたリストの人に順番に連絡するだけです。</p>
+                <p class="works-step-title">AI＋人力でアプローチ案まで仕上げる<span class="step-time">（すべてこちら）</span></p>
+                <p class="works-step-desc">AIが未接触期間・結果・金額をもとに優先度を算出。さらにメモ・雑談メモを読み込み、「この人にはこう連絡する」という具体的なアプローチ案を人の手で添えてお届けします。</p>
               </div>
             </div>
-          </div>
-
-          <!-- 習慣づけ -->
-          <div class="habit-box">
-            <p class="habit-title">「毎月送る」が、習慣になる。</p>
-            <p class="habit-desc">
-              最初はCSVのエクスポートに慣れなくても構いません。やり方は一緒に確認します。<br />
-              毎月リストが届くサイクルを続けることで、接点を管理する習慣が自然に身についていきます。<br />
-              3ヶ月後には「今月も送らなきゃ」が当たり前になります。
-            </p>
+            <div class="works-step">
+              <div class="works-step-num">04</div>
+              <div class="works-step-body">
+                <p class="works-step-title">アプローチリスト＋提案文が届く</p>
+                <p class="works-step-desc">届いた内容をもとに連絡するだけ。「何を送ればいいかわからない」という状態をなくします。</p>
+              </div>
+            </div>
           </div>
 
           <!-- レポートモック -->
@@ -128,38 +140,45 @@ useSeoMeta({ description: "分析している時間はない。でも接点は�
               <span class="mock-dot red"></span>
               <span class="mock-dot yellow"></span>
               <span class="mock-dot green"></span>
-              <span class="mock-title">今月のアプローチリスト</span>
+              <span class="mock-title">今月のアプローチレポート</span>
             </div>
             <div class="mock-body">
-              <div class="mock-row header-row">
-                <span>氏名 / 会社</span>
-                <span>未接触</span>
-                <span>接点</span>
-                <span>優先度</span>
+              <div class="mock-person">
+                <div class="mock-person-header">
+                  <div class="mock-person-info">
+                    <span class="mock-person-name">山田 太郎 <span class="mock-person-co">/ 株式会社○○</span></span>
+                    <span class="mock-person-meta">未接触 8ヶ月 · 展示会 · 検討中 · 予算50万</span>
+                  </div>
+                  <span class="badge high">優先度：高</span>
+                </div>
+                <div class="mock-approach">
+                  <p class="mock-approach-label">アプローチ案</p>
+                  <p class="mock-approach-text">「先日の展示会以来ご無沙汰しています。来期のご予算の時期かと思いご連絡しました。ゴルフの話題も含め、一度お茶でもいかがでしょうか。」</p>
+                </div>
               </div>
-              <div class="mock-row">
-                <span>山田 太郎 / 株式会社○○</span>
-                <span class="red-text">8ヶ月</span>
-                <span>展示会</span>
-                <span class="badge high">高</span>
-              </div>
-              <div class="mock-row">
-                <span>鈴木 花子 / フリーランス</span>
-                <span class="orange-text">5ヶ月</span>
-                <span>X</span>
-                <span class="badge mid">中</span>
-              </div>
-              <div class="mock-row">
-                <span>田中 一郎 / △△合同会社</span>
-                <span class="orange-text">4ヶ月</span>
-                <span>見積り</span>
-                <span class="badge mid">中</span>
-              </div>
-              <div class="mock-row faded">
-                <span>・・・ 計 24名</span>
-                <span></span><span></span><span></span>
+              <div class="mock-person mock-person-faded">
+                <div class="mock-person-header">
+                  <div class="mock-person-info">
+                    <span class="mock-person-name">鈴木 花子 <span class="mock-person-co">/ △△商事</span></span>
+                    <span class="mock-person-meta">未接触 5ヶ月 · X · DM返信あり</span>
+                  </div>
+                  <span class="badge mid">優先度：中</span>
+                </div>
+                <div class="mock-approach">
+                  <p class="mock-approach-label">アプローチ案</p>
+                  <p class="mock-approach-text">「先日のポストにいいねありがとうございました。お子さん関連のお仕事もされているとのこと…」</p>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- 習慣づけ -->
+          <div class="habit-box">
+            <p class="habit-title">「毎月送る」が、習慣になる。</p>
+            <p class="habit-desc">
+              最初は記録の習慣がなくても構いません。テンプレートに沿って書くだけなので、営業活動をしながら自然に溜まっていきます。<br />
+              毎月レポートが届くサイクルを繰り返すことで、接点を管理する感覚が身についていきます。
+            </p>
           </div>
         </div>
       </section>
@@ -361,6 +380,47 @@ useSeoMeta({ description: "分析している時間はない。でも接点は�
 }
 .works-step-desc { font-size: 14px; color: #475569; line-height: 1.8; margin: 0; }
 
+/* Sheet mock */
+.sheet-mock {
+  margin-top: 20px; border: 1px solid #BAE6FD; border-radius: 8px;
+  overflow: hidden; font-size: 11px;
+}
+.sheet-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr 1fr 0.8fr 0.7fr 1.2fr 1.2fr;
+  border-bottom: 1px solid #E0F2FE;
+}
+.sheet-row:last-child { border-bottom: none; }
+.sheet-row span {
+  padding: 7px 10px; color: #334155;
+  border-right: 1px solid #E0F2FE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sheet-row span:last-child { border-right: none; }
+.sheet-header { background: #E0F2FE; }
+.sheet-header span { font-weight: 700; color: #0E7490; }
+.sheet-faded span { color: #94A3B8; }
+
+/* Report mock (updated) */
+.report-mock {
+  border: 1px solid #E2E8F0; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,.06);
+}
+.mock-person {
+  padding: 20px 24px; border-bottom: 1px solid #F1F5F9;
+}
+.mock-person-faded { opacity: .5; }
+.mock-person-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px;
+}
+.mock-person-info { display: flex; flex-direction: column; gap: 4px; }
+.mock-person-name { font-size: 14px; font-weight: 700; color: #0F172A; }
+.mock-person-co   { font-weight: 400; color: #64748B; }
+.mock-person-meta { font-size: 11px; color: #94A3B8; font-family: ui-monospace, monospace; }
+.mock-approach { background: #F0FDFF; border: 1px solid #BAE6FD; border-radius: 8px; padding: 12px 16px; }
+.mock-approach-label { font-size: 10px; font-weight: 700; color: #0891B2; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 6px; }
+.mock-approach-text  { font-size: 13px; color: #334155; line-height: 1.7; margin: 0; }
+
 /* Habit box */
 .habit-box {
   background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 12px;
@@ -369,33 +429,9 @@ useSeoMeta({ description: "分析している時間はない。でも接点は�
 .habit-title { font-size: 17px; font-weight: 800; color: #0F172A; margin: 0 0 10px; }
 .habit-desc  { font-size: 14px; color: #475569; line-height: 1.85; margin: 0; }
 
-/* Report mock */
-.report-mock {
-  border: 1px solid #E2E8F0; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,.06);
-}
-.mock-header {
-  background: #F8FAFC; padding: 12px 16px; border-bottom: 1px solid #E2E8F0;
-  display: flex; align-items: center; gap: 8px;
-}
-.mock-dot { width: 10px; height: 10px; border-radius: 50%; }
-.mock-dot.red    { background: #FC8181; }
-.mock-dot.yellow { background: #F6E05E; }
-.mock-dot.green  { background: #68D391; }
-.mock-title { font-size: 12px; color: #64748B; margin-left: 8px; font-weight: 600; }
-.mock-row {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  padding: 12px 20px; border-bottom: 1px solid #F1F5F9;
-  font-size: 13px; color: #334155; align-items: center; gap: 8px;
-}
-.mock-row.header-row {
-  background: #F8FAFC; font-weight: 700;
-  font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em;
-}
-.mock-row.faded { color: #94A3B8; }
 .red-text    { color: #DC2626; font-weight: 700; }
 .orange-text { color: #D97706; font-weight: 700; }
-.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; flex-shrink: 0; }
 .badge.high { background: #FEE2E2; color: #DC2626; }
 .badge.mid  { background: #FEF3C7; color: #D97706; }
 
