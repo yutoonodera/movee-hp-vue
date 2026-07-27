@@ -121,8 +121,8 @@ useSeoMeta({ description: "分析している時間はない。でも接点は�
             <div class="works-step">
               <div class="works-step-num">03</div>
               <div class="works-step-body">
-                <p class="works-step-title">AI＋人力でアプローチ案まで仕上げる<span class="step-time">（すべてこちら）</span></p>
-                <p class="works-step-desc">AIが未接触期間・結果・金額をもとに優先度を算出。さらにメモ・雑談メモを読み込み、「この人にはこう連絡する」という具体的なアプローチ案を人の手で添えてお届けします。</p>
+                <p class="works-step-title">人の目で調査・精査してアプローチ案を仕上げる<span class="step-time">（すべてこちら）</span></p>
+                <p class="works-step-desc">まずAIが未接触期間・結果・金額をもとに優先度スコアを算出します。その後、優先度の高い接点については<strong>人が一件ずつメモ・雑談メモを読み込み、必要に応じて追加リサーチを行ったうえで</strong>アプローチ案を書いています。AIが出した文章をそのまま渡すのではなく、実際に使える内容かを人が確認・調整してからお届けします。</p>
               </div>
             </div>
             <div class="works-step">
