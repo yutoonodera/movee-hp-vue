@@ -1,13 +1,13 @@
 <script setup lang="ts">
-useHead({ title: "株式会社movee — ソフトウェア開発・データ活用" });
+useHead({ title: "株式会社movee — 1人法人・個人事業主のITパートナー" });
 useSeoMeta({
   ogTitle:            "株式会社movee",
-  ogDescription:      "ソフトウェア開発とデータ活用で事業の成長を支える会社です。福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。",
+  ogDescription:      "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。福岡市を拠点に活動しています。",
   ogType:             "website",
   ogImage:            "https://www.movee.jp/og-default.png",
   twitterCard:        "summary_large_image",
   twitterTitle:       "株式会社movee",
-  twitterDescription: "ソフトウェア開発とデータ活用で事業の成長を支える会社です。福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。",
+  twitterDescription: "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。",
   twitterImage:       "https://www.movee.jp/og-default.png",
 });
 
@@ -68,55 +68,114 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
         <NuxtLink to="/workshop">勉強会</NuxtLink>
-        <a href="#contact">お問い合わせ</a>
+<a href="#contact">お問い合わせ</a>
       </nav>
     </header>
 
     <!-- ダークゾーン（クイックスキャン + 会社紹介 + ツール） -->
     <div class="dark-zone">
 
-      <!-- クイックスキャン（ヒーロー） -->
-      <QuickScanWidget title="あなたのサイト、本当に大丈夫ですか？" />
-
-      <!-- 会社コピー -->
-      <section class="company-intro">
-        <div class="ci-inner">
-          <p class="ci-kicker">SOFTWARE DEVELOPMENT &amp; DATA UTILIZATION</p>
-          <h2 class="ci-title">ソフトウェアで、<br />データで、課題を解く。</h2>
-          <p class="ci-lead">
-            ソフトウェア開発とデータ活用で、事業の成長を支える会社です。<br class="br-pc" />
-            福岡市を拠点に、Webサービスの開発・データ分析・可視化の支援を行っています。
+      <!-- ヒーロー -->
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="hero-kicker">FOR SOLE PROPRIETORS &amp; 1-PERSON BUSINESSES</p>
+          <h1 class="hero-title">一人で動かす事業に、<br />動く仕組みを。</h1>
+          <p class="hero-lead">
+            ツール選びに迷わなくていい。サイトの更新で悩まなくていい。<br class="br-pc" />
+            データを読み解く時間がなくてもいい。<br class="br-pc" />
+            1人法人・個人事業主の「やりたいこと」に集中できるよう、<br class="br-pc" />
+            IT周りをまるごと支えます。
           </p>
+          <div class="hero-actions">
+            <a href="#contact" class="hero-cta">相談してみる</a>
+            <a href="#services" class="hero-sub">サービスを見る →</a>
+          </div>
         </div>
       </section>
 
     </div><!-- /dark-zone -->
 
     <!-- 事業内容 -->
-    <section class="band">
+    <section id="services" class="band">
       <div class="inner">
         <p class="label">SERVICES</p>
         <h2 class="heading">事業内容</h2>
         <div class="service-grid">
           <div class="service-card">
-            <div class="service-bar" style="background:#1D4ED8"></div>
-            <h3 class="service-title">ソフトウェア開発</h3>
-            <p class="service-body">WebサービスやSaaSの企画・開発・運用。Next.js・Nuxt.js・React・TypeScriptを中心としたモダンスタックで、品質と保守性を重視した開発を行います。要件定義から設計・実装まで一貫して対応します。</p>
+            <div class="service-bar" style="background:#0891B2"></div>
+            <h3 class="service-title">ソフトウェア導入・定着支援</h3>
+            <p class="service-body">業務課題に合ったSaaSや既存ツールの選定・導入・定着を支援します。候補のリストアップまでは無料です。</p>
           </div>
           <div class="service-card">
-            <div class="service-bar" style="background:#0891B2"></div>
-            <h3 class="service-title">データ活用・可視化</h3>
-            <p class="service-body">地図データ・センサーデータ・業務データを活用した分析とダッシュボード開発。意思決定に直結する形に整理・可視化し、データを「使える資産」にする支援をします。</p>
+            <div class="service-bar" style="background:#1D4ED8"></div>
+            <h3 class="service-title">ソフトウェア開発</h3>
+            <p class="service-body">既存ツールで要件を満たせない場合に、自社で開発します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ソフトウェア導入・定着の流れ -->
+    <section class="band band-alt">
+      <div class="inner">
+        <p class="label">HOW IT WORKS</p>
+        <h2 class="heading">ソフトウェア導入・定着の流れ</h2>
+        <div class="flow-list">
+          <div class="flow-item">
+            <div class="flow-left">
+              <span class="flow-num">01</span>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-right">
+              <p class="flow-title">お問い合わせ</p>
+              <p class="flow-desc">現在の業務課題や使っているツールを教えてください。</p>
+              <span class="flow-badge free">無料</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-left">
+              <span class="flow-num">02</span>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-right">
+              <p class="flow-title">候補ツールをリストアップ</p>
+              <p class="flow-desc">課題に合いそうなソフトウェアの候補案をまとめてお渡しします。</p>
+              <span class="flow-badge free">無料</span>
+            </div>
+          </div>
+          <div class="flow-divider">
+            <span class="flow-divider-label">ここまで無料</span>
+          </div>
+          <div class="flow-item">
+            <div class="flow-left">
+              <span class="flow-num">03</span>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-right">
+              <p class="flow-title">設定・導入手順書の作成 → 導入</p>
+              <p class="flow-desc">選定したツールの設定、導入手順書の作成、実際の導入まで対応します。</p>
+              <span class="flow-badge paid">¥50,000（税抜）</span>
+            </div>
+          </div>
+          <div class="flow-item flow-item-last">
+            <div class="flow-left">
+              <span class="flow-num">04</span>
+            </div>
+            <div class="flow-right">
+              <p class="flow-title">定着支援</p>
+              <p class="flow-desc">使いこなせるまで継続サポートします。いつでも解約できます。</p>
+              <span class="flow-badge paid">¥10,000 / 月（税抜）</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- パッケージ -->
-    <section class="band band-alt">
+    <section class="band">
       <div class="inner">
-        <p class="label">PACKAGES</p>
-        <h2 class="heading">パッケージサービス</h2>
+        <p class="label">SUBSCRIPTION PLANS</p>
+        <h2 class="heading">サブスクプラン</h2>
         <div class="pkg-grid">
           <NuxtLink to="/lp/content-site" class="pkg-card">
             <div class="pkg-accent" style="background:#166534"></div>
@@ -126,27 +185,11 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
-          <NuxtLink to="/lp/saas-starter" class="pkg-card">
-            <div class="pkg-accent" style="background:#059669"></div>
-            <div class="pkg-body">
-              <p class="pkg-name">プロダクトサブスク</p>
-              <p class="pkg-desc">SaaSを2週間で立ち上げ、その後は月次でSNS投稿案・ブログ概要案を提供。プロダクトとコンテンツをまとめて任せられます。</p>
-              <span class="pkg-arrow">詳しく見る →</span>
-            </div>
-          </NuxtLink>
           <NuxtLink to="/lp/data-analytics" class="pkg-card">
             <div class="pkg-accent" style="background:#0891B2"></div>
             <div class="pkg-body">
               <p class="pkg-name">データ分析サブスク</p>
-              <p class="pkg-desc">毎月同じ切り口でデータを分析し、意思決定に使えるレポートを届けます。初期設定後は自動で回り続ける仕組みを構築します。</p>
-              <span class="pkg-arrow">詳しく見る →</span>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/lp/flexpress" class="pkg-card">
-            <div class="pkg-accent" style="background:#4338CA"></div>
-            <div class="pkg-body">
-              <p class="pkg-name">FlexPress</p>
-              <p class="pkg-desc">WordPressはそのままで、フロントエンドをNext.jsに刷新。表示速度・セキュリティ・デザイン自由度をまとめて改善します。</p>
+              <p class="pkg-desc">毎月の顧客接点データを分析し、アプローチ案まで仕上げて届けます。分析の習慣づくりからサポートします。</p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
@@ -410,42 +453,74 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   background-size: 28px 28px;
 }
 
-/* ── 会社コピー ────────────────────────────────── */
-.company-intro {
-  padding: 48px 48px 56px;
-  border-top: 1px solid rgba(255,255,255,0.07);
+/* ── ヒーロー ───────────────────────────────────── */
+.hero {
+  padding: 80px 48px 88px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
-.ci-inner { max-width: 720px; margin: 0 auto; }
+.hero-inner { max-width: 720px; margin: 0 auto; }
 
-.ci-kicker {
+.hero-kicker {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: #334155;
   font-family: ui-monospace, monospace;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
-.ci-title {
-  font-size: clamp(32px, 5vw, 56px);
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
   font-weight: 900;
   letter-spacing: -0.05em;
   line-height: 1.1;
-  margin: 0 0 20px;
+  margin: 0 0 24px;
   text-wrap: balance;
   color: #F1F5F9;
 }
 
-.ci-lead {
+.hero-lead {
   font-size: 16px;
-  line-height: 1.9;
+  line-height: 2;
   color: #64748B;
-  margin: 0;
+  margin: 0 0 36px;
   max-width: 560px;
 }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: #F1F5F9;
+  color: #0F172A;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.hero-cta:hover { background: #E2E8F0; }
+
+.hero-sub {
+  font-size: 13px;
+  color: #475569;
+  text-decoration: none;
+  font-family: ui-monospace, monospace;
+  transition: color 0.15s;
+}
+.hero-sub:hover { color: #94A3B8; }
+
 .br-pc { display: inline; }
-@media (max-width: 520px) { .br-pc { display: none; } }
+@media (max-width: 520px) {
+  .br-pc { display: none; }
+  .hero { padding: 56px 24px 64px; }
+}
 
 /* ── クイックスキャン ──────────────────────────── */
 .quick-scan {
@@ -651,6 +726,100 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   line-height: 1.85;
   color: var(--ink-2);
   margin: 0;
+}
+
+/* ── ソフトウェア導入・定着の流れ ───────────────── */
+.flow-list { display: flex; flex-direction: column; }
+
+.flow-item {
+  display: flex;
+  gap: 20px;
+}
+
+.flow-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.flow-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  font-family: ui-monospace, monospace;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.flow-line {
+  width: 1px;
+  flex: 1;
+  background: var(--line);
+  margin: 8px 0;
+  min-height: 20px;
+}
+
+.flow-right {
+  padding-bottom: 28px;
+  flex: 1;
+}
+.flow-item-last .flow-right { padding-bottom: 0; }
+
+.flow-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.flow-desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+.flow-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+}
+.flow-badge.free {
+  background: #DCFCE7;
+  color: #166534;
+}
+.flow-badge.paid {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+.flow-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 24px 52px;
+}
+.flow-divider::before,
+.flow-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.flow-divider::before { max-width: 20px; }
+.flow-divider-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #166534;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 /* ── パッケージ ────────────────────────────────── */
@@ -861,7 +1030,6 @@ dd { color: var(--ink); margin: 0; }
 @media (max-width: 600px) {
   .nav          { padding: 16px 20px; }
   .scan-hero    { padding: 56px 20px 40px; }
-  .company-intro{ padding: 36px 20px 44px; }
   .tools-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .band        { padding: 56px 20px; }
   .footer      { padding: 20px; }

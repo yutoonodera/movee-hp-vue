@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const ALL = [
   { slug: 'content-site',   path: '/lp/content-site',   name: 'ホームページサブスク', desc: '書くたびに資産になるWebサイト。月次コンテンツ支援つき。' },
-  { slug: 'saas-starter',   path: '/lp/saas-starter',   name: 'プロダクトサブスク',   desc: 'SaaSを2週間で構築して、月次コンテンツ支援で伸ばす。' },
-  { slug: 'data-analytics', path: '/lp/data-analytics', name: 'データ分析サブスク',   desc: '毎月の定点分析とレポートで、意思決定を支える。' },
-  { slug: 'flexpress',      path: '/lp/flexpress',      name: 'FlexPress',            desc: 'WordPressをAPIにして、Next.jsで高速・安全に。' },
+  { slug: 'data-analytics', path: '/lp/data-analytics', name: 'データ分析サブスク',   desc: '毎月の顧客接点を分析し、アプローチ案まで届ける。' },
 ]
 
 const props = defineProps<{ current: string }>()
@@ -15,7 +13,7 @@ const others = computed(() => ALL.filter(p => p.slug !== props.current))
     <div class="lpnav-inner">
       <NuxtLink to="/" class="lpnav-back">← movee トップへ</NuxtLink>
       <div class="lpnav-divider"></div>
-      <p class="lpnav-label">OTHER PACKAGES</p>
+      <p class="lpnav-label">OTHER PLANS</p>
       <div class="lpnav-cards">
         <NuxtLink v-for="p in others" :key="p.slug" :to="p.path" class="lpnav-card">
           <p class="lpnav-name">{{ p.name }}</p>
@@ -62,11 +60,10 @@ const others = computed(() => ALL.filter(p => p.slug !== props.current))
 
 .lpnav-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
+  max-width: 360px;
 }
-@media (max-width: 720px) { .lpnav-cards { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .lpnav-cards { grid-template-columns: 1fr; } }
 
 .lpnav-card {
   display: block;
