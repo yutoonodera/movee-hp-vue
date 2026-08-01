@@ -1,14 +1,16 @@
 <script setup lang="ts">
 useHead({ title: "株式会社movee — 1人法人・個人事業主のITパートナー" });
 useSeoMeta({
-  ogTitle:            "株式会社movee",
-  ogDescription:      "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。福岡市を拠点に活動しています。",
-  ogType:             "website",
-  ogImage:            "https://www.movee.jp/og-default.png",
-  twitterCard:        "summary_large_image",
-  twitterTitle:       "株式会社movee",
-  twitterDescription: "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。",
-  twitterImage:       "https://www.movee.jp/og-default.png",
+  ogTitle: "株式会社movee",
+  ogDescription:
+    "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。福岡市を拠点に活動しています。",
+  ogType: "website",
+  ogImage: "https://www.movee.jp/og-default.png",
+  twitterCard: "summary_large_image",
+  twitterTitle: "株式会社movee",
+  twitterDescription:
+    "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。",
+  twitterImage: "https://www.movee.jp/og-default.png",
 });
 
 interface WpPost {
@@ -22,9 +24,9 @@ interface WpPost {
   eventEnd?: string | null;
 }
 
-const { data: news }      = await useFetch<WpPost[]>("/api/wp/news");
+const { data: news } = await useFetch<WpPost[]>("/api/wp/news");
 const { data: workshops } = await useFetch<WpPost[]>("/api/wp/workshop");
-const { data: posts }     = await useFetch<WpPost[]>("/api/wp/posts", {
+const { data: posts } = await useFetch<WpPost[]>("/api/wp/posts", {
   query: { categories_exclude: 3 },
 });
 
@@ -56,34 +58,37 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   const start = `${parseInt(h)}:${min}`;
   return end ? `${start}〜${end.slice(0, 5)}` : start;
 };
-
 </script>
 
 <template>
   <div class="page">
-
     <!-- ナビ -->
     <header class="nav">
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
         <NuxtLink to="/workshop">勉強会</NuxtLink>
-<a href="#contact">お問い合わせ</a>
+        <a href="#contact">お問い合わせ</a>
       </nav>
     </header>
 
     <!-- ダークゾーン（クイックスキャン + 会社紹介 + ツール） -->
     <div class="dark-zone">
-
       <!-- ヒーロー -->
       <section class="hero">
         <div class="hero-inner">
-          <p class="hero-kicker">FOR SOLE PROPRIETORS &amp; 1-PERSON BUSINESSES</p>
+          <p class="hero-kicker">
+            FOR SOLE PROPRIETORS &amp; 1-PERSON BUSINESSES
+          </p>
           <h1 class="hero-title">一人で動かす事業に、<br />動く仕組みを。</h1>
           <p class="hero-lead">
-            ツール選びに迷わなくていい。サイトの更新で悩まなくていい。<br class="br-pc" />
+            ツール選びに迷わなくていい。サイトの更新で悩まなくていい。<br
+              class="br-pc"
+            />
             データを読み解く時間がなくてもいい。<br class="br-pc" />
-            1人法人・個人事業主の「やりたいこと」に集中できるよう、<br class="br-pc" />
+            1人法人・個人事業主の「やりたいこと」に集中できるよう、<br
+              class="br-pc"
+            />
             IT周りをまるごと支えます。
           </p>
           <div class="hero-actions">
@@ -92,24 +97,29 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
           </div>
         </div>
       </section>
-
-    </div><!-- /dark-zone -->
+    </div>
+    <!-- /dark-zone -->
 
     <!-- 事業内容 -->
     <section id="services" class="band">
       <div class="inner">
         <p class="label">SERVICES</p>
         <h2 class="heading">事業内容</h2>
+        <p class="services-target">1人法人・個人事業主向け</p>
         <div class="service-grid">
           <div class="service-card">
-            <div class="service-bar" style="background:#0891B2"></div>
+            <div class="service-bar" style="background: #0891b2"></div>
             <h3 class="service-title">ソフトウェア導入・定着支援</h3>
-            <p class="service-body">業務課題に合ったSaaSや既存ツールの選定・導入・定着を支援します。候補のリストアップまでは無料です。</p>
+            <p class="service-body">
+              社内にIT担当がいない1人法人・個人事業主のために、業務課題をヒアリングして、実際に使いこなせるツールを選びます。導入後も定着するまでサポートします。候補のリストアップまでは無料です。
+            </p>
           </div>
           <div class="service-card">
-            <div class="service-bar" style="background:#1D4ED8"></div>
+            <div class="service-bar" style="background: #1d4ed8"></div>
             <h3 class="service-title">ソフトウェア開発</h3>
-            <p class="service-body">既存ツールで要件を満たせない場合に、自社で開発します。</p>
+            <p class="service-body">
+              どのツールも要件に合わない場合は弊社の方で開発いたします。1人の事業に合わせた、必要なものだけをシンプルに開発いたします。
+            </p>
           </div>
         </div>
       </div>
@@ -128,7 +138,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             </div>
             <div class="flow-right">
               <p class="flow-title">お問い合わせ</p>
-              <p class="flow-desc">現在の業務課題や使っているツールを教えてください。</p>
+              <p class="flow-desc">
+                現在の業務課題や使っているツールを教えてください。
+              </p>
               <span class="flow-badge free">無料</span>
             </div>
           </div>
@@ -139,7 +151,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             </div>
             <div class="flow-right">
               <p class="flow-title">候補ツールをリストアップ</p>
-              <p class="flow-desc">課題に合いそうなソフトウェアの候補案をまとめてお渡しします。</p>
+              <p class="flow-desc">
+                課題に合いそうなソフトウェアの候補案をまとめてお渡しします。
+              </p>
               <span class="flow-badge free">無料</span>
             </div>
           </div>
@@ -153,7 +167,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             </div>
             <div class="flow-right">
               <p class="flow-title">設定・導入手順書の作成 → 導入</p>
-              <p class="flow-desc">選定したツールの設定、導入手順書の作成、実際の導入まで対応します。</p>
+              <p class="flow-desc">
+                選定したツールの設定、導入手順書の作成、実際の導入まで対応します。
+              </p>
               <span class="flow-badge paid">¥50,000（税抜）</span>
             </div>
           </div>
@@ -163,7 +179,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             </div>
             <div class="flow-right">
               <p class="flow-title">定着支援</p>
-              <p class="flow-desc">使いこなせるまで継続サポートします。いつでも解約できます。</p>
+              <p class="flow-desc">
+                使いこなせるまで継続サポートします。いつでも解約できます。
+              </p>
               <span class="flow-badge paid">¥10,000 / 月（税抜）</span>
             </div>
           </div>
@@ -178,18 +196,22 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <h2 class="heading">サブスクプラン</h2>
         <div class="pkg-grid">
           <NuxtLink to="/lp/content-site" class="pkg-card">
-            <div class="pkg-accent" style="background:#166534"></div>
+            <div class="pkg-accent" style="background: #166534"></div>
             <div class="pkg-body">
               <p class="pkg-name">ホームページサブスク</p>
-              <p class="pkg-desc">コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。月次のSNS・ブログ支援つき。</p>
+              <p class="pkg-desc">
+                コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。月次のSNS・ブログ支援つき。
+              </p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
           <NuxtLink to="/lp/data-analytics" class="pkg-card">
-            <div class="pkg-accent" style="background:#0891B2"></div>
+            <div class="pkg-accent" style="background: #0891b2"></div>
             <div class="pkg-body">
               <p class="pkg-name">データ分析サブスク</p>
-              <p class="pkg-desc">毎月の顧客接点データを分析し、アプローチ案まで仕上げて届けます。分析の習慣づくりからサポートします。</p>
+              <p class="pkg-desc">
+                毎月の顧客接点データを分析し、アプローチ案まで仕上げて届けます。分析の習慣づくりからサポートします。
+              </p>
               <span class="pkg-arrow">詳しく見る →</span>
             </div>
           </NuxtLink>
@@ -203,92 +225,144 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <div class="tools-header">
           <div>
             <p class="label">FREE TOOLS</p>
-            <h2 class="heading" style="margin-bottom:0">無料で使える診断ツール</h2>
+            <h2 class="heading" style="margin-bottom: 0">
+              無料で使える診断ツール
+            </h2>
           </div>
           <p class="tools-sub-light">登録不要・クレジットカード不要</p>
         </div>
         <div class="tgrid">
-
-          <NuxtLink to="/site-check" class="tcard tcard-wide" style="--tc:#F59E0B">
-            <div class="tcard-stripe" style="background:#F59E0B"></div>
+          <NuxtLink
+            to="/site-check"
+            class="tcard tcard-wide"
+            style="--tc: #f59e0b"
+          >
+            <div class="tcard-stripe" style="background: #f59e0b"></div>
             <div class="tcard-body tcard-featured">
-              <span class="tcard-badge" style="color:#F59E0B; border-color:rgba(245,158,11,0.35)">おすすめ · 4項目一括診断</span>
+              <span
+                class="tcard-badge"
+                style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.35)"
+                >おすすめ · 4項目一括診断</span
+              >
               <p class="tcard-title">サイトまるごとチェッカー</p>
-              <p class="tcard-desc">URLを1つ入れるだけで、表示速度・セキュリティヘッダー・OGP/SNSタグ・Cookieバナーを全部まとめて診断します。各カテゴリに個別グレードと総合評価が出ます。</p>
+              <p class="tcard-desc">
+                URLを1つ入れるだけで、表示速度・セキュリティヘッダー・OGP/SNSタグ・Cookieバナーを全部まとめて診断します。各カテゴリに個別グレードと総合評価が出ます。
+              </p>
               <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc:#8B5CF6">
-            <div class="tcard-stripe" style="background:#8B5CF6"></div>
+          <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc: #8b5cf6">
+            <div class="tcard-stripe" style="background: #8b5cf6"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#8B5CF6; border-color:rgba(139,92,246,0.35)">OGP / SNS</span>
+              <span
+                class="tcard-badge"
+                style="color: #8b5cf6; border-color: rgba(139, 92, 246, 0.35)"
+                >OGP / SNS</span
+              >
               <p class="tcard-title">SNSカードプレビュー</p>
-              <p class="tcard-desc">URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。</p>
+              <p class="tcard-desc">
+                URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。
+              </p>
               <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/lp/wp-hikinou" class="tcard" style="--tc:#3B82F6">
-            <div class="tcard-stripe" style="background:#3B82F6"></div>
+          <NuxtLink to="/lp/wp-hikinou" class="tcard" style="--tc: #3b82f6">
+            <div class="tcard-stripe" style="background: #3b82f6"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#3B82F6; border-color:rgba(59,130,246,0.35)">WordPress</span>
+              <span
+                class="tcard-badge"
+                style="color: #3b82f6; border-color: rgba(59, 130, 246, 0.35)"
+                >WordPress</span
+              >
               <p class="tcard-title">非機能診断くん</p>
-              <p class="tcard-desc">表示速度・セキュリティ・使いやすさをURLを入れるだけで確認。PageSpeed・ヘッダー設定・SSL状態を一括チェック。</p>
+              <p class="tcard-desc">
+                表示速度・セキュリティ・使いやすさをURLを入れるだけで確認。PageSpeed・ヘッダー設定・SSL状態を一括チェック。
+              </p>
               <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/lp/ai-hikinou" class="tcard" style="--tc:#06B6D4">
-            <div class="tcard-stripe" style="background:#06B6D4"></div>
+          <NuxtLink to="/lp/ai-hikinou" class="tcard" style="--tc: #06b6d4">
+            <div class="tcard-stripe" style="background: #06b6d4"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#06B6D4; border-color:rgba(6,182,212,0.35)">AI開発 / Next.js · Nuxt</span>
+              <span
+                class="tcard-badge"
+                style="color: #06b6d4; border-color: rgba(6, 182, 212, 0.35)"
+                >AI開発 / Next.js · Nuxt</span
+              >
               <p class="tcard-title">非機能診断くん</p>
-              <p class="tcard-desc">env漏洩・セキュリティヘッダー・LCP・API露出状況をまとめて診断。本番前のチェックリストとして使えます。</p>
+              <p class="tcard-desc">
+                env漏洩・セキュリティヘッダー・LCP・API露出状況をまとめて診断。本番前のチェックリストとして使えます。
+              </p>
               <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/lp/api-security" class="tcard" style="--tc:#EF4444">
-            <div class="tcard-stripe" style="background:#EF4444"></div>
+          <NuxtLink to="/lp/api-security" class="tcard" style="--tc: #ef4444">
+            <div class="tcard-stripe" style="background: #ef4444"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#EF4444; border-color:rgba(239,68,68,0.35)">API Security</span>
+              <span
+                class="tcard-badge"
+                style="color: #ef4444; border-color: rgba(239, 68, 68, 0.35)"
+                >API Security</span
+              >
               <p class="tcard-title">APIセキュリティ診断くん</p>
-              <p class="tcard-desc">Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。</p>
+              <p class="tcard-desc">
+                Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。
+              </p>
               <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/email-check" class="tcard" style="--tc:#10B981">
-            <div class="tcard-stripe" style="background:#10B981"></div>
+          <NuxtLink to="/email-check" class="tcard" style="--tc: #10b981">
+            <div class="tcard-stripe" style="background: #10b981"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#10B981; border-color:rgba(16,185,129,0.35)">Email / SPF · DMARC</span>
+              <span
+                class="tcard-badge"
+                style="color: #10b981; border-color: rgba(16, 185, 129, 0.35)"
+                >Email / SPF · DMARC</span
+              >
               <p class="tcard-title">メール到達性チェッカー</p>
-              <p class="tcard-desc">ドメインのSPF・DMARC・DKIMを確認。お問い合わせフォームからのメールがスパム判定されていないかすぐわかります。</p>
+              <p class="tcard-desc">
+                ドメインのSPF・DMARC・DKIMを確認。お問い合わせフォームからのメールがスパム判定されていないかすぐわかります。
+              </p>
               <p class="tcard-cta">チェックする <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/cookie-check" class="tcard" style="--tc:#A855F7">
-            <div class="tcard-stripe" style="background:#A855F7"></div>
+          <NuxtLink to="/cookie-check" class="tcard" style="--tc: #a855f7">
+            <div class="tcard-stripe" style="background: #a855f7"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#A855F7; border-color:rgba(168,85,247,0.35)">Cookie / Privacy</span>
+              <span
+                class="tcard-badge"
+                style="color: #a855f7; border-color: rgba(168, 85, 247, 0.35)"
+                >Cookie / Privacy</span
+              >
               <p class="tcard-title">Cookieバナー診断</p>
-              <p class="tcard-desc">GA・GTM・広告タグが入っているのに同意バナーがないサイトを検出。個人情報保護法対応の確認に使えます。</p>
+              <p class="tcard-desc">
+                GA・GTM・広告タグが入っているのに同意バナーがないサイトを検出。個人情報保護法対応の確認に使えます。
+              </p>
               <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/ai-check" class="tcard" style="--tc:#7C3AED">
-            <div class="tcard-stripe" style="background:#7C3AED"></div>
+          <NuxtLink to="/ai-check" class="tcard" style="--tc: #7c3aed">
+            <div class="tcard-stripe" style="background: #7c3aed"></div>
             <div class="tcard-body">
-              <span class="tcard-badge" style="color:#7C3AED; border-color:rgba(124,58,237,0.35)">AI / robots.txt</span>
+              <span
+                class="tcard-badge"
+                style="color: #7c3aed; border-color: rgba(124, 58, 237, 0.35)"
+                >AI / robots.txt</span
+              >
               <p class="tcard-title">AI安全診断</p>
-              <p class="tcard-desc">コンテンツがAIに無断学習されていないかrobots.txt設定を確認。HTMLやJSへのAPIキー漏洩も同時にチェックします。</p>
+              <p class="tcard-desc">
+                コンテンツがAIに無断学習されていないかrobots.txt設定を確認。HTMLやJSへのAPIキー漏洩も同時にチェックします。
+              </p>
               <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
             </div>
           </NuxtLink>
-
         </div>
       </div>
     </section>
@@ -299,7 +373,12 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <p class="label">NEWS</p>
         <h2 class="heading">ニュース</h2>
         <div class="news-list">
-          <NuxtLink v-for="item in news" :key="item.id" :to="`/blog/${item.slug}`" class="news-row">
+          <NuxtLink
+            v-for="item in news"
+            :key="item.id"
+            :to="`/blog/${item.slug}`"
+            class="news-row"
+          >
             <p class="news-date">{{ formatDate(item.date) }}</p>
             <p class="news-title" v-html="item.title.rendered"></p>
           </NuxtLink>
@@ -313,11 +392,11 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <div class="section-header">
           <div>
             <p class="label">WORKSHOP</p>
-            <h2 class="heading" style="margin-bottom:0">勉強会</h2>
+            <h2 class="heading" style="margin-bottom: 0">勉強会</h2>
           </div>
           <NuxtLink to="/workshop" class="section-more">すべて見る →</NuxtLink>
         </div>
-        <div class="posts-grid" style="margin-top:40px">
+        <div class="posts-grid" style="margin-top: 40px">
           <NuxtLink
             v-for="ws in workshops"
             :key="ws.id"
@@ -325,14 +404,22 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             class="post-card workshop-card"
           >
             <div v-if="ws.featuredImage" class="post-thumb">
-              <img :src="ws.featuredImage" :alt="ws.title.rendered" loading="lazy" />
+              <img
+                :src="ws.featuredImage"
+                :alt="ws.title.rendered"
+                loading="lazy"
+              />
             </div>
             <div class="ws-no-thumb" v-else></div>
             <div class="post-body">
               <div class="post-date ws-date">
                 <template v-if="ws.eventDate">
                   <span>{{ formatEventDateOnly(ws.eventDate) }}</span>
-                  <span v-if="formatEventTimeRange(ws.eventDate, ws.eventEnd)" class="ws-time">{{ formatEventTimeRange(ws.eventDate, ws.eventEnd) }}</span>
+                  <span
+                    v-if="formatEventTimeRange(ws.eventDate, ws.eventEnd)"
+                    class="ws-time"
+                    >{{ formatEventTimeRange(ws.eventDate, ws.eventEnd) }}</span
+                  >
                 </template>
                 <span v-else>{{ formatDate(ws.date) }}</span>
               </div>
@@ -351,9 +438,18 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <p class="label">BLOG</p>
         <h2 class="heading">ブログ</h2>
         <div class="posts-grid">
-          <NuxtLink v-for="post in posts" :key="post.id" :to="`/blog/${post.slug}`" class="post-card">
+          <NuxtLink
+            v-for="post in posts"
+            :key="post.id"
+            :to="`/blog/${post.slug}`"
+            class="post-card"
+          >
             <div v-if="post.featuredImage" class="post-thumb">
-              <img :src="post.featuredImage" :alt="post.title.rendered" loading="lazy" />
+              <img
+                :src="post.featuredImage"
+                :alt="post.title.rendered"
+                loading="lazy"
+              />
             </div>
             <div class="post-body">
               <p class="post-date">{{ formatDate(post.date) }}</p>
@@ -385,7 +481,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
           </div>
           <div class="profile-row">
             <dt>お問い合わせ</dt>
-            <dd><a href="mailto:info@movee.jp" class="link">info@movee.jp</a></dd>
+            <dd>
+              <a href="mailto:info@movee.jp" class="link">info@movee.jp</a>
+            </dd>
           </div>
         </dl>
       </div>
@@ -394,24 +492,24 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
     <footer class="footer">
       <p>© 株式会社movee</p>
     </footer>
-
   </div>
 </template>
 
 <style scoped>
 /* ── トークン ──────────────────────────────────── */
 .page {
-  --bg:     #FFFFFF;
-  --bg-alt: #F8FAFC;
-  --ink:    #0F172A;
-  --ink-2:  #475569;
-  --ink-3:  #94A3B8;
-  --accent: #1D4ED8;
-  --line:   #E2E8F0;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --ink: #0f172a;
+  --ink-2: #475569;
+  --ink-3: #94a3b8;
+  --accent: #1d4ed8;
+  --line: #e2e8f0;
 
   background: var(--bg);
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -423,8 +521,8 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   align-items: center;
   justify-content: space-between;
   padding: 18px 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  background: #070B11;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #070b11;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -433,32 +531,43 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: #F1F5F9;
+  color: #f1f5f9;
   font-family: ui-monospace, monospace;
 }
-.nav-links { display: flex; gap: 28px; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
 .nav-links a {
   font-size: 14px;
-  color: #94A3B8;
+  color: #94a3b8;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.15s;
 }
-.nav-links a:hover { color: #F1F5F9; }
+.nav-links a:hover {
+  color: #f1f5f9;
+}
 
 /* ── ダークゾーン（ヒーロー + ツール） ─────────── */
 .dark-zone {
-  background: #070B11;
-  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background: #070b11;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
   background-size: 28px 28px;
 }
 
 /* ── ヒーロー ───────────────────────────────────── */
 .hero {
   padding: 80px 48px 88px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
-.hero-inner { max-width: 720px; margin: 0 auto; }
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
 
 .hero-kicker {
   font-size: 10px;
@@ -476,13 +585,13 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   line-height: 1.1;
   margin: 0 0 24px;
   text-wrap: balance;
-  color: #F1F5F9;
+  color: #f1f5f9;
 }
 
 .hero-lead {
   font-size: 16px;
   line-height: 2;
-  color: #64748B;
+  color: #64748b;
   margin: 0 0 36px;
   max-width: 560px;
 }
@@ -496,8 +605,8 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 
 .hero-cta {
   display: inline-block;
-  background: #F1F5F9;
-  color: #0F172A;
+  background: #f1f5f9;
+  color: #0f172a;
   font-size: 14px;
   font-weight: 700;
   padding: 13px 28px;
@@ -505,7 +614,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   text-decoration: none;
   transition: background 0.15s;
 }
-.hero-cta:hover { background: #E2E8F0; }
+.hero-cta:hover {
+  background: #e2e8f0;
+}
 
 .hero-sub {
   font-size: 13px;
@@ -514,18 +625,26 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   font-family: ui-monospace, monospace;
   transition: color 0.15s;
 }
-.hero-sub:hover { color: #94A3B8; }
+.hero-sub:hover {
+  color: #94a3b8;
+}
 
-.br-pc { display: inline; }
+.br-pc {
+  display: inline;
+}
 @media (max-width: 520px) {
-  .br-pc { display: none; }
-  .hero { padding: 56px 24px 64px; }
+  .br-pc {
+    display: none;
+  }
+  .hero {
+    padding: 56px 24px 64px;
+  }
 }
 
 /* ── クイックスキャン ──────────────────────────── */
 .quick-scan {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 12px;
   padding: 20px 24px 16px;
   max-width: 600px;
@@ -540,8 +659,8 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 
 .scan-tab {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #94A3B8;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
   font-size: 12px;
   font-weight: 600;
   padding: 5px 12px;
@@ -550,7 +669,10 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   transition: all 0.15s;
   font-family: ui-monospace, monospace;
 }
-.scan-tab:hover { color: #F1F5F9; border-color: rgba(255,255,255,0.3); }
+.scan-tab:hover {
+  color: #f1f5f9;
+  border-color: rgba(255, 255, 255, 0.3);
+}
 .scan-tab.active {
   background: color-mix(in srgb, var(--tc) 15%, transparent);
   border-color: var(--tc);
@@ -564,18 +686,30 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   gap: 16px;
   margin-top: 28px;
 }
-@media (max-width: 640px) { .tgrid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .tgrid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* ダークゾーン内のカード（現在は未使用、念のため残す） */
 .dark-zone .tcard {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
 }
-.dark-zone .tcard-title { color: #F1F5F9; }
-.dark-zone .tcard-desc  { color: #64748B; }
-.dark-zone .tcard-cta   { color: #94A3B8; }
+.dark-zone .tcard-title {
+  color: #f1f5f9;
+}
+.dark-zone .tcard-desc {
+  color: #64748b;
+}
+.dark-zone .tcard-cta {
+  color: #94a3b8;
+}
 .dark-zone .tcard:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--tc);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px var(--tc);
 }
 
 /* ライトゾーン内のカード（tools section） */
@@ -586,17 +720,26 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .tcard:hover {
   border-color: var(--tc);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 0 0 1px var(--tc);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px var(--tc);
   transform: translateY(-2px);
 }
 
-.tcard-stripe { height: 3px; }
+.tcard-stripe {
+  height: 3px;
+}
 
-.tcard-body { padding: 24px 24px 20px; }
+.tcard-body {
+  padding: 24px 24px 20px;
+}
 
 .tcard-badge {
   display: inline-block;
@@ -637,26 +780,64 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   margin: 0;
   transition: color 0.15s;
 }
-.tcard:hover .tcard-cta { color: var(--tc); }
-.tcard-cta .arrow { transition: transform 0.15s; }
-.tcard:hover .tcard-cta .arrow { transform: translateX(4px); }
+.tcard:hover .tcard-cta {
+  color: var(--tc);
+}
+.tcard-cta .arrow {
+  transition: transform 0.15s;
+}
+.tcard:hover .tcard-cta .arrow {
+  transform: translateX(4px);
+}
 
 /* featured カード（2列幅） */
-.tcard-wide { grid-column: span 2; }
-.tcard-featured { display: flex; flex-direction: row; align-items: center; gap: 24px; flex-wrap: wrap; }
-.tcard-featured .tcard-title { margin-bottom: 0; }
-.tcard-featured .tcard-desc  { flex: 1; min-width: 200px; margin-bottom: 0; }
-.tcard-featured .tcard-cta   { flex-shrink: 0; margin: 0; }
+.tcard-wide {
+  grid-column: span 2;
+}
+.tcard-featured {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.tcard-featured .tcard-title {
+  margin-bottom: 0;
+}
+.tcard-featured .tcard-desc {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+.tcard-featured .tcard-cta {
+  flex-shrink: 0;
+  margin: 0;
+}
 @media (max-width: 640px) {
-  .tcard-wide                  { grid-column: span 1; }
-  .tcard-featured              { flex-direction: column; align-items: flex-start; }
-  .tcard-featured .tcard-title { margin-bottom: 10px; }
-  .tcard-featured .tcard-desc  { min-width: unset; flex: none; margin-bottom: 0; }
-  .tcard-featured .tcard-cta   { margin-top: 16px; }
+  .tcard-wide {
+    grid-column: span 1;
+  }
+  .tcard-featured {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tcard-featured .tcard-title {
+    margin-bottom: 10px;
+  }
+  .tcard-featured .tcard-desc {
+    min-width: unset;
+    flex: none;
+    margin-bottom: 0;
+  }
+  .tcard-featured .tcard-cta {
+    margin-top: 16px;
+  }
 }
 
 /* ── ツールセクション（ライト） ──────────────── */
-.band-tools { background: var(--bg-alt); }
+.band-tools {
+  background: var(--bg-alt);
+}
 
 .tools-header {
   display: flex;
@@ -671,9 +852,17 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 
 /* ── 共通バンド ────────────────────────────────── */
-.band { padding: 72px 48px; background: var(--bg); }
-.band-alt { background: var(--bg-alt); }
-.inner { max-width: 900px; margin: 0 auto; }
+.band {
+  padding: 72px 48px;
+  background: var(--bg);
+}
+.band-alt {
+  background: var(--bg-alt);
+}
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 .label {
   font-size: 10px;
@@ -692,12 +881,28 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 
 /* ── 事業内容 ──────────────────────────────────── */
+.services-target {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0891b2;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin: -24px 0 28px;
+}
+
 .service-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-@media (max-width: 600px) { .service-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .service-card {
   padding: 32px 28px;
@@ -705,7 +910,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border-radius: 10px;
   background: var(--bg);
 }
-.band-alt .service-card { background: var(--bg); }
+.band-alt .service-card {
+  background: var(--bg);
+}
 
 .service-bar {
   width: 32px;
@@ -729,7 +936,10 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 
 /* ── ソフトウェア導入・定着の流れ ───────────────── */
-.flow-list { display: flex; flex-direction: column; }
+.flow-list {
+  display: flex;
+  flex-direction: column;
+}
 
 .flow-item {
   display: flex;
@@ -766,7 +976,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   padding-bottom: 28px;
   flex: 1;
 }
-.flow-item-last .flow-right { padding-bottom: 0; }
+.flow-item-last .flow-right {
+  padding-bottom: 0;
+}
 
 .flow-title {
   font-size: 16px;
@@ -792,12 +1004,12 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   font-family: ui-monospace, monospace;
 }
 .flow-badge.free {
-  background: #DCFCE7;
+  background: #dcfce7;
   color: #166534;
 }
 .flow-badge.paid {
-  background: #EFF6FF;
-  color: #1D4ED8;
+  background: #eff6ff;
+  color: #1d4ed8;
 }
 
 .flow-divider {
@@ -808,12 +1020,14 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 .flow-divider::before,
 .flow-divider::after {
-  content: '';
+  content: "";
   flex: 1;
   height: 1px;
   background: var(--line);
 }
-.flow-divider::before { max-width: 20px; }
+.flow-divider::before {
+  max-width: 20px;
+}
 .flow-divider-label {
   font-size: 11px;
   font-weight: 700;
@@ -828,7 +1042,11 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
-@media (max-width: 600px) { .pkg-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .pkg-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .pkg-card {
   display: flex;
@@ -836,13 +1054,18 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border: 1px solid var(--line);
   border-radius: 10px;
   overflow: hidden;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 .pkg-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(29,78,216,0.08);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.08);
 }
-.pkg-accent { width: 5px; flex-shrink: 0; }
+.pkg-accent {
+  width: 5px;
+  flex-shrink: 0;
+}
 .pkg-body {
   padding: 24px 22px;
   display: flex;
@@ -884,39 +1107,60 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   text-decoration: none;
   padding-bottom: 4px;
 }
-.section-more:hover { text-decoration: underline; }
+.section-more:hover {
+  text-decoration: underline;
+}
 
 /* ── 勉強会 ────────────────────────────────────── */
-.workshop-card { border-color: rgba(29,78,216,0.15); }
-.workshop-card:hover { border-color: var(--accent); }
+.workshop-card {
+  border-color: rgba(29, 78, 216, 0.15);
+}
+.workshop-card:hover {
+  border-color: var(--accent);
+}
 
 .workshop-card .ws-date {
-  font-size: 13px; font-weight: 700;
-  color: var(--accent); background: #DBEAFE;
-  border-radius: 6px; padding: 8px 12px;
-  display: flex; flex-direction: column; gap: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  background: #dbeafe;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-family: inherit;
 }
-.ws-time { font-size: 15px; }
+.ws-time {
+  font-size: 15px;
+}
 
 .ws-no-thumb {
   width: 100%;
   aspect-ratio: 16/9;
-  background: linear-gradient(135deg, #DBEAFE 0%, #EDE9FE 100%);
+  background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
 }
 
 .ws-cta {
   display: block;
-  font-size: 13px; font-weight: 700;
-  color: #fff; background: var(--accent);
-  border-radius: 8px; padding: 10px 16px;
-  margin-top: 12px; text-align: center;
-  transition: background .15s;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-top: 12px;
+  text-align: center;
+  transition: background 0.15s;
 }
-.workshop-card:hover .ws-cta { background: #1e40af; }
+.workshop-card:hover .ws-cta {
+  background: #1e40af;
+}
 
 /* ── ニュース ──────────────────────────────────── */
-.news-list { border-top: 1px solid var(--line); }
+.news-list {
+  border-top: 1px solid var(--line);
+}
 .news-row {
   display: flex;
   align-items: baseline;
@@ -925,7 +1169,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border-bottom: 1px solid var(--line);
   text-decoration: none;
 }
-.news-row:hover .news-title { color: var(--accent); }
+.news-row:hover .news-title {
+  color: var(--accent);
+}
 .news-date {
   font-size: 12px;
   color: var(--ink-3);
@@ -948,7 +1194,11 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
-@media (max-width: 700px) { .posts-grid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .post-card {
   display: block;
@@ -957,11 +1207,13 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border-radius: 8px;
   background: var(--bg);
   overflow: hidden;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 .post-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(29,78,216,0.08);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.08);
 }
 .post-thumb {
   width: 100%;
@@ -976,8 +1228,12 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   display: block;
   transition: transform 0.3s ease;
 }
-.post-card:hover .post-thumb img { transform: scale(1.03); }
-.post-body { padding: 20px; }
+.post-card:hover .post-thumb img {
+  transform: scale(1.03);
+}
+.post-body {
+  padding: 20px;
+}
 .post-date {
   font-size: 11px;
   color: var(--ink-3);
@@ -1003,7 +1259,10 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 
 /* ── 会社概要 ──────────────────────────────────── */
-.profile { border-top: 1px solid var(--line); max-width: 600px; }
+.profile {
+  border-top: 1px solid var(--line);
+  max-width: 600px;
+}
 .profile-row {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -1012,10 +1271,21 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   border-bottom: 1px solid var(--line);
   font-size: 16px;
 }
-dt { color: var(--ink-3); font-weight: 500; }
-dd { color: var(--ink); margin: 0; }
-.link { color: var(--accent); text-decoration: none; }
-.link:hover { text-decoration: underline; }
+dt {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+dd {
+  color: var(--ink);
+  margin: 0;
+}
+.link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
 
 /* ── フッター ──────────────────────────────────── */
 .footer {
@@ -1028,14 +1298,37 @@ dd { color: var(--ink); margin: 0; }
 
 /* ── レスポンシブ ────────────────────────────────── */
 @media (max-width: 600px) {
-  .nav          { padding: 16px 20px; }
-  .scan-hero    { padding: 56px 20px 40px; }
-  .tools-header { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .band        { padding: 56px 20px; }
-  .footer      { padding: 20px; }
-  .profile-row { grid-template-columns: 80px 1fr; font-size: 14px; }
-  .tools-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .scan-row    { flex-direction: column; }
-  .scan-btn    { width: 100%; }
+  .nav {
+    padding: 16px 20px;
+  }
+  .scan-hero {
+    padding: 56px 20px 40px;
+  }
+  .tools-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .band {
+    padding: 56px 20px;
+  }
+  .footer {
+    padding: 20px;
+  }
+  .profile-row {
+    grid-template-columns: 80px 1fr;
+    font-size: 14px;
+  }
+  .tools-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .scan-row {
+    flex-direction: column;
+  }
+  .scan-btn {
+    width: 100%;
+  }
 }
 </style>
