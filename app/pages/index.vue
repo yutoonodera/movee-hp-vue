@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: "株式会社movee — 1人法人・個人事業主のITパートナー" });
+useHead({ title: "株式会社movee — 1人法人・個人事業主のDX支援" });
 useSeoMeta({
   ogTitle: "株式会社movee",
   ogDescription:
@@ -77,19 +77,13 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <!-- ヒーロー -->
       <section class="hero">
         <div class="hero-inner">
-          <p class="hero-kicker">
-            FOR SOLE PROPRIETORS &amp; 1-PERSON BUSINESSES
-          </p>
-          <h1 class="hero-title">一人で動かす事業に、<br />動く仕組みを。</h1>
+          <p class="hero-kicker">DIGITAL TRANSFORMATION</p>
+          <h1 class="hero-title">
+            1人法人・個人事業主の<br />DXをまるごと支えます
+          </h1>
           <p class="hero-lead">
-            ツール選びに迷わなくていい。サイトの更新で悩まなくていい。<br
-              class="br-pc"
-            />
-            データを読み解く時間がなくてもいい。<br class="br-pc" />
-            1人法人・個人事業主の「やりたいこと」に集中できるよう、<br
-              class="br-pc"
-            />
-            IT周りをまるごと支えます。
+            ツール選びから、ホームページ、データ分析まで。<br class="br-pc" />
+            社内にIT担当がいなくても、事業を前に動かせる仕組みを整えます。
           </p>
           <div class="hero-actions">
             <a href="#contact" class="hero-cta">相談してみる</a>
