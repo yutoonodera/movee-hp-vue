@@ -67,8 +67,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
-        <NuxtLink to="/blog">データ活用事例</NuxtLink>
-        <NuxtLink to="/workshop">勉強会</NuxtLink>
+        <NuxtLink to="/blog">ブログ</NuxtLink>
         <a href="#contact">お問い合わせ</a>
       </nav>
     </header>
@@ -101,12 +100,21 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <p class="label">SERVICES</p>
         <h2 class="heading">事業内容</h2>
         <p class="services-target">1人法人・個人事業主向け</p>
-        <div class="service-card service-card-solo">
-          <div class="service-bar" style="background: #0891b2"></div>
-          <h3 class="service-title">システム導入・定着支援</h3>
-          <p class="service-body">
-            社内にIT担当がいない1人法人・個人事業主のために、業務課題をヒアリングして、実際に使いこなせるツールを選びます。導入後も定着するまでサポートします。候補のリストアップまでは無料です。
-          </p>
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-bar" style="background: #0891b2"></div>
+            <h3 class="service-title">顧客関係管理システム（CRM）導入・定着支援</h3>
+            <p class="service-body">
+              G2・Capteraだけで1,000種類以上が登録されるほど、世界中にCRMがあります。国内でも様々な選択肢があります。その中で御社要件に最適なCRMを選定し、導入いたします。また必要に応じて定着支援も行います。
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-bar" style="background: #1D4ED8"></div>
+            <h3 class="service-title">システム導入・定着支援</h3>
+            <p class="service-body">
+              社内にIT担当がいない1人法人・個人事業主のために、業務課題をヒアリングして、実際に使いこなせるツールを選びます。導入後も定着するまでサポートします。候補のリストアップまでは無料です。
+            </p>
+          </div>
         </div>
       </div>
     </section>
