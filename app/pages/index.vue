@@ -67,6 +67,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
+        <NuxtLink to="/blog">データ活用事例</NuxtLink>
         <NuxtLink to="/workshop">勉強会</NuxtLink>
         <a href="#contact">お問い合わせ</a>
       </nav>
@@ -100,30 +101,21 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <p class="label">SERVICES</p>
         <h2 class="heading">事業内容</h2>
         <p class="services-target">1人法人・個人事業主向け</p>
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="service-bar" style="background: #0891b2"></div>
-            <h3 class="service-title">ソフトウェア導入・定着支援</h3>
-            <p class="service-body">
-              社内にIT担当がいない1人法人・個人事業主のために、業務課題をヒアリングして、実際に使いこなせるツールを選びます。導入後も定着するまでサポートします。候補のリストアップまでは無料です。
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-bar" style="background: #1d4ed8"></div>
-            <h3 class="service-title">ソフトウェア開発</h3>
-            <p class="service-body">
-              どのツールも要件に合わない場合は弊社の方で開発いたします。1人の事業に合わせた、必要なものだけをシンプルに開発いたします。
-            </p>
-          </div>
+        <div class="service-card service-card-solo">
+          <div class="service-bar" style="background: #0891b2"></div>
+          <h3 class="service-title">システム導入・定着支援</h3>
+          <p class="service-body">
+            社内にIT担当がいない1人法人・個人事業主のために、業務課題をヒアリングして、実際に使いこなせるツールを選びます。導入後も定着するまでサポートします。候補のリストアップまでは無料です。
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ソフトウェア導入・定着の流れ -->
+    <!-- システム導入・定着の流れ -->
     <section class="band band-alt">
       <div class="inner">
         <p class="label">HOW IT WORKS</p>
-        <h2 class="heading">ソフトウェア導入・定着の流れ</h2>
+        <h2 class="heading">システム導入・定着の流れ</h2>
         <div class="flow-list">
           <div class="flow-item">
             <div class="flow-left">
@@ -183,178 +175,31 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       </div>
     </section>
 
-    <!-- パッケージ -->
-    <section class="band">
-      <div class="inner">
-        <p class="label">SUBSCRIPTION PLANS</p>
-        <h2 class="heading">サブスクプラン</h2>
-        <div class="pkg-grid">
-          <NuxtLink to="/lp/content-site" class="pkg-card">
-            <div class="pkg-accent" style="background: #166534"></div>
-            <div class="pkg-body">
-              <p class="pkg-name">ホームページサブスク</p>
-              <p class="pkg-desc">
-                コンテンツを積み上げる仕組みを最初から備えたWebサイトをまるごと作ります。月次のSNS・ブログ支援つき。
-              </p>
-              <span class="pkg-arrow">詳しく見る →</span>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/lp/data-analytics" class="pkg-card">
-            <div class="pkg-accent" style="background: #0891b2"></div>
-            <div class="pkg-body">
-              <p class="pkg-name">データ分析サブスク</p>
-              <p class="pkg-desc">
-                毎月の顧客接点データを分析し、アプローチ案まで仕上げて届けます。分析の習慣づくりからサポートします。
-              </p>
-              <span class="pkg-arrow">詳しく見る →</span>
-            </div>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
 
-    <!-- 無料ツール -->
-    <section id="tools" class="band band-tools">
+    <!-- データ活用事例 -->
+    <section v-if="posts?.length" class="band">
       <div class="inner">
-        <div class="tools-header">
+        <div class="section-header">
           <div>
-            <p class="label">FREE TOOLS</p>
-            <h2 class="heading" style="margin-bottom: 0">
-              無料で使える診断ツール
-            </h2>
+            <p class="label">CASE STUDIES</p>
+            <h2 class="heading" style="margin-bottom: 0">データ活用事例</h2>
           </div>
-          <p class="tools-sub-light">登録不要・クレジットカード不要</p>
+          <NuxtLink to="/blog" class="section-more">すべて見る →</NuxtLink>
         </div>
-        <div class="tgrid">
+        <div class="posts-grid" style="margin-top: 40px">
           <NuxtLink
-            to="/site-check"
-            class="tcard tcard-wide"
-            style="--tc: #f59e0b"
+            v-for="post in posts"
+            :key="post.id"
+            :to="`/blog/${post.slug}`"
+            class="post-card"
           >
-            <div class="tcard-stripe" style="background: #f59e0b"></div>
-            <div class="tcard-body tcard-featured">
-              <span
-                class="tcard-badge"
-                style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.35)"
-                >おすすめ · 4項目一括診断</span
-              >
-              <p class="tcard-title">サイトまるごとチェッカー</p>
-              <p class="tcard-desc">
-                URLを1つ入れるだけで、表示速度・セキュリティヘッダー・OGP/SNSタグ・Cookieバナーを全部まとめて診断します。各カテゴリに個別グレードと総合評価が出ます。
-              </p>
-              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
+            <div v-if="post.featuredImage" class="post-thumb">
+              <img :src="post.featuredImage" :alt="post.title.rendered" loading="lazy" />
             </div>
-          </NuxtLink>
-
-          <NuxtLink to="/lp/ogp-preview" class="tcard" style="--tc: #8b5cf6">
-            <div class="tcard-stripe" style="background: #8b5cf6"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #8b5cf6; border-color: rgba(139, 92, 246, 0.35)"
-                >OGP / SNS</span
-              >
-              <p class="tcard-title">SNSカードプレビュー</p>
-              <p class="tcard-desc">
-                URLを入力するだけでTwitter・Facebook・LINEのカード表示を確認。OGPタグの設定漏れもすぐわかります。
-              </p>
-              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/lp/wp-hikinou" class="tcard" style="--tc: #3b82f6">
-            <div class="tcard-stripe" style="background: #3b82f6"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #3b82f6; border-color: rgba(59, 130, 246, 0.35)"
-                >WordPress</span
-              >
-              <p class="tcard-title">非機能診断くん</p>
-              <p class="tcard-desc">
-                表示速度・セキュリティ・使いやすさをURLを入れるだけで確認。PageSpeed・ヘッダー設定・SSL状態を一括チェック。
-              </p>
-              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/lp/ai-hikinou" class="tcard" style="--tc: #06b6d4">
-            <div class="tcard-stripe" style="background: #06b6d4"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #06b6d4; border-color: rgba(6, 182, 212, 0.35)"
-                >AI開発 / Next.js · Nuxt</span
-              >
-              <p class="tcard-title">非機能診断くん</p>
-              <p class="tcard-desc">
-                env漏洩・セキュリティヘッダー・LCP・API露出状況をまとめて診断。本番前のチェックリストとして使えます。
-              </p>
-              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/lp/api-security" class="tcard" style="--tc: #ef4444">
-            <div class="tcard-stripe" style="background: #ef4444"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #ef4444; border-color: rgba(239, 68, 68, 0.35)"
-                >API Security</span
-              >
-              <p class="tcard-title">APIセキュリティ診断くん</p>
-              <p class="tcard-desc">
-                Swagger自動探索・GraphQLイントロスペクション・ソースマップ漏洩・エンドポイント認証をまとめて確認。
-              </p>
-              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/email-check" class="tcard" style="--tc: #10b981">
-            <div class="tcard-stripe" style="background: #10b981"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #10b981; border-color: rgba(16, 185, 129, 0.35)"
-                >Email / SPF · DMARC</span
-              >
-              <p class="tcard-title">メール到達性チェッカー</p>
-              <p class="tcard-desc">
-                ドメインのSPF・DMARC・DKIMを確認。お問い合わせフォームからのメールがスパム判定されていないかすぐわかります。
-              </p>
-              <p class="tcard-cta">チェックする <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/cookie-check" class="tcard" style="--tc: #a855f7">
-            <div class="tcard-stripe" style="background: #a855f7"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #a855f7; border-color: rgba(168, 85, 247, 0.35)"
-                >Cookie / Privacy</span
-              >
-              <p class="tcard-title">Cookieバナー診断</p>
-              <p class="tcard-desc">
-                GA・GTM・広告タグが入っているのに同意バナーがないサイトを検出。個人情報保護法対応の確認に使えます。
-              </p>
-              <p class="tcard-cta">診断を始める <span class="arrow">→</span></p>
-            </div>
-          </NuxtLink>
-
-          <NuxtLink to="/ai-check" class="tcard" style="--tc: #7c3aed">
-            <div class="tcard-stripe" style="background: #7c3aed"></div>
-            <div class="tcard-body">
-              <span
-                class="tcard-badge"
-                style="color: #7c3aed; border-color: rgba(124, 58, 237, 0.35)"
-                >AI / robots.txt</span
-              >
-              <p class="tcard-title">AI安全診断</p>
-              <p class="tcard-desc">
-                コンテンツがAIに無断学習されていないかrobots.txt設定を確認。HTMLやJSへのAPIキー漏洩も同時にチェックします。
-              </p>
-              <p class="tcard-cta">診断スタート <span class="arrow">→</span></p>
+            <div class="post-body">
+              <p class="post-date">{{ formatDate(post.date) }}</p>
+              <p class="post-title" v-html="post.title.rendered"></p>
+              <p class="post-excerpt" v-html="post.excerpt.rendered"></p>
             </div>
           </NuxtLink>
         </div>
@@ -426,34 +271,6 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       </div>
     </section>
 
-    <!-- ブログ -->
-    <section v-if="posts?.length" class="band band-alt">
-      <div class="inner">
-        <p class="label">BLOG</p>
-        <h2 class="heading">ブログ</h2>
-        <div class="posts-grid">
-          <NuxtLink
-            v-for="post in posts"
-            :key="post.id"
-            :to="`/blog/${post.slug}`"
-            class="post-card"
-          >
-            <div v-if="post.featuredImage" class="post-thumb">
-              <img
-                :src="post.featuredImage"
-                :alt="post.title.rendered"
-                loading="lazy"
-              />
-            </div>
-            <div class="post-body">
-              <p class="post-date">{{ formatDate(post.date) }}</p>
-              <p class="post-title" v-html="post.title.rendered"></p>
-              <p class="post-excerpt" v-html="post.excerpt.rendered"></p>
-            </div>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
 
     <!-- 会社概要 -->
     <section class="band" id="contact">
@@ -891,6 +708,9 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+.service-card-solo {
+  max-width: 600px;
 }
 @media (max-width: 600px) {
   .service-grid {
