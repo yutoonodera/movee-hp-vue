@@ -12,7 +12,7 @@ interface WpRawPost {
   title: { rendered: string };
   content: { rendered: string };
   excerpt: { rendered: string };
-  acf?: { event_date?: string; event_end?: string; thumbnail_url?: string };
+  acf?: { event_date?: string; event_end?: string; thumbnail_url?: string; customer?: string; location?: string };
   _embedded?: { "wp:featuredmedia"?: WpEmbeddedMedia[] };
 }
 
@@ -60,5 +60,7 @@ export default defineEventHandler(async (event) => {
     featuredImage: proxyWp(p.acf?.thumbnail_url ?? featuredImageUrl(p)),
     eventDate: p.acf?.event_date ?? null,
     eventEnd: p.acf?.event_end ?? null,
+    customer: p.acf?.customer ?? null,
+    location: p.acf?.location ?? null,
   };
 });

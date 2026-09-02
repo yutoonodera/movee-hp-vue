@@ -35,9 +35,11 @@ export default defineEventHandler(async (event) => {
   }
 
   const workshopCategory = process.env.WORKSHOP_CATEGORY;
+  const achievementsCategory = process.env.ACHIEVEMENTS_CATEGORY;
   const excludeIds = [
     ...(categories_exclude ? String(categories_exclude).split(",") : []),
     ...(workshopCategory ? [workshopCategory] : []),
+    ...(achievementsCategory ? [achievementsCategory] : []),
   ].filter(Boolean).join(",");
 
   const posts = await $fetch<WpRawPost[]>("https://wp.movee.jp/wp-json/wp/v2/posts", {
