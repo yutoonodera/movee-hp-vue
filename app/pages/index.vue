@@ -1,15 +1,15 @@
 <script setup lang="ts">
-useHead({ title: "株式会社movee — 1人法人・個人事業主のDX支援" });
+useHead({ title: "株式会社movee — 中小企業・小規模事業者のDX支援" });
 useSeoMeta({
   ogTitle: "株式会社movee",
   ogDescription:
-    "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。福岡市を拠点に活動しています。",
+    "ツール選びから、ホームページ、データ分析まで。中小企業・小規模事業者のIT周りをまるごと支える会社です。福岡市を拠点に活動しています。",
   ogType: "website",
   ogImage: "https://www.movee.jp/og-default.png",
   twitterCard: "summary_large_image",
   twitterTitle: "株式会社movee",
   twitterDescription:
-    "ツール選びから、ホームページ、データ分析まで。1人法人・個人事業主のIT周りをまるごと支える会社です。",
+    "ツール選びから、ホームページ、データ分析まで。中小企業・小規模事業者のIT周りをまるごと支える会社です。",
   twitterImage: "https://www.movee.jp/og-default.png",
 });
 
