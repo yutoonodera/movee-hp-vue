@@ -300,8 +300,10 @@ function resultClass(m: EuroMatch): string {
                 >
                   <td class="st-td-pos">{{ t.position }}</td>
                   <td class="st-td-team">
-                    <img v-if="t.crest" :src="t.crest" class="team-crest" alt="" />
-                    <span>{{ t.shortName || t.name }}</span>
+                    <span class="team-inner">
+                      <img v-if="t.crest" :src="t.crest" class="team-crest" alt="" />
+                      <span>{{ t.shortName || t.name }}</span>
+                    </span>
                   </td>
                   <td class="st-td-n">{{ t.played }}</td>
                   <td class="st-td-n">{{ t.won }}</td>
@@ -624,7 +626,8 @@ function resultClass(m: EuroMatch): string {
 .st-row:last-child td { border-bottom: none; }
 .st-row:hover td { background: var(--surface2); }
 .st-td-pos { color: var(--muted); font-size: 0.75rem; text-align: left; min-width: 24px; }
-.st-td-team { text-align: left; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.st-td-team { text-align: left; }
+.team-inner { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 .st-td-n { text-align: right; font-variant-numeric: tabular-nums; }
 .st-td-form { text-align: right; }
 .fw-pts { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); }
