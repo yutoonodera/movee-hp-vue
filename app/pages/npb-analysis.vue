@@ -7,11 +7,11 @@ useHead({
     { property: "og:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
     { property: "og:url", content: npbPageUrl },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://movee.jp/ogp/npb-analysis.png" },
+    { property: "og:image", content: "https://movee.jp/npb-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "NPB 野球分析 | movee" },
     { name: "twitter:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
-    { name: "twitter:image", content: "https://movee.jp/ogp/npb-analysis.png" },
+    { name: "twitter:image", content: "https://movee.jp/npb-analysis.png" },
   ],
   link: [
     {

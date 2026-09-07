@@ -7,11 +7,11 @@ useHead({
     { property: "og:description", content: "プレミアリーグ・ラ・リーガ等ヨーロッパサッカー6リーグの順位・ポアソンモデル予測・得点ランキング" },
     { property: "og:url", content: euroPageUrl },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://movee.jp/ogp/euro-analysis.png" },
+    { property: "og:image", content: "https://movee.jp/euro-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "Euro Football Analysis | movee" },
     { name: "twitter:description", content: "プレミアリーグ・ラ・リーガ等6リーグ順位・ポアソン勝率予測" },
-    { name: "twitter:image", content: "https://movee.jp/ogp/euro-analysis.png" },
+    { name: "twitter:image", content: "https://movee.jp/euro-analysis.png" },
   ],
 });
 
