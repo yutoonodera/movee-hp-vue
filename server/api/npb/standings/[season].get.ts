@@ -200,7 +200,8 @@ export default defineCachedEventHandler(async (event) => {
     if (!table.includes("wikitable")) continue;
     const firstRow = table.match(/<tr[^>]*>[\s\S]*?<\/tr>/)?.[0] ?? "";
 
-    if (firstRow.includes("Pos") && firstRow.includes("Team")) {
+    const isPosCol = firstRow.includes("Pos") || firstRow.includes("Rank") || /<th[^>]*>\s*#[\s\S]*?<\/th>/.test(firstRow);
+    if (isPosCol && firstRow.includes("Team")) {
       const parsed = parseStandings(table);
       if (parsed.length >= 3 && parsed.length <= 10) {
         standingTables.push(parsed);

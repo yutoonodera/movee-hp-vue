@@ -26,8 +26,18 @@ useHead({
 
 // URL sync
 const NPB_TABS = ["today", "standings", "predict", "analysis"];
+const HISTORY_TABS = ["standings", "predict", "analysis"];
+const CURRENT_YEAR = new Date().getFullYear();
 
 const pathSegs = computed(() => (route.params.path as string[]) ?? []);
+
+// First segment may be a 4-digit year (historical season)
+const selectedYear = computed(() => {
+  const seg = pathSegs.value[0];
+  return /^\d{4}$/.test(seg) ? parseInt(seg) : CURRENT_YEAR;
+});
+
+const isCurrentSeason = computed(() => selectedYear.value === CURRENT_YEAR);
 
 const npbCopied = ref(false);
 function npbCopyLink() {
@@ -43,7 +53,26 @@ function npbShareTwitter() {
 }
 
 function goToTab(tab: string) {
-  router.replace(`/npb-analysis/${tab}`);
+  if (isCurrentSeason.value) {
+    router.replace(`/npb-analysis/${tab}`);
+  } else {
+    router.replace(`/npb-analysis/${selectedYear.value}/${tab}`);
+  }
+}
+
+function onSeasonChange(e: Event) {
+  const season = (e.target as HTMLSelectElement).value;
+  const comp = competitions.value.find(c => c.season === season);
+  if (!comp) return;
+  const year = parseInt(comp.season);
+  const isCurrent = year === CURRENT_YEAR;
+  const validTabs = isCurrent ? NPB_TABS : HISTORY_TABS;
+  const newTab = validTabs.includes(activeTab.value) ? activeTab.value : (isCurrent ? "today" : "standings");
+  if (isCurrent) {
+    router.replace(`/npb-analysis/${newTab}`);
+  } else {
+    router.replace(`/npb-analysis/${year}/${newTab}`);
+  }
 }
 
 interface Competition {
@@ -85,13 +114,20 @@ interface StandingsData {
 const { data: compsData } = await useFetch<Competition[]>("/api/npb/competitions");
 const competitions = computed(() => compsData.value ?? []);
 
-// Initialize to first competition directly so watch fires immediately
-const selectedComp = ref<Competition | null>(competitions.value[0] ?? null);
+// Derived from URL — never resets on tab navigation
+const selectedComp = computed<Competition | null>(() =>
+  competitions.value.find(c => c.season === String(selectedYear.value)) ?? competitions.value[0] ?? null,
+);
+
 const standings = ref<StandingsData | null>(null);
 const status = ref<"idle" | "pending" | "success" | "error">("idle");
 const activeTab = computed<"today" | "standings" | "predict" | "analysis">(() => {
-  const seg = pathSegs.value[0];
-  return NPB_TABS.includes(seg) ? seg as any : "today";
+  const seg0 = pathSegs.value[0];
+  const isYear = /^\d{4}$/.test(seg0);
+  const tabSeg = isYear ? pathSegs.value[1] : seg0;
+  const validTabs = isCurrentSeason.value ? NPB_TABS : HISTORY_TABS;
+  if (validTabs.includes(tabSeg)) return tabSeg as any;
+  return isCurrentSeason.value ? "today" : "standings";
 });
 const predTeamA = ref("");
 const predTeamB = ref("");
@@ -345,9 +381,8 @@ const tabs = [
         </div>
       </div>
       <div class="header-right">
-        <select v-model="selectedComp" class="season-sel">
-          <option :value="null" disabled>シーズンを選択</option>
-          <option v-for="c in competitions" :key="c.id" :value="c">
+        <select :value="selectedComp?.season" class="season-sel" @change="onSeasonChange($event)">
+          <option v-for="c in competitions" :key="c.id" :value="c.season">
             {{ c.label }}
           </option>
         </select>
@@ -378,7 +413,7 @@ const tabs = [
         <!-- Tab navigation -->
         <nav class="tab-nav" role="tablist">
           <button
-            v-for="tab in tabs"
+            v-for="tab in (isCurrentSeason ? tabs : tabs.filter(t => t.id !== 'today'))"
             :key="tab.id"
             role="tab"
             :aria-selected="activeTab === tab.id"
