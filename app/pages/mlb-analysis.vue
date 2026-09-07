@@ -9,9 +9,11 @@ useHead({
   meta: [
     { property: "og:title", content: "MLB Analysis | movee" },
     { property: "og:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
-    { property: "og:url", content: () => `https://www.movee.jp${route.fullPath}` },
+    { property: "og:url", content: "https://www.movee.jp/mlb-analysis" },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://www.movee.jp/mlb-analysis.png" },
+    { property: "og:image:width", content: "1254" },
+    { property: "og:image:height", content: "1254" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "MLB Analysis | movee" },
     { name: "twitter:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
