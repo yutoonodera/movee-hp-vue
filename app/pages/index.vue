@@ -30,6 +30,8 @@ const { data: posts } = await useFetch<WpPost[]>("/api/wp/posts", {
   query: { categories_exclude: 3 },
 });
 
+const menuOpen = ref(false);
+
 const formatDate = (iso: string) => {
   const d = new Date(iso);
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
@@ -72,10 +74,21 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <NuxtLink to="/npb-analysis" class="nav-analysis">NPB</NuxtLink>
         <NuxtLink to="/euro-analysis" class="nav-analysis">EURO</NuxtLink>
         <span class="nav-sep">|</span>
-<NuxtLink to="/blog">ブログ</NuxtLink>
+        <NuxtLink to="/blog">ブログ</NuxtLink>
         <a href="#contact">お問い合わせ</a>
       </nav>
+      <button class="nav-hamburger" :class="{ open: menuOpen }" @click="menuOpen = !menuOpen" aria-label="メニュー">
+        <span /><span /><span />
+      </button>
     </header>
+    <div class="nav-drawer" :class="{ open: menuOpen }" @click="menuOpen = false">
+      <NuxtLink to="/achievements">実績</NuxtLink>
+      <NuxtLink to="/mlb-analysis">MLB 分析</NuxtLink>
+      <NuxtLink to="/npb-analysis">NPB 分析</NuxtLink>
+      <NuxtLink to="/euro-analysis">Euro 分析</NuxtLink>
+      <NuxtLink to="/blog">ブログ</NuxtLink>
+      <a href="#contact" @click="menuOpen = false">お問い合わせ</a>
+    </div>
 
     <!-- ダークゾーン（クイックスキャン + 会社紹介 + ツール） -->
     <div class="dark-zone">
@@ -1018,6 +1031,58 @@ dd {
 }
 
 /* ── レスポンシブ ────────────────────────────────── */
+/* ── Hamburger ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #94a3b8;
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-drawer {
+  display: none;
+  flex-direction: column;
+  background: #070b11;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 0;
+  position: sticky;
+  top: 44px;
+  z-index: 9;
+}
+.nav-drawer a {
+  padding: 12px 20px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: color 0.15s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover { color: #f1f5f9; }
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-drawer.open { display: flex; }
+}
+
 @media (max-width: 600px) {
   .nav {
     padding: 12px 16px;

@@ -236,7 +236,7 @@ function resultClass(m: EuroMatch): string {
         <div class="euro-header-inner">
           <div class="euro-title-group">
             <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
-            <h1 class="euro-title">Euro Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
+            <h1 class="euro-title">Euro Analysis <span class="by-movee">by </span><NuxtLink class="by-movee" to="/">㈱movee</NuxtLink></h1>
             <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
           </div>
           <div class="share-btns">

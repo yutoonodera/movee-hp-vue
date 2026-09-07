@@ -190,7 +190,7 @@ const playerLeadersLoading = ref(false);
 const playerLeadersLoaded = ref(false);
 
 // Monthly stat charts (avg / sb / era / so)
-interface MonthlyStatPlayer { id: number; name: string; team: string; totalValue: number; monthly: Record<number, number> }
+interface MonthlyStatPlayer { id: number; name: string; team: string; totalValue: number; monthly: Record<number, number>; wins?: number | null }
 interface MonthlyStatData { season: number; stat: string; players: MonthlyStatPlayer[]; months: number[] }
 const monthlyStatCache = ref<Record<string, MonthlyStatData>>({});
 const monthlyStatLoading = ref<Record<string, boolean>>({});
@@ -727,7 +727,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
         <div class="mlb-header-inner">
           <div class="mlb-title-group">
             <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-            <h1 class="mlb-title">MLB Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
+            <h1 class="mlb-title">MLB Analysis <span class="by-movee">by </span><NuxtLink class="by-movee" to="/">㈱movee</NuxtLink></h1>
             <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
           </div>
           <div class="share-btns">
@@ -1176,6 +1176,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
                     <th class="hr-th-team">チーム</th>
                     <th v-for="m in monthlyStatCache[playerStatTab].months" :key="m">{{ MONTH_LABELS[m] ?? m + '月' }}</th>
                     <th class="hr-th-total">シーズン</th>
+                    <th v-if="playerStatTab === 'era' || playerStatTab === 'so'" class="hr-th-total">勝利</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1196,6 +1197,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
                       {{ fmtStatValue(playerStatTab, p.monthly[m] ?? 0) }}
                     </td>
                     <td class="hr-total">{{ fmtStatValue(playerStatTab, p.totalValue) }}</td>
+                    <td v-if="playerStatTab === 'era' || playerStatTab === 'so'" class="hr-total">{{ p.wins ?? '—' }}</td>
                   </tr>
                 </tbody>
               </table>

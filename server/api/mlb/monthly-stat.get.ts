@@ -4,6 +4,7 @@ export interface MonthlyStatPlayer {
   team: string;
   totalValue: number;
   monthly: Record<number, number>; // month → value
+  wins?: number | null; // pitching stats only
 }
 
 export interface MonthlyStatData {
@@ -43,6 +44,7 @@ export default defineCachedEventHandler(async (event) => {
     name: s.player?.fullName as string,
     team: s.team?.name as string,
     totalValue: parseFloat(s.stat?.[cfg.field] ?? "0") || 0,
+    wins: cfg.group === "pitching" ? (s.stat?.wins ?? null) : undefined,
   }));
 
   // Step 2: monthly splits for each player in parallel
