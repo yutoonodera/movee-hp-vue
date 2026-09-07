@@ -570,7 +570,7 @@ function resultClass(m: EuroMatch): string {
   --border: #30363d; --text: #e6edf3; --muted: #7d8590; --gold: #d29922;
 }
 * { box-sizing: border-box; }
-.euro-page { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
+.euro-page { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 
 /* ── Header ── */
 .euro-sticky-wrap { position: sticky; top: 0; z-index: 10; background: var(--surface); }
@@ -628,6 +628,19 @@ function resultClass(m: EuroMatch): string {
   .euro-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .euro-tabs::-webkit-scrollbar { display: none; }
   .euro-tab { padding: 6px 10px; font-size: 0.72rem; flex-shrink: 0; white-space: nowrap; }
+}
+
+/* ── Landscape mobile ── */
+@media (max-width: 900px) and (orientation: landscape) {
+  .euro-sticky-wrap { position: static; }
+  .euro-nav { position: sticky; top: 0; z-index: 10; }
+  .euro-header-inner { padding: 6px 12px; }
+  .euro-eyebrow, .euro-subtitle { display: none; }
+  .euro-title { font-size: 1rem; }
+  .share-btns { display: none; }
+  .euro-nav-inner { padding: 4px 8px 0; }
+  .league-btn { padding: 3px 7px; font-size: 0.68rem; }
+  .euro-tab { padding: 5px 8px; font-size: 0.68rem; }
 }
 
 /* Main */

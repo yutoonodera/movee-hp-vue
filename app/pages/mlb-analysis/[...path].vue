@@ -1261,6 +1261,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
 /* ── Header ── */
@@ -1354,6 +1355,17 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
   .mlb-tabs { padding: 0 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .mlb-tabs::-webkit-scrollbar { display: none; }
   .mlb-tab { padding: 10px 12px; font-size: 0.78rem; flex-shrink: 0; white-space: nowrap; }
+}
+
+/* ── Landscape mobile ── */
+@media (max-width: 900px) and (orientation: landscape) {
+  .mlb-sticky-wrap { position: static; }
+  .mlb-tabs-row { position: sticky; top: 0; z-index: 10; border-top: none; }
+  .mlb-header-inner { padding: 6px 12px; }
+  .mlb-eyebrow, .mlb-subtitle { display: none; }
+  .mlb-title { font-size: 1.1rem; }
+  .share-btns { display: none; }
+  .mlb-tab { padding: 6px 10px; font-size: 0.72rem; }
 }
 
 /* ── Main ── */

@@ -1020,8 +1020,19 @@ dd {
 /* ── レスポンシブ ────────────────────────────────── */
 @media (max-width: 600px) {
   .nav {
-    padding: 16px 20px;
+    padding: 12px 16px;
+    gap: 12px;
   }
+  .nav-links {
+    gap: 14px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
   .scan-hero {
     padding: 56px 20px 40px;
   }

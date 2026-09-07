@@ -824,6 +824,7 @@ const tabs = [
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ── Header ── */
@@ -961,6 +962,18 @@ const tabs = [
   }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab-btn { padding: 10px 14px; font-size: 0.8rem; flex-shrink: 0; white-space: nowrap; }
+}
+
+/* ── Landscape mobile ── */
+@media (max-width: 900px) and (orientation: landscape) {
+  .npb-header { padding: 6px 12px; }
+  .ball-icon { display: none; }
+  .page-title { font-size: 1rem; }
+  .page-sub { display: none; }
+  .share-btns { display: none; }
+  .tab-nav { position: sticky; top: 0; z-index: 10; background: var(--surface); overflow-x: auto; scrollbar-width: none; margin-bottom: 12px; }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 6px 12px; font-size: 0.75rem; flex-shrink: 0; white-space: nowrap; }
 }
 
 /* ── Standings ── */
