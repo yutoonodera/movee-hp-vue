@@ -27,30 +27,31 @@ const trendTeam = ref("");
 // ─── Data fetching ────────────────────────────────────────────────────────────
 const { data: competitions } = await useFetch<Competition[]>("/api/jleague/competitions");
 
-const matchUrl = computed(() =>
-  selectedComp.value
-    ? `/api/jleague/matches/${selectedComp.value.league}/${selectedComp.value.season}`
-    : "",
-);
-
-const { data: matches, status: matchStatus } = useFetch<Match[]>(
-  () => matchUrl.value,
-  { watch: [matchUrl], immediate: false },
-);
+const matches = ref<Match[] | null>(null);
+const matchStatus = ref<"idle" | "pending" | "success" | "error">("idle");
 
 // ─── Watchers ─────────────────────────────────────────────────────────────────
-watch(selectedComp, () => {
+watch(selectedComp, async (comp) => {
   predHome.value = "";
   predAway.value = "";
   trendTeam.value = "";
-});
+  matches.value = null;
 
-watch(matches, (ms) => {
-  if (!ms?.length) return;
-  const teams = allTeams.value;
-  if (!predHome.value && teams.length > 0) predHome.value = teams[0];
-  if (!predAway.value && teams.length > 1) predAway.value = teams[1];
-  if (!trendTeam.value && teams.length > 0) trendTeam.value = teams[0];
+  if (!comp) return;
+
+  matchStatus.value = "pending";
+  try {
+    matches.value = await $fetch<Match[]>(
+      `/api/jleague/matches/${comp.league}/${comp.season}`,
+    );
+    matchStatus.value = "success";
+    const teams = allTeams.value;
+    if (teams.length > 0) predHome.value = teams[0];
+    if (teams.length > 1) predAway.value = teams[1];
+    if (teams.length > 0) trendTeam.value = teams[0];
+  } catch {
+    matchStatus.value = "error";
+  }
 });
 
 // ─── Derived lists ────────────────────────────────────────────────────────────
@@ -264,7 +265,7 @@ const cumulativeForm = computed(() => {
         </div>
 
         <template v-else>
-          <div v-if="matchStatus === 'pending'" class="loading">
+          <div v-if="matchStatus === 'pending' || matchStatus === 'idle'" class="loading">
             <div class="spin"></div>
             データを読み込み中…
           </div>

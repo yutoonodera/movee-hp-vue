@@ -4,7 +4,7 @@ interface WpRawPost {
   acf?: { event_date?: string; event_end?: string; thumbnail_url?: string };
 }
 
-export default defineEventHandler(async () => {
+export default defineCachedEventHandler(async () => {
   const user     = process.env.WP_BASIC_USER;
   const pass     = process.env.WP_BASIC_PASS;
   const category = process.env.WORKSHOP_CATEGORY;
@@ -28,4 +28,4 @@ export default defineEventHandler(async () => {
     eventDate: p.acf?.event_date ?? null,
     eventEnd: p.acf?.event_end ?? null,
   }));
-});
+}, { maxAge: 60 * 5, name: "wp-workshop" });

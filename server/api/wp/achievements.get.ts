@@ -19,7 +19,7 @@ function featuredImageUrl(post: WpRawPost): string | null {
     ?? null;
 }
 
-export default defineEventHandler(async () => {
+export default defineCachedEventHandler(async () => {
   const user     = process.env.WP_BASIC_USER;
   const pass     = process.env.WP_BASIC_PASS;
   const category = process.env.ACHIEVEMENTS_CATEGORY;
@@ -48,4 +48,4 @@ export default defineEventHandler(async () => {
     featuredImage: featuredImageUrl(p)
       ?.replace("https://wp.movee.jp/wp-content/", "/api/wp-media/") ?? null,
   }));
-});
+}, { maxAge: 60 * 10, name: "wp-achievements" });

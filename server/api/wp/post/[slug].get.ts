@@ -25,7 +25,7 @@ function featuredImageUrl(post: WpRawPost): string | null {
     ?? null;
 }
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug");
   if (!slug) throw createError({ statusCode: 400, message: "slug is required" });
 
@@ -63,4 +63,4 @@ export default defineEventHandler(async (event) => {
     customer: p.acf?.customer ?? null,
     location: p.acf?.location ?? null,
   };
-});
+}, { maxAge: 60 * 5, name: "wp-post", getKey: (e) => e.node.req.url ?? e.path});

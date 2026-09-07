@@ -23,7 +23,7 @@ function featuredImageUrl(post: WpRawPost): string | null {
     ?? null;
 }
 
-export default defineEventHandler(async () => {
+export default defineCachedEventHandler(async () => {
   const user = process.env.WP_BASIC_USER;
   const pass = process.env.WP_BASIC_PASS;
 
@@ -45,4 +45,4 @@ export default defineEventHandler(async () => {
     excerpt: p.excerpt,
     featuredImage: featuredImageUrl(p),
   }));
-});
+}, { maxAge: 60 * 5, name: "wp-news" });

@@ -24,7 +24,7 @@ function featuredImageUrl(post: WpRawPost): string | null {
     ?? null;
 }
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const { include, categories, categories_exclude } = getQuery(event);
   const user = process.env.WP_BASIC_USER;
   const pass = process.env.WP_BASIC_PASS;
@@ -62,4 +62,4 @@ export default defineEventHandler(async (event) => {
     excerpt: p.excerpt,
     featuredImage: featuredImageUrl(p),
   }));
-});
+}, { maxAge: 60 * 5, name: "wp-posts", getKey: (e) => e.node.req.url ?? e.path});

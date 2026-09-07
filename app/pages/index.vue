@@ -67,7 +67,12 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
-        <NuxtLink to="/blog">ブログ</NuxtLink>
+        <span class="nav-sep">|</span>
+        <NuxtLink to="/mlb-analysis" class="nav-analysis">MLB</NuxtLink>
+        <NuxtLink to="/npb-analysis" class="nav-analysis">NPB</NuxtLink>
+        <NuxtLink to="/euro-analysis" class="nav-analysis">EURO</NuxtLink>
+        <span class="nav-sep">|</span>
+<NuxtLink to="/blog">ブログ</NuxtLink>
         <a href="#contact">お問い合わせ</a>
       </nav>
     </header>
@@ -280,6 +285,44 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
     </section>
 
 
+    <!-- データ分析Lab -->
+    <section class="band band-lab">
+      <div class="inner">
+        <p class="label">DATA ANALYSIS LAB</p>
+        <h2 class="heading">データ分析デモ</h2>
+        <p class="lab-desc">スポーツデータを使ったリアルタイム分析・予測モデルの実装例です。</p>
+        <div class="lab-cards">
+          <NuxtLink to="/mlb-analysis" class="lab-card">
+            <span class="lab-card-icon">⚾</span>
+            <div class="lab-card-body">
+              <p class="lab-card-tag">MLB</p>
+              <p class="lab-card-title">MLB Analysis</p>
+              <p class="lab-card-desc">リアルタイム順位・予告先発・勝率予測・月別本塁打ランキング</p>
+            </div>
+            <span class="lab-card-arrow">→</span>
+          </NuxtLink>
+          <NuxtLink to="/npb-analysis" class="lab-card">
+            <span class="lab-card-icon">⚾</span>
+            <div class="lab-card-body">
+              <p class="lab-card-tag">NPB</p>
+              <p class="lab-card-title">NPB 野球分析</p>
+              <p class="lab-card-desc">セ・パ両リーグ順位表・log5モデルによる勝率予測</p>
+            </div>
+            <span class="lab-card-arrow">→</span>
+          </NuxtLink>
+          <NuxtLink to="/euro-analysis" class="lab-card">
+            <span class="lab-card-icon">⚽</span>
+            <div class="lab-card-body">
+              <p class="lab-card-tag">EURO</p>
+              <p class="lab-card-title">Euro Football Analysis</p>
+              <p class="lab-card-desc">6リーグ対応・ポアソンモデルで得点期待値と勝率を予測</p>
+            </div>
+            <span class="lab-card-arrow">→</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- 会社概要 -->
     <section class="band" id="contact">
       <div class="inner">
@@ -366,6 +409,20 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 }
 .nav-links a:hover {
   color: #f1f5f9;
+}
+.nav-sep {
+  color: #334155;
+  font-size: 12px;
+  user-select: none;
+}
+.nav-analysis {
+  font-size: 12px !important;
+  letter-spacing: 0.05em;
+  font-family: ui-monospace, monospace;
+  color: #64748b !important;
+}
+.nav-analysis:hover {
+  color: #d4a843 !important;
 }
 
 /* ── ダークゾーン（ヒーロー + ツール） ─────────── */
@@ -994,5 +1051,85 @@ dd {
   .scan-btn {
     width: 100%;
   }
+}
+
+/* ── データ分析Lab ─────────────────────────────── */
+.band-lab {
+  background: #060c17;
+  color: #f1f5f9;
+}
+.band-lab .label {
+  color: #d4a843;
+}
+.band-lab .heading {
+  color: #f1f5f9;
+}
+.lab-desc {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: -8px 0 32px;
+}
+.lab-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 760px) {
+  .lab-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.lab-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.15s, background 0.15s;
+}
+.lab-card:hover {
+  border-color: #d4a843;
+  background: rgba(212, 168, 67, 0.06);
+}
+.lab-card-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.lab-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.lab-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #d4a843;
+  font-family: ui-monospace, monospace;
+  margin: 0 0 2px;
+}
+.lab-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 4px;
+}
+.lab-card-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+.lab-card-arrow {
+  font-size: 16px;
+  color: #475569;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.lab-card:hover .lab-card-arrow {
+  color: #d4a843;
 }
 </style>
