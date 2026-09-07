@@ -210,15 +210,38 @@ const selectedAway = computed(() => standings.value?.teams.find((t) => t.name ==
 // ── Helpers ────────────────────────────────────────────────────────────────
 function pct(v: number) { return Math.round(v * 100); }
 
+const LEAGUE_TZ: Record<string, string> = {
+  PL: "Europe/London",
+  BL1: "Europe/Berlin",
+  PD: "Europe/Madrid",
+  SA: "Europe/Rome",
+  FL1: "Europe/Paris",
+  CL: "Europe/Berlin",
+};
+
 function fmtDate(iso: string): string {
   try {
-    return new Date(iso).toLocaleDateString("ja-JP", { month: "numeric", day: "numeric", weekday: "short" });
+    const tz = LEAGUE_TZ[activeLeague.value] ?? "Europe/Berlin";
+    return new Date(iso).toLocaleDateString("ja-JP", { month: "numeric", day: "numeric", weekday: "short", timeZone: tz });
   } catch { return iso.slice(5, 10); }
 }
 
 function fmtTime(iso: string): string {
   try {
-    return new Date(iso).toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/London" }) + " BST";
+    const tz = LEAGUE_TZ[activeLeague.value] ?? "Europe/Berlin";
+    return new Date(iso).toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: tz });
+  } catch { return ""; }
+}
+
+function fmtJST(iso: string): string {
+  try {
+    const d = new Date(iso);
+    const localTz = LEAGUE_TZ[activeLeague.value] ?? "Europe/Berlin";
+    const localDateStr = d.toLocaleDateString("en-CA", { timeZone: localTz });
+    const jstDateStr = d.toLocaleDateString("en-CA", { timeZone: "Asia/Tokyo" });
+    const isNextDay = jstDateStr > localDateStr;
+    const jstTime = d.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" });
+    return (isNextDay ? "翌" : "") + jstTime;
   } catch { return ""; }
 }
 
@@ -368,7 +391,10 @@ function resultClass(m: EuroMatch): string {
               <div v-for="{ match, pred } in nextRoundPreds" :key="match.id" class="match-card">
                 <div class="match-meta">
                   <span class="match-date">{{ fmtDate(match.utcDate) }}</span>
-                  <span class="match-time">{{ fmtTime(match.utcDate) }}</span>
+                  <span class="match-time-wrap">
+                    <span class="match-time">{{ fmtTime(match.utcDate) }}</span>
+                    <span class="match-jst">（日本 {{ fmtJST(match.utcDate) }}）</span>
+                  </span>
                 </div>
                 <div class="match-teams">
                   <div class="match-team match-team--home">
@@ -699,12 +725,15 @@ function resultClass(m: EuroMatch): string {
 /* ── Matches ── */
 .matches-wrap { }
 .match-section-heading { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; margin: 0 0 14px; }
-.match-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
-.match-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
-.match-meta { display: flex; gap: 10px; font-size: 0.72rem; color: var(--muted); }
-.match-date { font-weight: 500; }
-.match-teams { display: flex; align-items: center; gap: 10px; }
-.match-team { display: flex; align-items: center; gap: 7px; flex: 1; }
+.match-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.match-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.match-meta { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.match-date { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+.match-time-wrap { display: flex; align-items: baseline; gap: 3px; }
+.match-time { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+.match-jst { font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
+.match-teams { display: flex; align-items: center; gap: 8px; }
+.match-team { display: flex; align-items: center; gap: 6px; flex: 1; }
 .match-team--home { justify-content: flex-end; }
 .match-team--away { justify-content: flex-start; }
 .match-crest { width: 22px; height: 22px; object-fit: contain; }
