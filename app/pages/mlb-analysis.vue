@@ -696,7 +696,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
       <div class="mlb-header-inner">
         <div class="mlb-title-group">
           <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-          <h1 class="mlb-title">MLB Analysis</h1>
+          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
         </div>
         <div class="share-btns">
@@ -1298,6 +1298,21 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
 .share-btn:hover { color: var(--text); border-color: var(--gold); }
 .share-btn--x { border-color: #1da1f2; color: #1da1f2; }
 .share-btn--x:hover { background: rgba(29,161,242,0.1); }
+.by-movee { font-size: 0.42em; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-decoration: none; vertical-align: middle; }
+.by-movee:hover { color: var(--gold); text-decoration: underline; }
+
+/* ── Mobile header ── */
+@media (max-width: 640px) {
+  .mlb-header-inner { padding: 8px 12px 0; gap: 8px; align-items: center; }
+  .mlb-eyebrow, .mlb-subtitle { display: none; }
+  .mlb-title { font-size: 1.2rem; }
+  .mlb-title-group { flex: 1; min-width: 0; }
+  .share-btns { margin-left: 0; gap: 4px; }
+  .share-btn { padding: 4px 8px; font-size: 0.68rem; }
+  .mlb-tabs { margin-left: 0; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .mlb-tabs::-webkit-scrollbar { display: none; }
+  .mlb-tab { padding: 8px 10px; font-size: 0.75rem; flex-shrink: 0; white-space: nowrap; }
+}
 
 /* ── Main ── */
 .mlb-main {

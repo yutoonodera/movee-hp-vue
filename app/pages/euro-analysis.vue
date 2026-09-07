@@ -225,7 +225,7 @@ function resultClass(m: EuroMatch): string {
       <div class="euro-header-inner">
         <div class="euro-title-group">
           <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
-          <h1 class="euro-title">Euro Analysis</h1>
+          <h1 class="euro-title">Euro Analysis <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
         </div>
         <div class="share-btns">
@@ -570,6 +570,8 @@ function resultClass(m: EuroMatch): string {
 .share-btn:hover { color: var(--text); border-color: var(--gold); }
 .share-btn--x { border-color: #1da1f2; color: #1da1f2; }
 .share-btn--x:hover { background: rgba(29,161,242,0.1); }
+.by-movee { font-size: 0.42em; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-decoration: none; vertical-align: middle; }
+.by-movee:hover { color: var(--gold); text-decoration: underline; }
 
 /* League selector */
 .league-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
@@ -590,6 +592,20 @@ function resultClass(m: EuroMatch): string {
 .euro-tab { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; padding: 8px 14px; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
 .euro-tab:hover { color: var(--text); }
 .euro-tab--active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── Mobile header ── */
+@media (max-width: 640px) {
+  .euro-header-inner { padding: 8px 12px 0; }
+  .euro-eyebrow, .euro-subtitle { display: none; }
+  .euro-title { font-size: 1.2rem; }
+  .euro-title-group { margin-bottom: 4px; }
+  .league-selector { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; gap: 4px; }
+  .league-selector::-webkit-scrollbar { display: none; }
+  .league-btn { padding: 4px 8px; font-size: 0.72rem; }
+  .euro-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .euro-tabs::-webkit-scrollbar { display: none; }
+  .euro-tab { padding: 6px 10px; font-size: 0.72rem; flex-shrink: 0; white-space: nowrap; }
+}
 
 /* Main */
 .euro-main { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }

@@ -332,7 +332,7 @@ const tabs = [
       <div class="header-left">
         <span class="ball-icon" aria-hidden="true">⚾</span>
         <div class="header-titles">
-          <h1 class="page-title">NPB 野球分析</h1>
+          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="page-sub">順位表・試合予測・チーム分析</p>
         </div>
       </div>
@@ -835,6 +835,8 @@ const tabs = [
 .share-btn:hover { color: var(--text); border-color: var(--accent); }
 .share-btn--x { border-color: #1da1f2; color: #1da1f2; }
 .share-btn--x:hover { background: rgba(29,161,242,0.1); }
+.by-movee { font-size: 0.5em; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-decoration: none; vertical-align: middle; }
+.by-movee:hover { color: var(--accent); text-decoration: underline; }
 .header-left {
   display: flex;
   align-items: center;
@@ -934,6 +936,18 @@ const tabs = [
 
 .pane { animation: fadein 0.2s ease; }
 @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── Mobile header ── */
+@media (max-width: 640px) {
+  .npb-header { padding: 10px 12px; gap: 8px; }
+  .ball-icon { display: none; }
+  .page-title { font-size: 1.1rem; }
+  .page-sub { display: none; }
+  .season-sel { min-width: auto; font-size: 0.82rem; padding: 6px 10px; }
+  .tab-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; flex-shrink: 0; white-space: nowrap; }
+}
 
 /* ── Standings ── */
 .leagues {
