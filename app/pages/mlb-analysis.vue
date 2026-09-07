@@ -9,13 +9,13 @@ useHead({
   meta: [
     { property: "og:title", content: "MLB Analysis | movee" },
     { property: "og:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
-    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
+    { property: "og:url", content: () => `https://www.movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://movee.jp/mlb-analysis.png" },
+    { property: "og:image", content: "https://www.movee.jp/mlb-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "MLB Analysis | movee" },
     { name: "twitter:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
-    { name: "twitter:image", content: "https://movee.jp/mlb-analysis.png" },
+    { name: "twitter:image", content: "https://www.movee.jp/mlb-analysis.png" },
   ],
 });
 
@@ -695,7 +695,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
       <div class="mlb-header-inner">
         <div class="mlb-title-group">
           <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
         </div>
         <div class="share-btns">

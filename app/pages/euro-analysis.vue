@@ -6,13 +6,13 @@ useHead({
   meta: [
     { property: "og:title", content: "Euro Football Analysis | movee" },
     { property: "og:description", content: "プレミアリーグ・ラ・リーガ等ヨーロッパサッカー6リーグの順位・ポアソンモデル予測・得点ランキング" },
-    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
+    { property: "og:url", content: () => `https://www.movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://movee.jp/euro-analysis.png" },
+    { property: "og:image", content: "https://www.movee.jp/euro-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "Euro Football Analysis | movee" },
     { name: "twitter:description", content: "プレミアリーグ・ラ・リーガ等6リーグ順位・ポアソン勝率予測" },
-    { name: "twitter:image", content: "https://movee.jp/euro-analysis.png" },
+    { name: "twitter:image", content: "https://www.movee.jp/euro-analysis.png" },
   ],
 });
 
@@ -224,7 +224,7 @@ function resultClass(m: EuroMatch): string {
       <div class="euro-header-inner">
         <div class="euro-title-group">
           <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
-          <h1 class="euro-title">Euro Analysis <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="euro-title">Euro Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
         </div>
         <div class="share-btns">

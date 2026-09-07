@@ -6,13 +6,13 @@ useHead({
   meta: [
     { property: "og:title", content: "NPB 野球分析 | movee" },
     { property: "og:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
-    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
+    { property: "og:url", content: () => `https://www.movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://movee.jp/npb-analysis.png" },
+    { property: "og:image", content: "https://www.movee.jp/npb-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "NPB 野球分析 | movee" },
     { name: "twitter:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
-    { name: "twitter:image", content: "https://movee.jp/npb-analysis.png" },
+    { name: "twitter:image", content: "https://www.movee.jp/npb-analysis.png" },
   ],
   link: [
     {
@@ -331,7 +331,7 @@ const tabs = [
       <div class="header-left">
         <span class="ball-icon" aria-hidden="true">⚾</span>
         <div class="header-titles">
-          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
           <p class="page-sub">順位表・試合予測・チーム分析</p>
         </div>
       </div>
