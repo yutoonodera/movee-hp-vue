@@ -6,7 +6,7 @@ useHead({
   meta: [
     { property: "og:title", content: "Euro Football Analysis | movee" },
     { property: "og:description", content: "プレミアリーグ・ラ・リーガ等ヨーロッパサッカー6リーグの順位・ポアソンモデル予測・得点ランキング" },
-    { property: "og:url", content: "https://www.movee.jp/euro-analysis" },
+    { property: "og:url", content: () => `https://www.movee.jp${route.path}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://www.movee.jp/euro-analysis.png" },
     { property: "og:image:width", content: "1254" },
@@ -19,16 +19,15 @@ useHead({
 });
 
 const euroCopied = ref(false);
-const euroShareUrl = computed(() => `https://www.movee.jp/share/euro-${activeLeague.value.toLowerCase()}`);
 function euroCopyLink() {
-  navigator.clipboard.writeText(euroShareUrl.value).then(() => {
+  navigator.clipboard.writeText(`https://www.movee.jp${route.path}`).then(() => {
     euroCopied.value = true;
     setTimeout(() => { euroCopied.value = false; }, 2000);
   });
 }
 function euroShareTwitter() {
   const text = encodeURIComponent("ヨーロッパサッカー分析 — 順位表・ポアソン予測");
-  const url = encodeURIComponent(euroShareUrl.value);
+  const url = encodeURIComponent(`https://www.movee.jp${route.path}`);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
 }
 
@@ -65,13 +64,24 @@ const LEAGUES = [
 const VALID_LEAGUES = ["PL", "PD", "BL1", "SA", "FL1", "CL"];
 const VALID_TABS = ["standings", "matches", "predict", "scorers"];
 
+const pathSegs = computed(() => (route.params.path as string[]) ?? []);
+
 // ── State ──────────────────────────────────────────────────────────────────
-const activeLeague = ref(
-  VALID_LEAGUES.includes(String(route.query.league)) ? String(route.query.league) : "PL"
-);
-const activeTab = ref<"standings" | "matches" | "predict" | "scorers">(
-  VALID_TABS.includes(String(route.query.tab)) ? String(route.query.tab) as any : "standings"
-);
+const activeLeague = computed(() => {
+  const seg = pathSegs.value[0]?.toUpperCase();
+  return VALID_LEAGUES.includes(seg) ? seg : "PL";
+});
+const activeTab = computed<"standings" | "matches" | "predict" | "scorers">(() => {
+  const seg = pathSegs.value[1];
+  return VALID_TABS.includes(seg) ? seg as any : "standings";
+});
+
+function goToLeague(code: string) {
+  router.replace(`/euro-analysis/${code.toLowerCase()}`);
+}
+function goToTab(tab: string) {
+  router.replace(`/euro-analysis/${activeLeague.value.toLowerCase()}/${tab}`);
+}
 
 const standings = ref<StandingsData | null>(null);
 const standingsLoading = ref(false);
@@ -109,12 +119,10 @@ watch(activeLeague, (lg) => {
   predHome.value = "";
   predAway.value = "";
   scorersLoaded.value = false;
-  router.replace({ query: { ...route.query, league: lg, tab: activeTab.value } });
   load(lg);
 }, { immediate: true });
 
 watch(activeTab, (tab) => {
-  router.replace({ query: { ...route.query, league: activeLeague.value, tab } });
   if (tab === "scorers" && !scorersLoaded.value) {
     scorersLoading.value = true;
     $fetch<Scorer[]>(`/api/euro/scorers/${activeLeague.value}`)
@@ -227,7 +235,7 @@ function resultClass(m: EuroMatch): string {
       <div class="euro-header-inner">
         <div class="euro-title-group">
           <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
-          <h1 class="euro-title">Euro Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="euro-title">Euro Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by （株）movee</a></h1>
           <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
         </div>
         <div class="share-btns">
@@ -241,7 +249,7 @@ function resultClass(m: EuroMatch): string {
             v-for="lg in LEAGUES" :key="lg.code"
             class="league-btn"
             :class="{ 'league-btn--active': activeLeague === lg.code }"
-            @click="activeLeague = lg.code; activeTab = 'standings'"
+            @click="goToLeague(lg.code)"
           >
             <span class="lg-flag">{{ lg.country }}</span>
             <span class="lg-name">{{ lg.name }}</span>
@@ -260,7 +268,7 @@ function resultClass(m: EuroMatch): string {
             :key="tab.id"
             class="euro-tab"
             :class="{ 'euro-tab--active': activeTab === tab.id }"
-            @click="activeTab = tab.id as typeof activeTab"
+            @click="goToTab(tab.id)"
           >{{ tab.label }}</button>
         </nav>
       </div>

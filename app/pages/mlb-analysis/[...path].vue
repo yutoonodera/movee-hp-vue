@@ -9,7 +9,7 @@ useHead({
   meta: [
     { property: "og:title", content: "MLB Analysis | movee" },
     { property: "og:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
-    { property: "og:url", content: "https://www.movee.jp/mlb-analysis" },
+    { property: "og:url", content: () => `https://www.movee.jp${route.path}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://www.movee.jp/mlb-analysis.png" },
     { property: "og:image:width", content: "1254" },
@@ -21,26 +21,51 @@ useHead({
   ],
 });
 
-// URL sync
+// URL sync — path-based
 const MLB_TABS = ["standings", "today", "predict", "stats", "players"];
+const STAT_TABS = ["hr", "avg", "sb", "era", "so"] as const;
+
+const pathSegs = computed(() => (route.params.path as string[]) ?? []);
 
 // Share
 const copied = ref(false);
-const shareSlug = computed(() => {
-  if (activeTab.value === "players") return `mlb-${playerStatTab.value}`;
-  return `mlb-${activeTab.value}`;
-});
-const shareUrl = computed(() => `https://www.movee.jp/share/${shareSlug.value}`);
 function copyLink() {
-  navigator.clipboard.writeText(shareUrl.value).then(() => {
+  navigator.clipboard.writeText(`https://www.movee.jp${route.path}`).then(() => {
     copied.value = true;
     setTimeout(() => { copied.value = false; }, 2000);
   });
 }
 function shareTwitter() {
   const text = encodeURIComponent("MLB分析ページ — 順位表・予告先発・勝率予測");
-  const url = encodeURIComponent(shareUrl.value);
+  const url = encodeURIComponent(`https://www.movee.jp${route.path}`);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+}
+
+// Navigation helpers
+function goToTab(tab: string) {
+  if (tab === "players") {
+    router.replace(`/mlb-analysis/players/${playerStatTab.value}`);
+  } else {
+    router.replace(`/mlb-analysis/${tab}`);
+  }
+}
+function goToStat(stat: string) {
+  router.replace(`/mlb-analysis/players/${stat}`);
+}
+function goToHRPlayer(id: number | null) {
+  if (id === null || selectedPlayerId.value === id) {
+    router.replace("/mlb-analysis/players/hr");
+  } else {
+    router.replace(`/mlb-analysis/players/hr/${id}`);
+  }
+}
+function goToStatPlayer(id: number | null) {
+  const s = playerStatTab.value;
+  if (id === null || selectedStatPlayerId.value === id) {
+    router.replace(`/mlb-analysis/players/${s}`);
+  } else {
+    router.replace(`/mlb-analysis/players/${s}/${id}`);
+  }
 }
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -128,9 +153,10 @@ interface MonthlyHRPlayer {
 interface MonthlyHRData { season: number; players: MonthlyHRPlayer[]; months: number[] }
 
 // ── State ──────────────────────────────────────────────────────────────────
-const activeTab = ref<"standings" | "today" | "predict" | "stats" | "players">(
-  MLB_TABS.includes(String(route.query.tab)) ? String(route.query.tab) as any : "standings"
-);
+const activeTab = computed<"standings" | "today" | "predict" | "stats" | "players">(() => {
+  const seg = pathSegs.value[0];
+  return (MLB_TABS.includes(seg) ? seg : "standings") as any;
+});
 
 // Standings
 const standings = ref<StandingsData | null>(null);
@@ -153,10 +179,10 @@ const monthlyHRLoading = ref(false);
 const monthlyHRLoaded = ref(false);
 // Player stat sub-tab
 type PlayerStatTab = "hr" | "avg" | "sb" | "era" | "so";
-const playerStatTab = ref<PlayerStatTab>(
-  (["hr","avg","sb","era","so"] as PlayerStatTab[]).includes(route.query.stat as PlayerStatTab)
-    ? route.query.stat as PlayerStatTab : "hr"
-);
+const playerStatTab = computed<PlayerStatTab>(() => {
+  const seg = pathSegs.value[1];
+  return (STAT_TABS as readonly string[]).includes(seg) ? seg as PlayerStatTab : "hr";
+});
 interface StatLeader { rank: number; id: number; name: string; team: string; value: string }
 interface PlayerLeaders { avg: StatLeader[]; sb: StatLeader[]; era: StatLeader[]; so: StatLeader[] }
 const playerLeaders = ref<PlayerLeaders | null>(null);
@@ -171,9 +197,10 @@ const monthlyStatLoading = ref<Record<string, boolean>>({});
 const statChartCanvas = ref<HTMLCanvasElement | null>(null);
 let statChart: Chart | null = null;
 const statView = ref<"monthly" | "cumulative">("cumulative");
-const selectedStatPlayerId = ref<number | null>(
-  route.query.player && route.query.stat !== undefined ? Number(route.query.player) : null
-);
+const selectedStatPlayerId = computed<number | null>(() => {
+  const seg = pathSegs.value[2];
+  return seg && /^\d+$/.test(seg) && playerStatTab.value !== "hr" ? Number(seg) : null;
+});
 
 // Rate stats: no cumulative toggle (avg, era are rates)
 const isRateStat = computed(() => playerStatTab.value === "avg" || playerStatTab.value === "era");
@@ -186,12 +213,11 @@ function fmtStatValue(stat: string, v: number): string {
   return String(v);
 }
 
-const hrView = ref<"monthly" | "cumulative">(
-  route.query.view === "monthly" ? "monthly" : "cumulative"
-);
-const selectedPlayerId = ref<number | null>(
-  route.query.player ? Number(route.query.player) : null
-);
+const hrView = ref<"monthly" | "cumulative">("cumulative");
+const selectedPlayerId = computed<number | null>(() => {
+  const seg = pathSegs.value[2];
+  return seg && /^\d+$/.test(seg) && playerStatTab.value === "hr" ? Number(seg) : null;
+});
 const hrChartCanvas = ref<HTMLCanvasElement | null>(null);
 let hrChart: Chart | null = null;
 const statsView = ref<"hitting" | "pitching">("hitting");
@@ -247,9 +273,17 @@ async function fetchTeamStats() {
 onMounted(() => {
   fetchStandings();
   fetchToday();
-  if (activeTab.value === "stats") fetchTeamStats();
-  if (activeTab.value === "players") showPlayers();
   fetchPlayerLeaders();
+  if (activeTab.value === "stats") fetchTeamStats();
+  if (activeTab.value === "players") {
+    const s = playerStatTab.value;
+    if (s === "hr") {
+      showPlayers();
+    } else {
+      fetchMonthlyHR();
+      fetchMonthlyStat(s).then(() => nextTick(() => renderStatChart(s)));
+    }
+  }
 });
 
 async function fetchMonthlyHR() {
@@ -370,9 +404,7 @@ function renderStatChart(stat: string) {
 }
 
 watch(playerStatTab, (s) => {
-  router.replace({ query: { ...route.query, stat: s } });
   if (s === "hr") { nextTick(renderHRChart); return; }
-  selectedStatPlayerId.value = null;
   fetchMonthlyStat(s).then(() => nextTick(() => renderStatChart(s)));
 });
 
@@ -381,10 +413,7 @@ watch(statView, () => {
   if (s !== "hr") nextTick(() => renderStatChart(s));
 });
 
-watch(selectedStatPlayerId, (id) => {
-  const q = { ...route.query };
-  if (id === null) delete q.player; else q.player = String(id);
-  router.replace({ query: q });
+watch(selectedStatPlayerId, () => {
   const s = playerStatTab.value;
   if (s !== "hr") nextTick(() => renderStatChart(s));
 });
@@ -402,20 +431,15 @@ watch(monthlyStatCache, () => {
 }, { deep: true });
 
 watch(activeTab, (tab) => {
-  router.replace({ query: { tab } });
   if (tab === "stats") fetchTeamStats();
   if (tab === "players") showPlayers();
 });
 
-watch(hrView, (v) => {
-  router.replace({ query: { ...route.query, view: v } });
+watch(hrView, () => {
   nextTick(renderHRChart);
 });
 
-watch(selectedPlayerId, (id) => {
-  const q = { ...route.query };
-  if (id === null) delete q.player; else q.player = String(id);
-  router.replace({ query: q });
+watch(selectedPlayerId, () => {
   nextTick(renderHRChart);
 });
 
@@ -702,7 +726,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
       <div class="mlb-header-inner">
         <div class="mlb-title-group">
           <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by （株）movee</a></h1>
           <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
         </div>
         <div class="share-btns">
@@ -721,7 +745,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
             :key="tab.id"
             class="mlb-tab"
             :class="{ 'mlb-tab--active': activeTab === tab.id }"
-            @click="activeTab = tab.id as typeof activeTab"
+            @click="goToTab(tab.id)"
           >{{ tab.label }}</button>
         </nav>
       </div>
@@ -1065,7 +1089,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
           ] as const)" :key="t.id"
             class="pstat-tab"
             :class="{ 'pstat-tab--active': playerStatTab === t.id }"
-            @click="playerStatTab = t.id">
+            @click="goToStat(t.id)">
             {{ t.label }}
           </button>
         </div>
@@ -1079,7 +1103,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
               <div class="hr-view-toggle">
                 <button class="hr-toggle-btn" :class="{ active: hrView === 'cumulative' }" @click="hrView = 'cumulative'">累計</button>
                 <button class="hr-toggle-btn" :class="{ active: hrView === 'monthly' }" @click="hrView = 'monthly'">月間</button>
-                <button v-if="selectedPlayerId !== null" class="hr-toggle-btn hr-reset-btn" @click="selectedPlayerId = null">全員表示</button>
+                <button v-if="selectedPlayerId !== null" class="hr-toggle-btn hr-reset-btn" @click="goToHRPlayer(null)">全員表示</button>
               </div>
             </div>
             <div class="hr-chart-wrap">
@@ -1100,7 +1124,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
                   <tr v-for="(p, i) in monthlyHR.players" :key="p.id"
                     class="hr-row"
                     :class="{ 'hr-row--selected': selectedPlayerId === p.id, 'hr-row--dim': selectedPlayerId !== null && selectedPlayerId !== p.id }"
-                    @click="selectedPlayerId = selectedPlayerId === p.id ? null : p.id"
+                    @click="goToHRPlayer(p.id)"
                     style="cursor: pointer">
                     <td class="hr-rank">
                       <span class="hr-rank-inner">
@@ -1133,7 +1157,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
                   <button class="hr-toggle-btn" :class="{ active: statView === 'cumulative' }" @click="statView = 'cumulative'">累計</button>
                   <button class="hr-toggle-btn" :class="{ active: statView === 'monthly' }" @click="statView = 'monthly'">月間</button>
                 </template>
-                <button v-if="selectedStatPlayerId !== null" class="hr-toggle-btn hr-reset-btn" @click="selectedStatPlayerId = null">全員表示</button>
+                <button v-if="selectedStatPlayerId !== null" class="hr-toggle-btn hr-reset-btn" @click="goToStatPlayer(null)">全員表示</button>
               </div>
             </div>
             <div class="hr-chart-wrap">
@@ -1154,7 +1178,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
                   <tr v-for="(p, i) in monthlyStatCache[playerStatTab].players" :key="p.id"
                     class="hr-row"
                     :class="{ 'hr-row--selected': selectedStatPlayerId === p.id, 'hr-row--dim': selectedStatPlayerId !== null && selectedStatPlayerId !== p.id }"
-                    @click="selectedStatPlayerId = selectedStatPlayerId === p.id ? null : p.id"
+                    @click="goToStatPlayer(p.id)"
                     style="cursor: pointer">
                     <td class="hr-rank">
                       <span class="hr-rank-inner">

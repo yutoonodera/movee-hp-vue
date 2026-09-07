@@ -6,7 +6,7 @@ useHead({
   meta: [
     { property: "og:title", content: "NPB 野球分析 | movee" },
     { property: "og:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
-    { property: "og:url", content: "https://www.movee.jp/npb-analysis" },
+    { property: "og:url", content: () => `https://www.movee.jp${route.path}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://www.movee.jp/npb-analysis.png" },
     { property: "og:image:width", content: "1254" },
@@ -27,18 +27,23 @@ useHead({
 // URL sync
 const NPB_TABS = ["today", "standings", "predict", "analysis"];
 
+const pathSegs = computed(() => (route.params.path as string[]) ?? []);
+
 const npbCopied = ref(false);
-const npbShareUrl = computed(() => `https://www.movee.jp/share/npb-${activeTab.value}`);
 function npbCopyLink() {
-  navigator.clipboard.writeText(npbShareUrl.value).then(() => {
+  navigator.clipboard.writeText(`https://www.movee.jp${route.path}`).then(() => {
     npbCopied.value = true;
     setTimeout(() => { npbCopied.value = false; }, 2000);
   });
 }
 function npbShareTwitter() {
   const text = encodeURIComponent("NPB野球分析 — 順位表・勝率予測");
-  const url = encodeURIComponent(npbShareUrl.value);
+  const url = encodeURIComponent(`https://www.movee.jp${route.path}`);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+}
+
+function goToTab(tab: string) {
+  router.replace(`/npb-analysis/${tab}`);
 }
 
 interface Competition {
@@ -84,9 +89,10 @@ const competitions = computed(() => compsData.value ?? []);
 const selectedComp = ref<Competition | null>(competitions.value[0] ?? null);
 const standings = ref<StandingsData | null>(null);
 const status = ref<"idle" | "pending" | "success" | "error">("idle");
-const activeTab = ref<"today" | "standings" | "predict" | "analysis">(
-  NPB_TABS.includes(String(route.query.tab)) ? String(route.query.tab) as any : "today"
-);
+const activeTab = computed<"today" | "standings" | "predict" | "analysis">(() => {
+  const seg = pathSegs.value[0];
+  return NPB_TABS.includes(seg) ? seg as any : "today";
+});
 const predTeamA = ref("");
 const predTeamB = ref("");
 const homeTeam = ref<"A" | "B">("A");
@@ -334,7 +340,7 @@ const tabs = [
       <div class="header-left">
         <span class="ball-icon" aria-hidden="true">⚾</span>
         <div class="header-titles">
-          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by movee</a></h1>
+          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by （株）movee</a></h1>
           <p class="page-sub">順位表・試合予測・チーム分析</p>
         </div>
       </div>
@@ -377,7 +383,7 @@ const tabs = [
             role="tab"
             :aria-selected="activeTab === tab.id"
             :class="['tab-btn', { 'tab-btn--active': activeTab === tab.id }]"
-            @click="activeTab = tab.id; router.replace({ query: { tab: tab.id } })"
+            @click="goToTab(tab.id)"
           >
             {{ tab.label }}
           </button>
