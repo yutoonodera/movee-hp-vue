@@ -14,7 +14,7 @@ useHead({
     { property: "og:image", content: "https://www.movee.jp/mlb-analysis.png" },
     { property: "og:image:width", content: "1254" },
     { property: "og:image:height", content: "1254" },
-    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:card", content: "summary" },
     { name: "twitter:title", content: "MLB Analysis | movee" },
     { name: "twitter:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
     { name: "twitter:image", content: "https://www.movee.jp/mlb-analysis.png" },
@@ -722,17 +722,21 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
 <template>
   <div class="mlb-page">
     <!-- Header -->
-    <header class="mlb-header">
-      <div class="mlb-header-inner">
-        <div class="mlb-title-group">
-          <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-          <h1 class="mlb-title">MLB Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
-          <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
+    <div class="mlb-sticky-wrap">
+      <header class="mlb-header">
+        <div class="mlb-header-inner">
+          <div class="mlb-title-group">
+            <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
+            <h1 class="mlb-title">MLB Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
+            <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
+          </div>
+          <div class="share-btns">
+            <button class="share-btn" @click="copyLink">{{ copied ? '✓ コピー済み' : '🔗 リンクをコピー' }}</button>
+            <button class="share-btn share-btn--x" @click="shareTwitter">𝕏 でシェア</button>
+          </div>
         </div>
-        <div class="share-btns">
-          <button class="share-btn" @click="copyLink">{{ copied ? '✓ コピー済み' : '🔗 リンクをコピー' }}</button>
-          <button class="share-btn share-btn--x" @click="shareTwitter">𝕏 でシェア</button>
-        </div>
+      </header>
+      <div class="mlb-tabs-row">
         <nav class="mlb-tabs">
           <button
             v-for="tab in [
@@ -749,7 +753,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
           >{{ tab.label }}</button>
         </nav>
       </div>
-    </header>
+    </div>
 
     <main class="mlb-main">
 
@@ -1260,21 +1264,26 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
 }
 
 /* ── Header ── */
-.mlb-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+.mlb-sticky-wrap {
   position: sticky;
   top: 0;
   z-index: 10;
+  background: var(--surface);
 }
+.mlb-header { background: var(--surface); }
 .mlb-header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 20px 0;
+  padding: 16px 20px 12px;
   display: flex;
   gap: 24px;
   align-items: flex-end;
   flex-wrap: wrap;
+}
+.mlb-tabs-row {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
 }
 .mlb-eyebrow {
   display: block;
@@ -1305,7 +1314,9 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
 .mlb-tabs {
   display: flex;
   gap: 0;
-  margin-left: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 .mlb-tab {
   background: none;
@@ -1332,16 +1343,17 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
 .by-movee:hover { color: var(--gold); text-decoration: underline; }
 
 /* ── Mobile header ── */
-@media (max-width: 640px) {
-  .mlb-header-inner { padding: 8px 12px 0; gap: 8px; align-items: center; }
+@media (max-width: 768px) {
+  .mlb-sticky-wrap { position: static; }
+  .mlb-tabs-row { position: sticky; top: 0; z-index: 10; border-top: none; }
+  .mlb-header-inner { padding: 10px 12px; gap: 8px; align-items: center; }
   .mlb-eyebrow, .mlb-subtitle { display: none; }
-  .mlb-title { font-size: 1.2rem; }
+  .mlb-title { font-size: 1.3rem; }
   .mlb-title-group { flex: 1; min-width: 0; }
-  .share-btns { margin-left: 0; gap: 4px; }
-  .share-btn { padding: 4px 8px; font-size: 0.68rem; }
-  .mlb-tabs { margin-left: 0; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .share-btns { display: none; }
+  .mlb-tabs { padding: 0 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .mlb-tabs::-webkit-scrollbar { display: none; }
-  .mlb-tab { padding: 8px 10px; font-size: 0.75rem; flex-shrink: 0; white-space: nowrap; }
+  .mlb-tab { padding: 10px 12px; font-size: 0.78rem; flex-shrink: 0; white-space: nowrap; }
 }
 
 /* ── Main ── */

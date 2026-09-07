@@ -11,7 +11,7 @@ useHead({
     { property: "og:image", content: "https://www.movee.jp/npb-analysis.png" },
     { property: "og:image:width", content: "1254" },
     { property: "og:image:height", content: "1254" },
-    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:card", content: "summary" },
     { name: "twitter:title", content: "NPB 野球分析 | movee" },
     { name: "twitter:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
     { name: "twitter:image", content: "https://www.movee.jp/npb-analysis.png" },
@@ -946,15 +946,21 @@ const tabs = [
 @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 
 /* ── Mobile header ── */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .npb-header { padding: 10px 12px; gap: 8px; }
   .ball-icon { display: none; }
   .page-title { font-size: 1.1rem; }
   .page-sub { display: none; }
+  .share-btns { display: none; }
   .season-sel { min-width: auto; font-size: 0.82rem; padding: 6px 10px; }
-  .tab-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tab-nav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--surface);
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    margin-bottom: 16px;
+  }
   .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn { padding: 8px 12px; font-size: 0.8rem; flex-shrink: 0; white-space: nowrap; }
+  .tab-btn { padding: 10px 14px; font-size: 0.8rem; flex-shrink: 0; white-space: nowrap; }
 }
 
 /* ── Standings ── */

@@ -11,7 +11,7 @@ useHead({
     { property: "og:image", content: "https://www.movee.jp/euro-analysis.png" },
     { property: "og:image:width", content: "1254" },
     { property: "og:image:height", content: "1254" },
-    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:card", content: "summary" },
     { name: "twitter:title", content: "Euro Football Analysis | movee" },
     { name: "twitter:description", content: "プレミアリーグ・ラ・リーガ等6リーグ順位・ポアソン勝率予測" },
     { name: "twitter:image", content: "https://www.movee.jp/euro-analysis.png" },
@@ -231,48 +231,52 @@ function resultClass(m: EuroMatch): string {
 <template>
   <div class="euro-page">
     <!-- Header -->
-    <header class="euro-header">
-      <div class="euro-header-inner">
-        <div class="euro-title-group">
-          <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
-          <h1 class="euro-title">Euro Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
-          <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
+    <div class="euro-sticky-wrap">
+      <header class="euro-header">
+        <div class="euro-header-inner">
+          <div class="euro-title-group">
+            <span class="euro-eyebrow">⚽ EUROPEAN FOOTBALL</span>
+            <h1 class="euro-title">Euro Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
+            <p class="euro-subtitle">ポアソンモデルによる勝率予測</p>
+          </div>
+          <div class="share-btns">
+            <button class="share-btn" @click="euroCopyLink">{{ euroCopied ? '✓ コピー済み' : '🔗 リンクをコピー' }}</button>
+            <button class="share-btn share-btn--x" @click="euroShareTwitter">𝕏 でシェア</button>
+          </div>
         </div>
-        <div class="share-btns">
-          <button class="share-btn" @click="euroCopyLink">{{ euroCopied ? '✓ コピー済み' : '🔗 リンクをコピー' }}</button>
-          <button class="share-btn share-btn--x" @click="euroShareTwitter">𝕏 でシェア</button>
+      </header>
+      <div class="euro-nav">
+        <div class="euro-nav-inner">
+          <!-- League selector -->
+          <div class="league-selector">
+            <button
+              v-for="lg in LEAGUES" :key="lg.code"
+              class="league-btn"
+              :class="{ 'league-btn--active': activeLeague === lg.code }"
+              @click="goToLeague(lg.code)"
+            >
+              <span class="lg-flag">{{ lg.country }}</span>
+              <span class="lg-name">{{ lg.name }}</span>
+            </button>
+          </div>
+          <!-- Tabs -->
+          <nav class="euro-tabs">
+            <button
+              v-for="tab in [
+                { id: 'standings', label: '順位表' },
+                { id: 'matches',   label: '次節の試合' },
+                { id: 'predict',   label: '1試合予測' },
+                { id: 'scorers',   label: '得点ランキング' },
+              ]"
+              :key="tab.id"
+              class="euro-tab"
+              :class="{ 'euro-tab--active': activeTab === tab.id }"
+              @click="goToTab(tab.id)"
+            >{{ tab.label }}</button>
+          </nav>
         </div>
-
-        <!-- League selector -->
-        <div class="league-selector">
-          <button
-            v-for="lg in LEAGUES" :key="lg.code"
-            class="league-btn"
-            :class="{ 'league-btn--active': activeLeague === lg.code }"
-            @click="goToLeague(lg.code)"
-          >
-            <span class="lg-flag">{{ lg.country }}</span>
-            <span class="lg-name">{{ lg.name }}</span>
-          </button>
-        </div>
-
-        <!-- Tabs -->
-        <nav class="euro-tabs">
-          <button
-            v-for="tab in [
-              { id: 'standings', label: '順位表' },
-              { id: 'matches',   label: '次節の試合' },
-              { id: 'predict',   label: '1試合予測' },
-              { id: 'scorers',   label: '得点ランキング' },
-            ]"
-            :key="tab.id"
-            class="euro-tab"
-            :class="{ 'euro-tab--active': activeTab === tab.id }"
-            @click="goToTab(tab.id)"
-          >{{ tab.label }}</button>
-        </nav>
       </div>
-    </header>
+    </div>
 
     <main class="euro-main">
 
@@ -569,9 +573,12 @@ function resultClass(m: EuroMatch): string {
 .euro-page { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
 
 /* ── Header ── */
-.euro-header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-.euro-header-inner { max-width: 1200px; margin: 0 auto; padding: 12px 20px 0; }
-.euro-title-group { margin-bottom: 12px; }
+.euro-sticky-wrap { position: sticky; top: 0; z-index: 10; background: var(--surface); }
+.euro-header { background: var(--surface); }
+.euro-header-inner { max-width: 1200px; margin: 0 auto; padding: 12px 20px 10px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.euro-nav { border-bottom: 1px solid var(--border); background: var(--surface); }
+.euro-nav-inner { max-width: 1200px; margin: 0 auto; padding: 8px 20px 0; }
+.euro-title-group { flex: 1; min-width: 0; }
 .euro-eyebrow { display: block; font-size: 0.62rem; letter-spacing: 0.12em; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; text-transform: uppercase; }
 .euro-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800; margin: 0; line-height: 1; }
 .euro-subtitle { font-size: 0.72rem; color: var(--muted); margin: 2px 0 0; }
@@ -586,7 +593,7 @@ function resultClass(m: EuroMatch): string {
 .by-movee:hover { color: var(--gold); text-decoration: underline; }
 
 /* League selector */
-.league-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.league-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
 .league-btn {
   display: flex; align-items: center; gap: 5px;
   background: var(--surface2); border: 1px solid var(--border);
@@ -600,18 +607,22 @@ function resultClass(m: EuroMatch): string {
 .lg-name { white-space: nowrap; }
 
 /* Tabs */
-.euro-tabs { display: flex; gap: 0; border-top: 1px solid var(--border); margin-top: 4px; }
+.euro-tabs { display: flex; gap: 0; border-top: 1px solid var(--border); margin-top: 6px; }
 .euro-tab { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; padding: 8px 14px; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
 .euro-tab:hover { color: var(--text); }
 .euro-tab--active { color: var(--gold); border-bottom-color: var(--gold); }
 
 /* ── Mobile header ── */
-@media (max-width: 640px) {
-  .euro-header-inner { padding: 8px 12px 0; }
+@media (max-width: 768px) {
+  .euro-sticky-wrap { position: static; }
+  .euro-nav { position: sticky; top: 0; z-index: 10; }
+  .euro-header-inner { padding: 10px 12px 8px; gap: 8px; }
   .euro-eyebrow, .euro-subtitle { display: none; }
   .euro-title { font-size: 1.2rem; }
-  .euro-title-group { margin-bottom: 4px; }
-  .league-selector { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; gap: 4px; }
+  .euro-title-group { margin-bottom: 0; }
+  .share-btns { display: none; }
+  .euro-nav-inner { padding: 6px 8px 0; }
+  .league-selector { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 4px; }
   .league-selector::-webkit-scrollbar { display: none; }
   .league-btn { padding: 4px 8px; font-size: 0.72rem; }
   .euro-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
