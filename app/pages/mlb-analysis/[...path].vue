@@ -726,7 +726,7 @@ const PITCHING_COLS: { key: keyof TeamStat; label: string; asc?: boolean }[] = [
       <div class="mlb-header-inner">
         <div class="mlb-title-group">
           <span class="mlb-eyebrow">⚾ MAJOR LEAGUE BASEBALL</span>
-          <h1 class="mlb-title">MLB Analysis <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by （株）movee</a></h1>
+          <h1 class="mlb-title">MLB Analysis <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
           <p class="mlb-subtitle">リアルタイム順位・予告先発・勝率予測</p>
         </div>
         <div class="share-btns">

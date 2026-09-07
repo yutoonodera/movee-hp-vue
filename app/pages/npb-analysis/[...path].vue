@@ -340,7 +340,7 @@ const tabs = [
       <div class="header-left">
         <span class="ball-icon" aria-hidden="true">⚾</span>
         <div class="header-titles">
-          <h1 class="page-title">NPB 野球分析 <a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">by （株）movee</a></h1>
+          <h1 class="page-title">NPB 野球分析 <span class="by-movee">by </span><a class="by-movee" href="https://www.movee.jp" target="_blank" rel="noopener">㈱movee</a></h1>
           <p class="page-sub">順位表・試合予測・チーム分析</p>
         </div>
       </div>
