@@ -2,13 +2,14 @@
 import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Legend, Tooltip, Filler } from "chart.js";
 Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Legend, Tooltip, Filler);
 
-const pageUrl = "https://movee.jp/mlb-analysis";
+const route = useRoute();
+const router = useRouter();
 useHead({
   title: "MLB Analysis | movee",
   meta: [
     { property: "og:title", content: "MLB Analysis | movee" },
     { property: "og:description", content: "MLBリアルタイム順位・予告先発・勝率予測・月別本塁打ランキング" },
-    { property: "og:url", content: pageUrl },
+    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://movee.jp/mlb-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -19,8 +20,6 @@ useHead({
 });
 
 // URL sync
-const route = useRoute();
-const router = useRouter();
 const MLB_TABS = ["standings", "today", "predict", "stats", "players"];
 
 // Share

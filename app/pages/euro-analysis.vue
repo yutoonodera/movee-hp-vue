@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const euroPageUrl = "https://movee.jp/euro-analysis";
+const route = useRoute();
+const router = useRouter();
 useHead({
   title: "Euro Football Analysis | movee",
   meta: [
     { property: "og:title", content: "Euro Football Analysis | movee" },
     { property: "og:description", content: "プレミアリーグ・ラ・リーガ等ヨーロッパサッカー6リーグの順位・ポアソンモデル予測・得点ランキング" },
-    { property: "og:url", content: euroPageUrl },
+    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://movee.jp/euro-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -57,8 +58,6 @@ const LEAGUES = [
 ];
 
 // ── URL sync ───────────────────────────────────────────────────────────────
-const route = useRoute();
-const router = useRouter();
 
 const VALID_LEAGUES = ["PL", "PD", "BL1", "SA", "FL1", "CL"];
 const VALID_TABS = ["standings", "matches", "predict", "scorers"];

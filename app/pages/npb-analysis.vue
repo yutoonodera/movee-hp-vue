@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const npbPageUrl = "https://movee.jp/npb-analysis";
+const route = useRoute();
+const router = useRouter();
 useHead({
   title: "NPB 野球分析 | movee",
   meta: [
     { property: "og:title", content: "NPB 野球分析 | movee" },
     { property: "og:description", content: "NPBリアルタイム順位表・チーム分析・勝率予測（セ・パ両リーグ）" },
-    { property: "og:url", content: npbPageUrl },
+    { property: "og:url", content: () => `https://movee.jp${route.fullPath}` },
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://movee.jp/npb-analysis.png" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -22,8 +23,6 @@ useHead({
 });
 
 // URL sync
-const route = useRoute();
-const router = useRouter();
 const NPB_TABS = ["today", "standings", "predict", "analysis"];
 
 const npbCopied = ref(false);
