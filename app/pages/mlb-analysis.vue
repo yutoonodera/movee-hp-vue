@@ -26,15 +26,20 @@ const MLB_TABS = ["standings", "today", "predict", "stats", "players"];
 
 // Share
 const copied = ref(false);
+const shareSlug = computed(() => {
+  if (activeTab.value === "players") return `mlb-${playerStatTab.value}`;
+  return `mlb-${activeTab.value}`;
+});
+const shareUrl = computed(() => `https://www.movee.jp/share/${shareSlug.value}`);
 function copyLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
+  navigator.clipboard.writeText(shareUrl.value).then(() => {
     copied.value = true;
     setTimeout(() => { copied.value = false; }, 2000);
   });
 }
 function shareTwitter() {
   const text = encodeURIComponent("MLB分析ページ — 順位表・予告先発・勝率予測");
-  const url = encodeURIComponent(window.location.href);
+  const url = encodeURIComponent(shareUrl.value);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
 }
 

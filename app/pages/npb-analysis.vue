@@ -28,15 +28,16 @@ useHead({
 const NPB_TABS = ["today", "standings", "predict", "analysis"];
 
 const npbCopied = ref(false);
+const npbShareUrl = computed(() => `https://www.movee.jp/share/npb-${activeTab.value}`);
 function npbCopyLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
+  navigator.clipboard.writeText(npbShareUrl.value).then(() => {
     npbCopied.value = true;
     setTimeout(() => { npbCopied.value = false; }, 2000);
   });
 }
 function npbShareTwitter() {
   const text = encodeURIComponent("NPB野球分析 — 順位表・勝率予測");
-  const url = encodeURIComponent(window.location.href);
+  const url = encodeURIComponent(npbShareUrl.value);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
 }
 

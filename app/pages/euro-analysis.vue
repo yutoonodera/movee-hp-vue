@@ -19,15 +19,16 @@ useHead({
 });
 
 const euroCopied = ref(false);
+const euroShareUrl = computed(() => `https://www.movee.jp/share/euro-${activeLeague.value.toLowerCase()}`);
 function euroCopyLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
+  navigator.clipboard.writeText(euroShareUrl.value).then(() => {
     euroCopied.value = true;
     setTimeout(() => { euroCopied.value = false; }, 2000);
   });
 }
 function euroShareTwitter() {
   const text = encodeURIComponent("ヨーロッパサッカー分析 — 順位表・ポアソン予測");
-  const url = encodeURIComponent(window.location.href);
+  const url = encodeURIComponent(euroShareUrl.value);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
 }
 
