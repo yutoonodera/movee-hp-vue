@@ -122,13 +122,21 @@ watch(activeLeague, (lg) => {
   load(lg);
 }, { immediate: true });
 
+function fetchScorers() {
+  if (scorersLoaded.value) return;
+  scorersLoading.value = true;
+  $fetch<Scorer[]>(`/api/euro/scorers/${activeLeague.value}`)
+    .then((d) => { scorers.value = d; scorersLoaded.value = true; })
+    .catch(() => { scorers.value = []; scorersLoaded.value = true; })
+    .finally(() => { scorersLoading.value = false; });
+}
+
 watch(activeTab, (tab) => {
-  if (tab === "scorers" && !scorersLoaded.value) {
-    scorersLoading.value = true;
-    $fetch<Scorer[]>(`/api/euro/scorers/${activeLeague.value}`)
-      .then((d) => { scorers.value = d; scorersLoaded.value = true; })
-      .finally(() => { scorersLoading.value = false; });
-  }
+  if (tab === "scorers") fetchScorers();
+});
+
+onMounted(() => {
+  if (activeTab.value === "scorers") fetchScorers();
 });
 
 // ── Poisson prediction ─────────────────────────────────────────────────────
@@ -526,7 +534,8 @@ function resultClass(m: EuroMatch): string {
             </div>
           </div>
         </div>
-        <div v-else-if="!scorersLoading" class="loading-msg">得点ランキングを読み込んでいます…</div>
+        <div v-else-if="scorersLoaded" class="loading-msg">得点データがまだありません</div>
+        <div v-else-if="!scorersLoading" class="loading-msg">得点ランキングを表示するには「得点ランキング」タブを押してください</div>
       </section>
 
     </main>
