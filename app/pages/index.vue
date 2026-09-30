@@ -288,7 +288,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <div class="inner">
         <p class="label">WORKS</p>
         <h2 class="heading" style="margin-bottom: 8px">実績</h2>
-        <p class="works-note">業務システムは社内やお取引先様と利用するため、社名や画像の公開は控えさせていただいております。</p>
+        <p class="works-note">お客様プライバシー保護のため、社名や画像の公開は控えさせていただいております。</p>
       </div>
       <div class="works-marquee-outer">
         <div class="works-marquee-track">
