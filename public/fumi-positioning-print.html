@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fumi — 営業プロセスにおける位置づけ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  @page {
+    size: A4 landscape;
+    margin: 16mm 20mm;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "DM Sans", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    max-width: 240mm;
+    margin: 0 auto;
+    padding: 8mm 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ── ヘッダー ── */
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #0f172a;
+  }
+  .header-left { display: flex; flex-direction: column; gap: 3px; }
+  .eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: #c9930a;
+    text-transform: uppercase;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+  }
+  .header-logo {
+    font-family: "DM Mono", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── タイムライン ── */
+  .timeline-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .stage-box {
+    width: 100%;
+    padding: 10px 8px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1.5px solid;
+  }
+  .stage-box.active {
+    background: #fffbf0;
+    border-color: #d4a843;
+  }
+  .stage-box.muted {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+  }
+
+  .stage-num {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .stage-box.active .stage-num { color: #c9930a; }
+  .stage-box.muted .stage-num { color: #94a3b8; }
+
+  .stage-name {
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+  }
+  .stage-box.active .stage-name { color: #0f172a; }
+  .stage-box.muted .stage-name { color: #94a3b8; }
+
+  .arrow {
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #cbd5e1;
+    padding-bottom: 4px;
+  }
+  .arrow.active { color: #d4a843; }
+
+  /* ── カバレッジバー ── */
+  .coverage-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 2px;
+  }
+  .coverage-line-wrap {
+    display: flex;
+    align-items: center;
+    flex: 3;
+    position: relative;
+  }
+  .coverage-line {
+    height: 3px;
+    background: #d4a843;
+    border-radius: 2px;
+    flex: 1;
+    position: relative;
+  }
+  .coverage-line::before,
+  .coverage-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 10px;
+    background: #d4a843;
+    border-radius: 1px;
+  }
+  .coverage-line::before { left: 0; }
+  .coverage-line::after { right: 0; }
+
+  .coverage-label {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    font-weight: 500;
+    color: #c9930a;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding-left: 8px;
+  }
+  .out-section {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 8px;
+  }
+  .out-line {
+    height: 1px;
+    background: #e2e8f0;
+    flex: 1;
+  }
+  .out-label {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+
+  /* ── 製品カード ── */
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .product-card {
+    border: 1.5px solid #d4a843;
+    border-radius: 10px;
+    padding: 18px 20px;
+    background: #fffbf0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    page-break-inside: avoid;
+  }
+
+  .product-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .product-name {
+    font-family: "DM Mono", monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: #c9930a;
+  }
+  .product-scope {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #fef3c7;
+    border: 1px solid #d4a843;
+    border-radius: 100px;
+    padding: 2px 9px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #c9930a;
+  }
+  .scope-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #c9930a;
+    flex-shrink: 0;
+  }
+
+  .product-desc {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.65;
+  }
+
+  .product-features {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .product-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 11.5px;
+    color: #475569;
+  }
+  .feature-bullet {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #d4a843;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  /* ── フッター ── */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .footer-note {
+    font-size: 10px;
+    color: #94a3b8;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .footer-url {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    color: #c9930a;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <p class="eyebrow">movee — 商談・営業システム開発</p>
+      <h1 class="title">営業プロセスにおける Fumi / Fumi DSR の位置づけ</h1>
+    </div>
+    <span class="header-logo">movee.jp</span>
+  </div>
+
+  <div class="timeline-wrap">
+    <div class="timeline-row">
+      <div class="stage">
+        <div class="stage-box active">
+          <span class="stage-num">01</span>
+          <span class="stage-name">出会い</span>
+        </div>
+      </div>
+      <div class="arrow active">→</div>
+      <div class="stage">
+        <div class="stage-box active">
+          <span class="stage-num">02</span>
+          <span class="stage-name">アポ取得</span>
+        </div>
+      </div>
+      <div class="arrow active">→</div>
+      <div class="stage">
+        <div class="stage-box active">
+          <span class="stage-num">03</span>
+          <span class="stage-name">アポ・商談</span>
+        </div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="stage">
+        <div class="stage-box muted">
+          <span class="stage-num">04</span>
+          <span class="stage-name">見積もり</span>
+        </div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="stage">
+        <div class="stage-box muted">
+          <span class="stage-num">05</span>
+          <span class="stage-name">契約</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coverage-row">
+      <div class="coverage-line-wrap">
+        <div class="coverage-line"></div>
+        <span class="coverage-label">movee クラウドサービスがカバー</span>
+      </div>
+      <div class="out-section">
+        <div class="out-line"></div>
+        <span class="out-label">他社ツール・手動対応の領域</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="product-card">
+      <div class="product-head">
+        <p class="product-name">Fumi</p>
+        <div class="product-scope">
+          <span class="scope-dot"></span>
+          出会い → アポ取得
+        </div>
+      </div>
+      <p class="product-desc">名刺交換後のフォローアップを自動化。出会いを次のアポイントへつなげます。</p>
+      <div class="product-features">
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          名刺の自動読み取り・連絡先登録
+        </div>
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          会話内容からお礼メールを自動生成
+        </div>
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          アポ依頼メールの自動生成
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-head">
+        <p class="product-name">Fumi DSR</p>
+        <div class="product-scope">
+          <span class="scope-dot"></span>
+          アポ・商談
+        </div>
+      </div>
+      <p class="product-desc">営業資料をクラウドで管理・共有。商談の場でそのまま使えるプレゼンツール。</p>
+      <div class="product-features">
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          資料をフォルダ管理・取引先ごとにカスタマイズ
+        </div>
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          商談中にスライド全画面表示・レーザーポインター対応
+        </div>
+        <div class="product-feature">
+          <span class="feature-bullet"></span>
+          開封・ダウンロード通知付きの資料リンク共有
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="footer-note">moveeは商談・営業システム開発の専門会社。自社クラウド Fumi / Fumi DSR の開発・運営に加え、「ヒャク開発」として100点の商談・営業システムを100万円で作るサービスを提供しています。</p>
+    <span class="footer-url">fumi.lol / sdr.fumi.lol</span>
+  </div>
+
+</div>
+</body>
+</html>
