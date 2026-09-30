@@ -93,7 +93,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         <div class="hero-inner">
           <p class="hero-kicker">株式会社movee</p>
           <h1 class="hero-title">
-            商談・営業の業務システムを、<br />専門に作る会社です
+            商談・営業の業務システムを<br />専門に作る会社です
           </h1>
           <p class="hero-lead">
             名刺交換からアポ・商談・見積もりまで、営業プロセスに特化した業務システムの開発会社です。<br class="br-pc" />
@@ -288,7 +288,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <div class="inner">
         <p class="label">WORKS</p>
         <h2 class="heading" style="margin-bottom: 8px">実績</h2>
-        <p class="works-note">お客様のプライバシーに配慮し、社名や画像の公開は控えさせていただいております。</p>
+        <p class="works-note">業務システムは社内やお取引先様と利用するため、社名や画像の公開は控えさせていただいております。</p>
       </div>
       <div class="works-marquee-outer">
         <div class="works-marquee-track">
