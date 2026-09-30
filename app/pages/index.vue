@@ -70,7 +70,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
         <a href="https://fumi.lol/" target="_blank" rel="noopener" class="nav-product">Fumi</a>
-        <a href="https://sdr.fumi.lol/" target="_blank" rel="noopener" class="nav-product">Fumi DSR</a>
+        <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="nav-product">Fumi DSR</a>
         <span class="nav-sep">|</span>
         <a href="#hyaku" class="nav-hyaku">ヒャク開発</a>
         <a href="#works">実績</a>
@@ -82,7 +82,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
     </header>
     <div class="nav-drawer" :class="{ open: menuOpen }" @click="menuOpen = false">
       <a href="https://fumi.lol/" target="_blank" rel="noopener" class="drawer-product">Fumi</a>
-      <a href="https://sdr.fumi.lol/" target="_blank" rel="noopener" class="drawer-product">Fumi DSR</a>
+      <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="drawer-product">Fumi DSR</a>
       <a href="#hyaku" @click="menuOpen = false" class="drawer-hyaku">ヒャク開発</a>
       <a href="#works" @click="menuOpen = false">実績</a>
       <a href="#contact" @click="menuOpen = false">お問い合わせ</a>
@@ -179,7 +179,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
               </ul>
               <span class="product-link">fumi.lol →</span>
             </a>
-            <a href="https://sdr.fumi.lol/" target="_blank" rel="noopener" class="product-card">
+            <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="product-card">
               <div class="product-head">
                 <p class="product-name">Fumi DSR</p>
                 <div class="product-scope">
@@ -193,7 +193,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
                 <li>商談中にスライド全画面表示・レーザーポインター対応</li>
                 <li>開封・ダウンロード通知付きの資料リンク共有</li>
               </ul>
-              <span class="product-link">sdr.fumi.lol →</span>
+              <span class="product-link">dsr.fumi.lol →</span>
             </a>
           </div>
         </div>
