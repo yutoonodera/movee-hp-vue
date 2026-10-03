@@ -3,7 +3,7 @@ useHead({ title: "株式会社movee — 商談・営業の業務システム開�
 useSeoMeta({
   ogTitle: "株式会社movee — 商談・営業の業務システム開発",
   ogDescription:
-    "名刺交換からアポ・商談まで、営業プロセスに特化した業務システムの開発会社。自社クラウド「Fumi」「Fumi DSR」のドメイン知識を活かした受託開発。福岡市拠点。",
+    "名刺交換からアポ・商談まで、営業プロセスに特化した業務システムの開発会社。自社クラウド「movee アポ」「movee デジタル商談ルーム」のドメイン知識を活かした受託開発。福岡市拠点。",
   ogType: "website",
   ogImage: "https://www.movee.jp/og-default.png",
   twitterCard: "summary_large_image",
@@ -69,8 +69,8 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
     <header class="nav">
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
-        <a href="https://fumi.lol/" target="_blank" rel="noopener" class="nav-product">Fumi</a>
-        <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="nav-product">Fumi DSR</a>
+        <a href="https://apo.movee.jp/" target="_blank" rel="noopener" class="nav-product">movee アポ</a>
+        <a href="https://dsr.movee.jp/" target="_blank" rel="noopener" class="nav-product">movee デジタル商談ルーム</a>
         <span class="nav-sep">|</span>
         <a href="#hyaku" class="nav-hyaku">ヒャク開発</a>
         <a href="#works">実績</a>
@@ -81,8 +81,8 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       </button>
     </header>
     <div class="nav-drawer" :class="{ open: menuOpen }" @click="menuOpen = false">
-      <a href="https://fumi.lol/" target="_blank" rel="noopener" class="drawer-product">Fumi</a>
-      <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="drawer-product">Fumi DSR</a>
+      <a href="https://apo.movee.jp/" target="_blank" rel="noopener" class="drawer-product">movee アポ</a>
+      <a href="https://dsr.movee.jp/" target="_blank" rel="noopener" class="drawer-product">movee デジタル商談ルーム</a>
       <a href="#hyaku" @click="menuOpen = false" class="drawer-hyaku">ヒャク開発</a>
       <a href="#works" @click="menuOpen = false">実績</a>
       <a href="#contact" @click="menuOpen = false">お問い合わせ</a>
@@ -97,7 +97,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
           </h1>
           <p class="hero-lead">
             名刺交換からアポ・商談・見積もりまで、営業プロセスに特化した業務システムの開発会社です。<br class="br-pc" />
-            自社でも「Fumi」「Fumi DSR」を開発・運営しています。
+            自社でも「movee アポ」「movee デジタル商談ルーム」を開発・運営しています。
           </p>
           <div class="hero-actions">
             <a href="#contact" class="hero-cta">開発を相談する</a>
@@ -164,12 +164,13 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
 
           <!-- 製品カード -->
           <div class="products">
-            <a href="https://fumi.lol/" target="_blank" rel="noopener" class="product-card">
+            <a href="https://apo.movee.jp/" target="_blank" rel="noopener" class="product-card">
               <div class="product-head">
-                <p class="product-name">Fumi</p>
+                <p class="product-name">movee アポ</p>
                 <div class="product-scope">
                   <span class="scope-dot"></span>出会い → アポ取得
                 </div>
+                <span class="product-free">いつでも無料</span>
               </div>
               <p class="product-desc">名刺交換後のフォローアップを自動化。出会いを次のアポイントへつなげます。</p>
               <ul class="product-features">
@@ -177,11 +178,11 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
                 <li>会話内容からお礼メールを自動生成</li>
                 <li>アポ依頼メールの自動生成</li>
               </ul>
-              <span class="product-link">fumi.lol →</span>
+              <span class="product-link">apo.movee.jp →</span>
             </a>
-            <a href="https://dsr.fumi.lol/" target="_blank" rel="noopener" class="product-card">
+            <a href="https://dsr.movee.jp/" target="_blank" rel="noopener" class="product-card">
               <div class="product-head">
-                <p class="product-name">Fumi DSR</p>
+                <p class="product-name">movee デジタル商談ルーム</p>
                 <div class="product-scope">
                   <span class="scope-dot"></span>アポ・商談〜見積もり
                 </div>
@@ -193,7 +194,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
                 <li>商談中にスライド全画面表示・レーザーポインター対応</li>
                 <li>開封・ダウンロード通知付きの資料リンク共有</li>
               </ul>
-              <span class="product-link">dsr.fumi.lol →</span>
+              <span class="product-link">dsr.movee.jp →</span>
             </a>
           </div>
         </div>
@@ -209,7 +210,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
         </div>
         <p class="hyaku-catch">100点の商談・営業システムを100万円で開発する</p>
         <p class="hyaku-desc">
-          お客様の業務システムや Fumi・Fumi DSR の開発・運営で培った商談・営業領域の知見を活かし、
+          お客様の業務システムや movee アポ・movee デジタル商談ルーム の開発・運営で培った商談・営業領域の知見を活かし、
           貴社の営業フローに合ったシステムをスピーディーに開発します。
           要件定義から設計・開発・納品まで、固定価格でお受けします。
         </p>
