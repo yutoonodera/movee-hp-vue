@@ -284,7 +284,30 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       </div>
     </section>
 
-    <!-- 主な実績 -->
+    <!-- 代表挨拶 -->
+    <section class="band greeting-band">
+      <div class="inner greeting-inner">
+        <p class="label">MESSAGE</p>
+        <h2 class="heading" style="margin-bottom: 20px">営業こそ、会社の屋台骨だと思っています</h2>
+        <p class="greeting-body">
+          私はエンジニアになる前、不動産・医薬品・指紋認証鍵の営業を経験しました。
+          毎日アポを取り、商談資料を作り、お客様の前に立つ。
+          そのプロセスがいかに会社の売上と成長を支えているか、身をもって知っています。
+        </p>
+        <p class="greeting-body">
+          同時に、営業システムが複雑になりすぎると、現場が入力しなくなることも知っています。
+          データが入らないシステムは、どれだけ高機能でも意味がありません。
+          使われてこそ、価値がある。
+        </p>
+        <p class="greeting-body">
+          だからこそ、納品して終わりではなく、現場に定着するまで支援することを重視しています。
+          営業経験のあるエンジニアとして、作る側と使う側、両方の視点から開発に向き合っています。
+        </p>
+        <p class="greeting-sig">株式会社movee 代表 小野寺 祐人</p>
+      </div>
+    </section>
+
+    <!-- 実績 -->
     <section v-if="achievements?.length" id="works" class="band works-band">
       <div class="inner">
         <p class="label">WORKS</p>
@@ -697,6 +720,12 @@ dd { color: var(--ink); margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .works-marquee-track { animation: none; }
 }
+
+/* ── 代表挨拶 ── */
+.greeting-band { background: var(--bg); border-top: 1px solid var(--line); }
+.greeting-inner { max-width: 680px; }
+.greeting-body { font-size: 15px; line-height: 2; color: var(--ink-2); margin: 0 0 20px; }
+.greeting-sig { font-size: 14px; font-weight: 700; color: var(--ink); margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
 
 /* ── フッター ── */
 .footer { border-top: 1px solid var(--line); padding: 24px 48px; font-size: 14px; color: var(--ink-3); background: var(--bg); }
