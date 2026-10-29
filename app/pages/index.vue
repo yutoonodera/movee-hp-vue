@@ -108,10 +108,12 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
             <p class="service-desc">
               自社の製品資料・FAQ・提案書をAIキャラクターに学習させると、
               見込み顧客からの問い合わせに24時間自動で対応します。
-              会話が商談・資料請求などの目的に近づいたタイミングで連絡先フォームを表示し、リードを獲得します。
+              答えるだけの受け身の対応ではなく、AIキャラクターから用途・予算感・導入時期などを自然に質問。
+              会話型のリード選別（Conversational AI Lead Qualification）で、見込み顧客が本当に知りたいことも引き出せます。
             </p>
             <ul class="service-features">
               <li>資料を根拠にした信頼性の高い回答</li>
+              <li>能動的な質問でニーズ・予算・導入時期を自然に引き出す</li>
               <li>公開URLまたはサイトへの埋め込みで設置</li>
               <li>問い合わせリストをキャラクターごとに管理</li>
               <li>ログイン不要で利用開始</li>
@@ -128,15 +130,17 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
               </div>
               <span class="service-badge service-badge--free">いつまでも無料</span>
             </div>
-            <p class="service-tagline">PDF資料を共有して、閲覧状況をページ単位で把握</p>
+            <p class="service-tagline">資料を共有して、閲覧状況をページ単位で把握</p>
             <p class="service-desc">
               提案書・カタログ・資料をアップロードしてURLを発行。
               相手がどのページをどれだけ読んだかを日別グラフで確認できます。
               「刺さったページ」がわかるので、次の商談の準備に活かせます。
+              資料のダウンロードも可能。PDF・ZIPなど複数フォーマットに対応しています。
             </p>
             <ul class="service-features">
-              <li>ドラッグ&ドロップで即アップロード・URL発行</li>
+              <li>PDF・ZIPなど複数フォーマットをアップロード・URL発行</li>
               <li>ページごとの閲覧時間を日別グラフで可視化</li>
+              <li>資料のダウンロード機能付き</li>
               <li>メールアドレス認証の設定も可能</li>
               <li>閲覧者・送り手ともにログイン不要</li>
             </ul>
