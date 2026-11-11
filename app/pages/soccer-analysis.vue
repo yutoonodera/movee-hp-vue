@@ -217,7 +217,6 @@ const cumulativeForm = computed(() => {
       <NuxtLink to="/" class="nav-logo">movee</NuxtLink>
       <nav class="nav-links">
         <NuxtLink to="/achievements">実績</NuxtLink>
-        <NuxtLink to="/blog">ブログ</NuxtLink>
         <a href="/#contact">お問い合わせ</a>
       </nav>
     </header>
