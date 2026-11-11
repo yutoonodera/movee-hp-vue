@@ -55,8 +55,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
     <header class="nav">
       <span class="nav-logo">movee</span>
       <nav class="nav-links">
-        <a href="https://leadvoice.movee.jp/" target="_blank" rel="noopener" class="nav-product">LeadVoice</a>
-        <a href="https://share.movee.jp/" target="_blank" rel="noopener" class="nav-product">Share</a>
+        <a href="https://movee.jp/" target="_blank" rel="noopener" class="nav-product">モビー - 目的志向型対話トレーニング -</a>
         <span class="nav-sep">|</span>
         <a href="#contact">お問い合わせ</a>
       </nav>
@@ -65,8 +64,7 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
       </button>
     </header>
     <div class="nav-drawer" :class="{ open: menuOpen }" @click="menuOpen = false">
-      <a href="https://leadvoice.movee.jp/" target="_blank" rel="noopener" class="drawer-product">LeadVoice</a>
-      <a href="https://share.movee.jp/" target="_blank" rel="noopener" class="drawer-product">Share</a>
+      <a href="https://movee.jp/" target="_blank" rel="noopener" class="drawer-product">モビー - 目的志向型対話トレーニング -</a>
       <a href="#contact" @click="menuOpen = false">お問い合わせ</a>
     </div>
 
