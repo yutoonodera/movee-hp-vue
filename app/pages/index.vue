@@ -81,10 +81,6 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
           問い合わせ対応の自動化から、資料共有・閲覧分析まで。<br class="br-pc" />
           営業活動の一つひとつを仕組み化するクラウドサービスを提供しています。
         </p>
-        <div class="hero-actions">
-          <a href="https://leadvoice.movee.jp/" target="_blank" rel="noopener" class="hero-cta">LeadVoiceを見る</a>
-          <a href="https://share.movee.jp/" target="_blank" rel="noopener" class="hero-cta hero-cta--sub">Shareを見る</a>
-        </div>
       </div>
     </section>
 
@@ -194,20 +190,6 @@ const formatEventTimeRange = (dt: string, end?: string | null) => {
               <p class="post-title" v-html="post.title.rendered"></p>
               <p class="post-excerpt" v-html="post.excerpt.rendered"></p>
             </div>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- ニュース -->
-    <section v-if="news?.length" class="band">
-      <div class="inner">
-        <p class="label">NEWS</p>
-        <h2 class="heading">ニュース</h2>
-        <div class="news-list">
-          <NuxtLink v-for="item in news" :key="item.id" :to="`/blog/${item.slug}`" class="news-row">
-            <p class="news-date">{{ formatDate(item.date) }}</p>
-            <p class="news-title" v-html="item.title.rendered"></p>
           </NuxtLink>
         </div>
       </div>
